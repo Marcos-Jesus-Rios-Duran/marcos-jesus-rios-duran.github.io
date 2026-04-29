@@ -1,0 +1,32 @@
+export const themes = {
+  light: {
+    bgGradientTop:    '#4b96e0',
+    bgGradientBottom: '#c8e8f5',
+    rosaBase:         '#FFB3CC',
+    rosaVivo:         '#FF8FAB',
+    rosaTexto:        '#7A1840',
+    rosaSub:          '#B0456E',
+    superficie:       '#ffffff',
+    texto:            '#0f172a',
+    textoSub:         '#64748b',
+    borde:            'rgba(255,255,255,0.90)',
+    cursor:           '#FF8FAB',
+    particulas:       ['#FFB3CC','#FF8FAB','#FFD6E5','#FF6B9D','#ffffff','#e0f4ff'],
+  },
+  dark: {
+    bgGradientTop:    '#0a0a0f',
+    bgGradientBottom: '#0d1117',
+    rosaBase:         '#FFB3CC',
+    rosaVivo:         '#FF8FAB',
+    rosaTexto:        '#ffffff',
+    rosaSub:          '#94a3b8',
+    superficie:       '#111118',
+    superficie2:      '#1a1a24',
+    texto:            '#ffffff',
+    textoSub:         '#94a3b8',
+    borde:            'rgba(0,229,255,0.20)',
+    acento:           '#00e5ff',
+    cursor:           '#00e5ff',
+    particulas:       ['#00e5ff','#00bcd4','#00f5ff','#40e8ff','#FFB3CC','#ffffff'],
+  }
+}
