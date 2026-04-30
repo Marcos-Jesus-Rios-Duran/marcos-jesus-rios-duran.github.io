@@ -4,6 +4,13 @@ import LineTime from './LineTime.vue';
 
 // Usamos el JSON que traducimos hace un momento
 const { tm } = useI18n();
+
+// Iconos para hobbies
+const hobbyIcons = {
+  music: '🎵',
+  sports: '⚽',
+  videogames: '🎮'
+};
 </script>
 
 <template>
@@ -18,15 +25,19 @@ const { tm } = useI18n();
         <p class="description">{{ tm('about.description') }}</p>
 
         <div class="hobbies-grid">
+            <strong>{{ tm('about.hobbies.nature') }} 🗻🍄‍🟫</strong>
           <div class="hobby-item">
+            <span class="hobby-icon">{{ hobbyIcons.music }}</span>
             <strong>{{ tm('about.hobbies.music.label') }}:</strong>
             <span>{{ tm('about.hobbies.music.value') }}</span>
           </div>
           <div class="hobby-item">
+            <span class="hobby-icon">{{ hobbyIcons.sports }}</span>
             <strong>{{ tm('about.hobbies.sports.label') }}:</strong>
             <span>{{ tm('about.hobbies.sports.value') }}</span>
           </div>
           <div class="hobby-item">
+            <span class="hobby-icon">{{ hobbyIcons.videogames }}</span>
             <strong>{{ tm('about.hobbies.videogames.label') }}:</strong>
             <span>{{ tm('about.hobbies.videogames.value') }}</span>
           </div>
@@ -71,6 +82,13 @@ const { tm } = useI18n();
   }
 }
 
+.about-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 0 1.5rem;
+}
+
 .title {
   font-size: 2.5rem;
   margin-bottom: 1rem;
@@ -85,16 +103,62 @@ const { tm } = useI18n();
   font-size: 1.1rem;
   line-height: 1.6;
   margin-bottom: 2rem;
-  opacity: 0.9;
+  opacity: 0.95;
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+  color: var(--texto);
 }
 
 .hobbies-grid {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  background: rgba(255, 255, 255, 0.05); /* Un fondo sutil cristalino */
-  padding: 1.5rem;
-  border-radius: 12px;
-  backdrop-filter: blur(5px);
+  background: rgba(255, 255, 255, 0.12);
+  padding: 2rem;
+  border-radius: 14px;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.hobbies-grid:hover {
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.hobby-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid transparent;
+}
+
+.hobby-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--cursor);
+  transform: translateX(5px);
+}
+
+.hobby-icon {
+  font-size: 1.5rem;
+  min-width: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hobby-item strong {
+  color: var(--cursor);
+  font-weight: 600;
+  min-width: 100px;
+}
+
+.hobby-item span:not(.hobby-icon) {
+  color: var(--texto);
+  opacity: 0.85;
 }
 </style>

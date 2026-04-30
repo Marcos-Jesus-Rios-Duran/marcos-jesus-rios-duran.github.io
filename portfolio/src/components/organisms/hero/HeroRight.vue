@@ -9,7 +9,8 @@
       :tags="card.tags"
       :delay="card.delay"
       :duration="card.duration"
-      :class="`card-${card.id}`"
+      :class="`card-${card.id} animate-fade-left`"
+      :style="{ '--delay': `${card.delay}s` }"
     />
   </div>
 </template>
@@ -37,7 +38,7 @@ const cards = [
     id: 'web',
     icon: '🌐',
     titleKey: 'hero.cards.web',
-    delay: 0.8,
+    delay: 0.05,
     duration: 5.2,
     tags: [
       { label: 'Vue', certified: false },
@@ -46,10 +47,21 @@ const cards = [
     ]
   },
   {
+    id: 'mobile',
+    icon: '📱',
+    titleKey: 'hero.cards.mobile',
+    delay: 0.1,
+    duration: 5.5,
+    tags: [
+      { label: 'Flutter', certified: false },
+      { label: 'Dart', certified: false },
+    ]
+  },
+  {
     id: 'backend',
     icon: '⚙️',
     titleKey: 'hero.cards.backend',
-    delay: 1.4,
+    delay: 0.15,
     duration: 4.8,
     tags: [
       { label: 'FastAPI', certified: false },
@@ -58,21 +70,10 @@ const cards = [
     ]
   },
   {
-    id: 'mobile',
-    icon: '📱',
-    titleKey: 'hero.cards.mobile',
-    delay: 2.0,
-    duration: 5.5,
-    tags: [
-      { label: 'Flutter', certified: false },
-      { label: 'Dart', certified: false },
-    ]
-  },
-  {
     id: 'desktop',
     icon: '🖥️',
     titleKey: 'hero.cards.desktop',
-    delay: 2.6,
+    delay: 0.2,
     duration: 4.2,
     tags: [
       { label: 'Flutter Desktop', certified: false },
@@ -83,7 +84,7 @@ const cards = [
     id: 'devops',
     icon: '🔧',
     titleKey: 'hero.cards.devops',
-    delay: 3.2,
+    delay: 0.25,
     duration: 5.0,
     tags: [
       { label: 'Git Flow', certified: false },
@@ -107,6 +108,12 @@ const cards = [
   padding: 20px;
 }
 
+/* === ANIMACIONES DE ENTRADA === */
+.animate-fade-left {
+  animation: fadeLeft 0.07s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation-delay: var(--delay);
+}
+
 /* Posicionamiento escalonado — como nubes a distintas alturas */
 .card-cloud   { grid-column: 2; grid-row: 1; justify-self: end; }
 .card-web     { grid-column: 1; grid-row: 1; }
@@ -114,6 +121,18 @@ const cards = [
 .card-mobile  { grid-column: 1; grid-row: 2; }
 .card-desktop { grid-column: 2; grid-row: 3; justify-self: end; }
 .card-devops  { grid-column: 1; grid-row: 3; }
+
+/* === KEYFRAMES === */
+@keyframes fadeLeft {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
 
 /* Tablet (768px a 1024px) */
 @media (max-width: 1024px) {
