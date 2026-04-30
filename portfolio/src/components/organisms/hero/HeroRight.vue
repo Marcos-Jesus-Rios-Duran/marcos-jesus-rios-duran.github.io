@@ -28,8 +28,9 @@ const cards = [
     delay: 0,
     duration: 4.5,
     tags: [
-      { label: 'Azure AI-900', certified: true },
-      { label: 'Ciberseguridad', certified: false },
+      { url: 'https://learn.microsoft.com/es-mx/users/marcosjesusriosduran-4079/credentials/4ae86f377cd55fa8?ref=https%3A%2F%2Fwww.linkedin.com%2F', label: 'Azure AI-900', certified: true },
+     { label: 'Ciberseguridad', certified: false },
+
     ]
   },
   {

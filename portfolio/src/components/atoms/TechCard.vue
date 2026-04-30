@@ -11,15 +11,27 @@
     <div class="tech-card__content">
       <h4 class="tech-card__title">{{ title }}</h4>
       <div class="tech-card__tags">
-        <span
-          v-for="tag in tags"
-          :key="tag.label"
-          class="tag"
-          :class="{ 'tag--certified': tag.certified }"
-        >
-          {{ tag.label }}
-          <span v-if="tag.certified" class="tag__badge">✓</span>
-        </span>
+        <template v-for="tag in tags" :key="tag.label">
+          <a
+            v-if="tag.url"
+            class="tag tag--link"
+            :class="{ 'tag--certified': tag.certified }"
+            :href="tag.url"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {{ tag.label }}
+            <span v-if="tag.certified" class="tag__badge">✓</span>
+          </a>
+          <span
+            v-else
+            class="tag"
+            :class="{ 'tag--certified': tag.certified }"
+          >
+            {{ tag.label }}
+            <span v-if="tag.certified" class="tag__badge">✓</span>
+          </span>
+        </template>
       </div>
     </div>
   </div>
@@ -144,6 +156,10 @@ defineProps({
   gap: 3px;
   text-shadow: 0 0.5px 1px rgba(255,255,255,0.6);
   line-height: 1.3;
+}
+
+.tag--link {
+  text-decoration: none;
 }
 
 [data-theme="dark"] .tag {
