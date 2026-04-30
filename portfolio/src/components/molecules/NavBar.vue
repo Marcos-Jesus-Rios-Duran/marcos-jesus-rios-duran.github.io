@@ -1,7 +1,19 @@
 <!-- src/components/molecules/NavBar.vue -->
+
 <template>
   <nav class="navbar" :class="{ scrolled, dark: isDark }">
     <span class="logo">COXI<span>DEV</span></span>
+
+    <ul class="nav-menu">
+      <li v-for="r in routes" :key="r.name">
+        <router-link
+          :to="{ name: r.name }"
+          :class="{ active: isActive(r.name) }"
+        >
+          {{ r.name.charAt(0).toUpperCase() + r.name.slice(1) }}
+        </router-link>
+      </li>
+    </ul>
 
     <div class="nav-actions">
       <LangSwitch />
@@ -13,14 +25,21 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { storeToRefs } from 'pinia'
+import { useRoute, useRouter } from 'vue-router'
 import { useTheme } from '@/stores/useTheme'
 import ThemeToggle from '@/components/molecules/ThemeToggle.vue'
 import LangSwitch from '@/components/molecules/LangSwitch.vue'
 
+const route = useRoute()
+const router = useRouter()
 const store = useTheme()
 const { mode } = storeToRefs(store)
 const isDark = computed(() => mode.value === 'dark')
 const scrolled = ref(false)
+
+const routes = computed(() => router.getRoutes().filter(r => r.path !== '/:pathMatch(.*)*'))
+const isActive = (routeName) => route.name === routeName
+
 const onScroll = () => { scrolled.value = window.scrollY > 50 }
 onMounted(() => window.addEventListener('scroll', onScroll))
 onUnmounted(() => window.removeEventListener('scroll', onScroll))
@@ -64,6 +83,52 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
 }
 
 .logo span { color: var(--rosaBase); }
+
+/* Menu de navegación */
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 32px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  position: relative;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.nav-menu a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--rosaBase);
+  transition: width 0.3s ease;
+}
+
+.nav-menu a:hover {
+  color: var(--rosaBase);
+}
+
+.nav-menu a:hover::after {
+  width: 100%;
+}
+
+.nav-menu a.active {
+  color: var(--rosaBase);
+}
+
+.nav-menu a.active::after {
+  width: 100%;
+}
 
 /* Zona derecha — toggle + lang */
 .nav-actions {
