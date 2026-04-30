@@ -8,51 +8,96 @@
     "cta_primary": "View projects",
     "cta_secondary": "Contact me",
     "cards": {
-      "cloud":   "Cloud & Security",
-      "web":     "Web Frontend",
+      "cloud": "Cloud & Security",
+      "web": "Web Frontend",
       "backend": "Backend",
-      "mobile":  "Mobile",
+      "mobile": "Mobile",
       "desktop": "Desktop",
-      "devops":  "DevOps & Git"
+      "devops": "DevOps & Git"
     },
     "tags": {
-      "azure":    "Azure AI-900",
+      "azure": "Azure AI-900",
       "cybersec": "Cybersecurity",
       "security": "Cloud Security",
-      "flutter":  "Flutter",
-      "dart":     "Dart",
-      "solid":    "SOLID",
-      "gitflow":  "Git Flow",
-      "feature":  "Feature First"
+      "flutter": "Flutter",
+      "dart": "Dart",
+      "solid": "SOLID",
+      "gitflow": "Git Flow",
+      "feature": "Feature First"
     }
   },
   "nav": {
-    "about":    "About",
+    "about": "About",
     "projects": "Projects",
-    "mentors":  "Mentors",
-    "contact":  "Contact"
+    "mentors": "Mentors",
+    "contact": "Contact"
   },
   "about": {
     "title": "About me",
-    "description": "Engineer passionate about clean software architecture, design patterns and scalable systems. Nature lover, pianist and eternal curious about ancient languages.",
-    "stack_title": "My tech stack"
+    "description": "Associate Degree holder (TSU) and Software Development Engineering student passionate about clean architecture, design patterns, and scalable systems.",
+    "hobbies": {
+      "title": "Hobbies",
+      "nature": "Nature lover",
+      "music": {
+        "label": "Music",
+        "value": "Pianist"
+      },
+      "languages": {
+        "label": "Languages",
+        "value": "Curious about ancient languages"
+      },
+      "sports": {
+        "label": "Sports",
+        "value": "Soccer, ping-pong, swimming, and chess"
+      },
+      "reading": {
+        "label": "Reading",
+        "value": "Science fiction and philosophy books"
+      },
+      "videogames": {
+        "label": "Video Games",
+        "value": "RPG and strategy enthusiast"
+      }
+    },
+    "timeline": [
+      {
+        "date": "September 2023",
+        "event": "Started professional training at the Universidad Tecnológica de Xicotepec de Juárez."
+      },
+      {
+        "date": "May - August 2025",
+        "event": "Internship at INAOE; technical collaboration on the SCAA project."
+      },
+      {
+        "date": "August 2025",
+        "event": "Started Software Development and Management Engineering after obtaining the TSU degree."
+      },
+      {
+        "date": "April 6, 2026",
+        "event": "Microsoft Azure AI-900 Certification."
+      },
+      {
+        "date": "April 27, 2026",
+        "event": "Acquired 'The Pragmatic Programmer'; deepening knowledge in software engineering culture."
+      }
+    ]
   },
   "projects": {
-    "title":    "Projects",
+    "title": "Projects",
     "subtitle": "What I've built"
   },
   "mentors": {
-    "title":    "My Mentors",
+    "title": "My Mentors",
     "subtitle": "People who shaped my path",
-    "inaoe":   "National Institute of Astrophysics, Optics and Electronics"
+    "inaoe": "National Institute of Astrophysics, Optics and Electronics"
   },
   "contact": {
-    "title":    "Contact",
+    "title": "Contact",
     "subtitle": "Have a project in mind?",
-    "email":    "Write me"
+    "email": "Write me"
   },
   "footer": {
     "made_with": "Made with Vue 🌸 from Huauchinango, Puebla",
-    "rights":    "All rights reserved"
+    "rights": "All rights reserved"
   }
 }

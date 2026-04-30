@@ -8,51 +8,96 @@
     "cta_primary": "Ver proyectos",
     "cta_secondary": "Contáctame",
     "cards": {
-      "cloud":   "Cloud & Seguridad",
-      "web":     "Web Frontend",
+      "cloud": "Cloud & Seguridad",
+      "web": "Web Frontend",
       "backend": "Backend",
-      "mobile":  "Mobile",
+      "mobile": "Mobile",
       "desktop": "Desktop",
-      "devops":  "DevOps & Git"
+      "devops": "DevOps & Git"
     },
     "tags": {
-      "azure":    "Azure AI-900",
+      "azure": "Azure AI-900",
       "cybersec": "Ciberseguridad",
       "security": "Cloud Security",
-      "flutter":  "Flutter",
-      "dart":     "Dart",
-      "solid":    "SOLID",
-      "gitflow":  "Git Flow",
-      "feature":  "Feature First"
+      "flutter": "Flutter",
+      "dart": "Dart",
+      "solid": "SOLID",
+      "gitflow": "Git Flow",
+      "feature": "Feature First"
     }
   },
   "nav": {
-    "about":    "Sobre mí",
+    "about": "Sobre mí",
     "projects": "Proyectos",
-    "mentors":  "Mentores",
-    "contact":  "Contacto"
+    "mentors": "Mentores",
+    "contact": "Contacto"
   },
   "about": {
     "title": "Sobre mí",
-    "description": "Ingeniero apasionado por la arquitectura de software limpia, patrones de diseño y sistemas escalables. Amante de la Sierra Norte de Puebla, pianista y eterno curioso de los idiomas antiguos.",
-    "stack_title": "Mi stack técnico"
+    "description": "TSU y estudiante de Ingeniería en Desarrollo de Software apasionado por la arquitectura limpia, patrones de diseño y sistemas escalables.",
+    "hobbies": {
+      "title": "Hobbies",
+      "nature": "Amante de la naturaleza",
+      "music": {
+        "label": "Música",
+        "value": "Pianista"
+      },
+      "languages": {
+        "label": "Idiomas",
+        "value": "Curioso por las lenguas antiguas"
+      },
+      "sports": {
+        "label": "Deportes",
+        "value": "Fútbol, ping-pong, natación y ajedrez"
+      },
+      "reading": {
+        "label": "Lectura",
+        "value": "libros de Ciencia ficción y filosofía "
+      },
+      "videogames": {
+        "label": "Videojuegos",
+        "value": "Entusiasta de RPGs y estrategia"
+      }
+    },
+    "timeline": [
+      {
+        "date": "Septiembre 2023",
+        "event": "Inicio de formación profesional en la Universidad Tecnológica de Xicotepec de Juárez."
+      },
+      {
+        "date": "Mayo - Agosto 2025",
+        "event": "Estancia profesional en el INAOE; colaboración técnica en el proyecto SCAA."
+      },
+      {
+        "date": "Agosto 2025",
+        "event": "Inicio de Ingeniería en Desarrollo y Gestión de Software tras obtener el título de TSU."
+      },
+      {
+        "date": "6 de Abril 2026",
+        "event": "Certificación Microsoft Azure AI-900."
+      },
+      {
+        "date": "27 de Abril 2026",
+        "event": "Adquisición de 'The Pragmatic Programmer'; profundización en cultura de ingeniería de software."
+      }
+    ]
   },
   "projects": {
-    "title":    "Proyectos",
+    "title": "Proyectos",
     "subtitle": "Lo que he construido"
   },
   "mentors": {
-    "title":    "Mis Mentores",
+    "title": "Mis Mentores",
     "subtitle": "Personas que han formado mi camino",
-    "inaoe":   "Instituto Nacional de Astrofísica, Óptica y Electrónica"
+    "inaoe": "Instituto Nacional de Astrofísica, Óptica y Electrónica"
   },
   "contact": {
-    "title":    "Contacto",
+    "title": "Contacto",
     "subtitle": "¿Tienes un proyecto en mente?",
-    "email":    "Escríbeme"
+    "email": "Escríbeme"
   },
   "footer": {
     "made_with": "Hecho con Vue 🌸 desde Huauchinango, Puebla",
-    "rights":    "Todos los derechos reservados"
+    "rights": "Todos los derechos reservados"
   }
 }

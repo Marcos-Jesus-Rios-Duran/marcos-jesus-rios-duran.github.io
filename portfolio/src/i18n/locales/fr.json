@@ -8,51 +8,96 @@
     "cta_primary": "Voir les projets",
     "cta_secondary": "Me contacter",
     "cards": {
-      "cloud":   "Cloud & Sécurité",
-      "web":     "Web Frontend",
+      "cloud": "Cloud & Sécurité",
+      "web": "Web Frontend",
       "backend": "Backend",
-      "mobile":  "Mobile",
+      "mobile": "Mobile",
       "desktop": "Bureau",
-      "devops":  "DevOps & Git"
+      "devops": "DevOps & Git"
     },
     "tags": {
-      "azure":    "Azure AI-900",
+      "azure": "Azure AI-900",
       "cybersec": "Cybersécurité",
       "security": "Sécurité Cloud",
-      "flutter":  "Flutter",
-      "dart":     "Dart",
-      "solid":    "SOLID",
-      "gitflow":  "Git Flow",
-      "feature":  "Feature First"
+      "flutter": "Flutter",
+      "dart": "Dart",
+      "solid": "SOLID",
+      "gitflow": "Git Flow",
+      "feature": "Feature First"
     }
   },
   "nav": {
-    "about":    "À propos",
+    "about": "À propos",
     "projects": "Projets",
-    "mentors":  "Mentors",
-    "contact":  "Contact"
+    "mentors": "Mentors",
+    "contact": "Contact"
   },
   "about": {
     "title": "À propos de moi",
-    "description": "Ingénieur passionné par l'architecture logicielle propre, les design patterns et les systèmes évolutifs. Amoureux de la nature, pianiste et éternellement curieux des langues anciennes.",
-    "stack_title": "Mon stack technique"
+    "description": "TSU et étudiant en Ingénierie du Développement Logiciel, passionné par l'architecture propre, les patrons de conception et les systèmes évolutifs.",
+    "hobbies": {
+      "title": "Loisirs",
+      "nature": "Amoureux de la nature",
+      "music": {
+        "label": "Musique",
+        "value": "Pianiste"
+      },
+      "languages": {
+        "label": "Langues",
+        "value": "Curieux des langues anciennes"
+      },
+      "sports": {
+        "label": "Sports",
+        "value": "Football, ping-pong, natation et échecs"
+      },
+      "reading": {
+        "label": "Lecture",
+        "value": "Livres de science-fiction et de philosophie"
+      },
+      "videogames": {
+        "label": "Jeux vidéo",
+        "value": "Passionné de RPG et de stratégie"
+      }
+    },
+    "timeline": [
+      {
+        "date": "Septembre 2023",
+        "event": "Début de la formation professionnelle à l'Université Technologique de Xicotepec de Juárez."
+      },
+      {
+        "date": "Mai - Août 2025",
+        "event": "Stage professionnel à l'INAOE ; collaboration technique au projet SCAA."
+      },
+      {
+        "date": "Août 2025",
+        "event": "Début du cycle d'Ingénierie en Développement et Gestion de Logiciels après l'obtention du diplôme de TSU."
+      },
+      {
+        "date": "6 Avril 2026",
+        "event": "Certification Microsoft Azure AI-900."
+      },
+      {
+        "date": "27 Avril 2026",
+        "event": "Acquisition du livre 'The Pragmatic Programmer' ; approfondissement de la culture de l'ingénierie logicielle."
+      }
+    ]
   },
   "projects": {
-    "title":    "Projets",
+    "title": "Projets",
     "subtitle": "Ce que j'ai construit"
   },
   "mentors": {
-    "title":    "Mes Mentors",
+    "title": "Mes Mentors",
     "subtitle": "Les personnes qui ont façonné mon chemin",
-    "inaoe":   "Institut National d'Astrophysique, d'Optique et d'Électronique"
+    "inaoe": "Institut National d'Astrophysique, d'Optique et d'Électronique"
   },
   "contact": {
-    "title":    "Contact",
+    "title": "Contact",
     "subtitle": "Vous avez un projet en tête?",
-    "email":    "Écrivez-moi"
+    "email": "Écrivez-moi"
   },
   "footer": {
     "made_with": "Fait avec Vue 🌸 depuis Huauchinango, Puebla",
-    "rights":    "Tous droits réservés"
+    "rights": "Tous droits réservés"
   }
 }

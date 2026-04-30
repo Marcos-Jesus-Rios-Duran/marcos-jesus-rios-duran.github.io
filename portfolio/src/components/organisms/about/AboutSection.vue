@@ -1,0 +1,1 @@
+orquestador de la pagina de about, contiene la estructura general y el diseño de la sección, además de importar los componentes necesarios para mostrar la información del perfil y la línea del tiempo.
