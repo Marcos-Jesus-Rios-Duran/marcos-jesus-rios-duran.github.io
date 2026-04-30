@@ -1,0 +1,58 @@
+{
+  "hero": {
+    "greeting": "Bonjour, je suis",
+    "name": "Marcos Ríos",
+    "role": "Ingénieur en Développement et Gestion de Logiciels",
+    "tagline": "Développeur passionné par l'architecture logicielle propre",
+    "tagline2": "du Mexique au monde 🌸",
+    "cta_primary": "Voir les projets",
+    "cta_secondary": "Me contacter",
+    "cards": {
+      "cloud":   "Cloud & Sécurité",
+      "web":     "Web Frontend",
+      "backend": "Backend",
+      "mobile":  "Mobile",
+      "desktop": "Bureau",
+      "devops":  "DevOps & Git"
+    },
+    "tags": {
+      "azure":    "Azure AI-900",
+      "cybersec": "Cybersécurité",
+      "security": "Sécurité Cloud",
+      "flutter":  "Flutter",
+      "dart":     "Dart",
+      "solid":    "SOLID",
+      "gitflow":  "Git Flow",
+      "feature":  "Feature First"
+    }
+  },
+  "nav": {
+    "about":    "À propos",
+    "projects": "Projets",
+    "mentors":  "Mentors",
+    "contact":  "Contact"
+  },
+  "about": {
+    "title": "À propos de moi",
+    "description": "Ingénieur passionné par l'architecture logicielle propre, les design patterns et les systèmes évolutifs. Amoureux de la nature, pianiste et éternellement curieux des langues anciennes.",
+    "stack_title": "Mon stack technique"
+  },
+  "projects": {
+    "title":    "Projets",
+    "subtitle": "Ce que j'ai construit"
+  },
+  "mentors": {
+    "title":    "Mes Mentors",
+    "subtitle": "Les personnes qui ont façonné mon chemin",
+    "inaoe":   "Institut National d'Astrophysique, d'Optique et d'Électronique"
+  },
+  "contact": {
+    "title":    "Contact",
+    "subtitle": "Vous avez un projet en tête?",
+    "email":    "Écrivez-moi"
+  },
+  "footer": {
+    "made_with": "Fait avec Vue 🌸 depuis Huauchinango, Puebla",
+    "rights":    "Tous droits réservés"
+  }
+}

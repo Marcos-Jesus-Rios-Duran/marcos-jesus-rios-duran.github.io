@@ -1,0 +1,58 @@
+{
+  "hero": {
+    "greeting": "Ciao, sono",
+    "name": "Marcos Ríos",
+    "role": "Ingegnere in Sviluppo e Gestione del Software",
+    "tagline": "Sviluppatore appassionato di architettura software pulita",
+    "tagline2": "dal Messico per il mondo 🌸",
+    "cta_primary": "Vedi progetti",
+    "cta_secondary": "Contattami",
+    "cards": {
+      "cloud":   "Cloud & Sicurezza",
+      "web":     "Web Frontend",
+      "backend": "Backend",
+      "mobile":  "Mobile",
+      "desktop": "Desktop",
+      "devops":  "DevOps & Git"
+    },
+    "tags": {
+      "azure":    "Azure AI-900",
+      "cybersec": "Sicurezza informatica",
+      "security": "Sicurezza Cloud",
+      "flutter":  "Flutter",
+      "dart":     "Dart",
+      "solid":    "SOLID",
+      "gitflow":  "Git Flow",
+      "feature":  "Feature First"
+    }
+  },
+  "nav": {
+    "about":    "Chi sono",
+    "projects": "Progetti",
+    "mentors":  "Mentori",
+    "contact":  "Contatto"
+  },
+  "about": {
+    "title": "Chi sono",
+    "description": "Ingegnere appassionato di architettura software pulita, design pattern e sistemi scalabili. Amante della natura, pianista ed eternamente curioso delle lingue antiche.",
+    "stack_title": "Il mio stack tecnologico"
+  },
+  "projects": {
+    "title":    "Progetti",
+    "subtitle": "Quello che ho costruito"
+  },
+  "mentors": {
+    "title":    "I miei Mentori",
+    "subtitle": "Le persone che hanno formato il mio percorso",
+    "inaoe":   "Istituto Nazionale di Astrofisica, Ottica ed Elettronica"
+  },
+  "contact": {
+    "title":    "Contatto",
+    "subtitle": "Hai un progetto in mente?",
+    "email":    "Scrivimi"
+  },
+  "footer": {
+    "made_with": "Fatto con Vue 🌸 da Huauchinango, Puebla",
+    "rights":    "Tutti i diritti riservati"
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "hero": {
+    "greeting": "Hi, I'm",
+    "name": "Marcos Ríos",
+    "role": "Software Development & Management Engineer",
+    "tagline": "Developer passionate about clean software architecture",
+    "tagline2": "from Mexico to the world 🌸",
+    "cta_primary": "View projects",
+    "cta_secondary": "Contact me",
+    "cards": {
+      "cloud":   "Cloud & Security",
+      "web":     "Web Frontend",
+      "backend": "Backend",
+      "mobile":  "Mobile",
+      "desktop": "Desktop",
+      "devops":  "DevOps & Git"
+    },
+    "tags": {
+      "azure":    "Azure AI-900",
+      "cybersec": "Cybersecurity",
+      "security": "Cloud Security",
+      "flutter":  "Flutter",
+      "dart":     "Dart",
+      "solid":    "SOLID",
+      "gitflow":  "Git Flow",
+      "feature":  "Feature First"
+    }
+  },
+  "nav": {
+    "about":    "About",
+    "projects": "Projects",
+    "mentors":  "Mentors",
+    "contact":  "Contact"
+  },
+  "about": {
+    "title": "About me",
+    "description": "Engineer passionate about clean software architecture, design patterns and scalable systems. Nature lover, pianist and eternal curious about ancient languages.",
+    "stack_title": "My tech stack"
+  },
+  "projects": {
+    "title":    "Projects",
+    "subtitle": "What I've built"
+  },
+  "mentors": {
+    "title":    "My Mentors",
+    "subtitle": "People who shaped my path",
+    "inaoe":   "National Institute of Astrophysics, Optics and Electronics"
+  },
+  "contact": {
+    "title":    "Contact",
+    "subtitle": "Have a project in mind?",
+    "email":    "Write me"
+  },
+  "footer": {
+    "made_with": "Made with Vue 🌸 from Huauchinango, Puebla",
+    "rights":    "All rights reserved"
+  }
+}
