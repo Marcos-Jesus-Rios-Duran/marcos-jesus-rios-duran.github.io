@@ -74,7 +74,11 @@ const { tm } = useI18n();
 .title {
   font-size: 2.5rem;
   margin-bottom: 1rem;
-  color: #4ade80; /* Tu color de acento */
+  color: var(--rosaBase);
+}
+
+[data-theme="dark"] .title {
+  color: #00e5ff;
 }
 
 .description {

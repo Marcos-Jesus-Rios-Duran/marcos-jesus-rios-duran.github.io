@@ -27,6 +27,7 @@
     }
   },
   "nav": {
+    "home": "Accueil",
     "about": "À propos",
     "projects": "Projets",
     "mentors": "Mentors",

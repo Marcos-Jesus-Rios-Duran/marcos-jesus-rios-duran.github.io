@@ -27,6 +27,7 @@
     }
   },
   "nav": {
+    "home": "Startseite",
     "about": "Über mich",
     "projects": "Projekte",
     "mentors": "Mentoren",

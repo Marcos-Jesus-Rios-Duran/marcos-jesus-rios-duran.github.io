@@ -10,7 +10,7 @@
           :to="{ name: r.name }"
           :class="{ active: isActive(r.name) }"
         >
-          {{ r.name.charAt(0).toUpperCase() + r.name.slice(1) }}
+          {{ getRouteLabel(r.name) }}
         </router-link>
       </li>
     </ul>
@@ -26,6 +26,7 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useRoute, useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import { useTheme } from '@/stores/useTheme'
 import ThemeToggle from '@/components/molecules/ThemeToggle.vue'
 import LangSwitch from '@/components/molecules/LangSwitch.vue'
@@ -33,12 +34,14 @@ import LangSwitch from '@/components/molecules/LangSwitch.vue'
 const route = useRoute()
 const router = useRouter()
 const store = useTheme()
+const { t } = useI18n()
 const { mode } = storeToRefs(store)
 const isDark = computed(() => mode.value === 'dark')
 const scrolled = ref(false)
 
 const routes = computed(() => router.getRoutes().filter(r => r.path !== '/:pathMatch(.*)*'))
 const isActive = (routeName) => route.name === routeName
+const getRouteLabel = (routeName) => t(`nav.${routeName}`)
 
 const onScroll = () => { scrolled.value = window.scrollY > 50 }
 onMounted(() => window.addEventListener('scroll', onScroll))
