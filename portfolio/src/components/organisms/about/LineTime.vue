@@ -31,7 +31,7 @@ const props = defineProps({
   position: relative;
   padding-left: 20px;
   /* La línea vertical que conecta los puntos */
-  border-left: 2px solid rgba(255, 255, 255, 0.2);
+  border-left: 2px solid var(--borde);
 }
 
 .timeline-item {
@@ -53,27 +53,27 @@ const props = defineProps({
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background-color: #4ade80; /* Tu color de acento */
-  box-shadow: 0 0 10px rgba(74, 222, 128, 0.5); /* Brillo tipo neón */
+  background-color: var(--cursor);
+  box-shadow: 0 0 10px rgba(var(--cursor-rgb, 255, 179, 204), 0.5);
 }
 
 .timeline-content {
   background: rgba(0, 0, 0, 0.3);
   padding: 1rem 1.5rem;
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: transform 0.3s ease;
+  border: 1px solid var(--borde);
+  transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
 .timeline-content:hover {
   transform: translateX(10px); /* Pequeño efecto al pasar el mouse */
-  border-color: rgba(74, 222, 128, 0.4);
+  border-color: var(--cursor);
 }
 
 .timeline-date {
   display: block;
   font-size: 0.85rem;
-  color: #4ade80;
+  color: var(--cursor);
   margin-bottom: 0.5rem;
   font-weight: bold;
 }
@@ -82,7 +82,7 @@ const props = defineProps({
   font-size: 0.95rem;
   line-height: 1.5;
   margin: 0;
-  color: #e2e8f0;
+  color: var(--texto);
 }
 
 /* KEYFRAMES PARA LA ANIMACIÓN EN CASCADA */
