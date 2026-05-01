@@ -83,6 +83,53 @@
       }
     ]
   },
+  "skills": {
+    "title": "Architecture & Skills",
+    "subtitle": "My toolkit and philosophy",
+    "philosophy": "Clean Code • Pragmatic Programming • Continuous Learning",
+    "remote": "Remote-First Developer",
+    "categories": {
+      "frontend": {
+        "title": "Frontend",
+        "icon": "💻",
+        "technologies": ["TypeScript", "JavaScript", "Angular", "React", "Vue.js", "Pug"]
+      },
+      "backend": {
+        "title": "Backend",
+        "icon": "⚙️",
+        "technologies": ["Java 17", "Java 21", "Python", "Node.js", "Spring Boot", "FastAPI", "Express.js"]
+      },
+      "mobile": {
+        "title": "Mobile & Desktop",
+        "icon": "📱",
+        "technologies": ["Flutter", "Dart", "Android", "Java", "Kotlin"]
+      }
+    },
+    "architecture": {
+      "title": "Architecture & Design",
+      "principles": "SOLID • DRY • KISS • Hexagonal Architecture • Clean Code",
+      "patterns": "Singleton • Factory • Facade • Strategy • DAO/DTO • MVC • MVVM",
+      "methodologies": "Feature-First • Scrum • Git Flow",
+      "vcs": "GitHub • GitLab (Private)"
+    },
+    "databases": {
+      "title": "Databases",
+      "sql": "MySQL • MariaDB • PostgreSQL",
+      "nosql": "MongoDB • Neo4j"
+    },
+    "specializations": {
+      "title": "Specializations",
+      "items": ["Cybersecurity", "Azure AI-900 ✓"]
+    },
+    "mentors": {
+      "title": "Mentors & Inspiration",
+      "list": [
+        "Dra. Janeth Cruz Enríquez - INAOE (Computational Systems)",
+        "Juan Carlos Escamilla Abarca - Lic. Computer Science",
+        "Dr. Jesús Fonseca Bustos - INAOE (Computational Systems)"
+      ]
+    }
+  },
   "projects": {
     "title": "Projects",
     "subtitle": "What I've built"
