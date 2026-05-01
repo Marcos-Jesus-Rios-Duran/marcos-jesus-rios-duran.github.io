@@ -34,12 +34,12 @@
 import { useI18n } from 'vue-i18n'
 import { computed } from 'vue'
 
-const { t } = useI18n()
+const { t, tm } = useI18n()
 
 // Obtener mentores desde mentors.list (ahora fuera de skills)
 const mentors = computed(() => {
   try {
-    const result = t('mentors.list')
+    const result = tm('mentors.list')
     return Array.isArray(result) ? result : []
   } catch (e) {
     console.warn('Error loading mentors:', e)
