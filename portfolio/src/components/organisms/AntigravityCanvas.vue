@@ -55,12 +55,18 @@ function resize() {
   W = canvas.value.width  = r.width
   H = canvas.value.height = r.height
 }
-
 function makeParts() {
   parts = []
-  const cfg = PARTICLE_CONFIG[store.mode]  // ✅
+  const cfg = PARTICLE_CONFIG[store.mode]
+
+  // Factor basado en el área real del canvas vs un viewport base
+  const baseArea = 1440 * 900
+  const currentArea = W * H
+  const scaleFactor = Math.min(currentArea / baseArea, 3) // máximo 3x para no exagerar
+
   for (const layer of cfg.layers) {
-    for (let i = 0; i < layer.count; i++) {
+    const count = Math.round(layer.count * scaleFactor) // ← escala el count
+    for (let i = 0; i < count; i++) {
       const x = Math.random() * W
       const y = Math.random() * H
       parts.push({
@@ -157,12 +163,13 @@ onMounted(() => {
   resize()
   makeParts()
   draw()
-  window.addEventListener('resize', () => { resize(); makeParts() })
+  const ro = new ResizeObserver(() => { resize(); makeParts() })
+ro.observe(arena.value)
 })
 
 onUnmounted(() => {
   cancelAnimationFrame(raf)
-  window.removeEventListener('resize', () => {})
+  ro.disconnect()
 })
 </script>
 
@@ -193,7 +200,7 @@ onUnmounted(() => {
   position: relative;
   z-index: 5;
   width: 100%;
-  min-height: 100vh;
+  min-height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;

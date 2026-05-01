@@ -4,7 +4,7 @@
     "name": "Marcos Ríos",
     "role": "Ingeniero en Desarrollo y Gestión de Software",
     "tagline": "Desarrollador apasionado por la arquitectura de software limpia",
-    "tagline2": "de México para el mudno.",
+    "tagline2": "de México para el mundo.",
     "cta_primary": "Ver proyectos",
     "cta_secondary": "Contáctame",
     "cards": {
@@ -142,7 +142,7 @@
     "email": "Escríbeme"
   },
   "footer": {
-    "made_with": "Hecho con Vue 🌸 desde Huauchinango, Puebla",
+    "made_with": "Hecho con Vue, desde la sierra norte de Puebla",
     "rights": "Todos los derechos reservados"
   }
 }

@@ -1,6 +1,7 @@
 <!-- src/components/organisms/SkillsSection.vue -->
 <template>
   <section class="skills-section">
+
     <!-- Header -->
     <div class="skills-header">
       <h2 class="skills-title">{{ t('skills.title') }}</h2>
@@ -13,116 +14,174 @@
       <span class="remote-badge">🌍 {{ t('skills.remote') }}</span>
     </div>
 
-    <!-- Tech Categories -->
-    <div class="categories-grid">
-      <div
-        v-for="(category, key) in skillsData.categories"
-        :key="key"
-        class="category-card"
-      >
-        <div class="category-header">
-          <span class="category-icon">{{ category.icon }}</span>
-          <h3 class="category-title">{{ category.title }}</h3>
+    <!-- Tech Cards Grid -->
+    <div class="tech-cards-grid">
+      <TechCard
+        v-for="card in skillCards"
+        :key="card.id"
+        :icon="card.icon"
+        :title="card.title"
+        :tags="card.tags"
+        :delay="card.delay"
+        :duration="card.duration"
+      />
+    </div>
+
+    <!-- Arquitectura & Diseño -->
+    <div class="info-card">
+      <h3 class="info-title">{{ t('skills.architecture.title') }}</h3>
+      <div class="info-grid">
+        <div class="info-item">
+          <span class="info-label">Principles</span>
+          <p class="info-value">{{ t('skills.architecture.principles') }}</p>
         </div>
-        <div class="technologies">
-          <span v-for="tech in category.technologies" :key="tech" class="tech-tag">
-            {{ tech }}
-          </span>
+        <div class="info-item">
+          <span class="info-label">Patterns</span>
+          <p class="info-value">{{ t('skills.architecture.patterns') }}</p>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Methodologies</span>
+          <p class="info-value">{{ t('skills.architecture.methodologies') }}</p>
         </div>
       </div>
     </div>
 
-    <!-- Architecture & Design -->
-    <div class="architecture-section">
-      <div class="arch-card">
-        <h3 class="arch-title">{{ t('skills.architecture.title') }}</h3>
-        <div class="arch-content">
-          <div class="arch-item">
-            <span class="arch-label">Principles:</span>
-            <p class="arch-value">{{ t('skills.architecture.principles') }}</p>
-          </div>
-          <div class="arch-item">
-            <span class="arch-label">Patterns:</span>
-            <p class="arch-value">{{ t('skills.architecture.patterns') }}</p>
-          </div>
-          <div class="arch-item">
-            <span class="arch-label">Methodologies:</span>
-            <p class="arch-value">{{ t('skills.architecture.methodologies') }}</p>
-          </div>
-          <div class="arch-item">
-            <span class="arch-label">Version Control:</span>
-            <p class="arch-value">{{ t('skills.architecture.vcs') }}</p>
-          </div>
-        </div>
+    <!-- Especializaciones -->
+    <div class="info-card">
+      <h3 class="info-title">{{ t('skills.specializations.title') }}</h3>
+      <div class="spec-tags">
+        <span v-for="(spec, idx) in specializations" :key="idx" class="spec-tag">
+          {{ spec }}
+        </span>
       </div>
     </div>
 
-    <!-- Databases -->
-    <div class="databases-section">
-      <div class="db-card">
-        <h3 class="db-title">{{ t('skills.databases.title') }}</h3>
-        <div class="db-content">
-          <div class="db-item">
-            <span class="db-label">SQL:</span>
-            <p class="db-value">{{ t('skills.databases.sql') }}</p>
-          </div>
-          <div class="db-item">
-            <span class="db-label">NoSQL:</span>
-            <p class="db-value">{{ t('skills.databases.nosql') }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Specializations -->
-    <div class="specializations-section">
-      <div class="spec-card">
-        <h3 class="spec-title">{{ t('skills.specializations.title') }}</h3>
-        <div class="spec-tags">
-          <span v-for="(spec, idx) in specializations" :key="idx" class="spec-tag">
-            {{ spec }}
-          </span>
-        </div>
-      </div>
-    </div>
   </section>
 </template>
 
 <script setup>
-import { useI18n } from 'vue-i18n'
 import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+import TechCard from '@/components/atoms/TechCard.vue'
 
-const { t } = useI18n()
+const { t, tm } = useI18n()
 
-// Especializations
 const specializations = computed(() => {
   try {
-    const result = t('skills.specializations.items')
+    const result = tm('skills.specializations.items')
     return Array.isArray(result) ? result : []
-  } catch (e) {
+  } catch {
     return []
   }
 })
 
-const skillsData = {
-  categories: [
-    {
-      icon: '💻',
-      title: 'Frontend',
-      technologies: ['TypeScript', 'JavaScript', 'Angular', 'React', 'Vue.js', 'Pug']
-    },
-    {
-      icon: '⚙️',
-      title: 'Backend',
-      technologies: ['Java 17', 'Java 21', 'Python', 'Node.js', 'Spring Boot', 'FastAPI', 'Express.js']
-    },
-    {
-      icon: '📱',
-      title: 'Mobile & Desktop',
-      technologies: ['Flutter', 'Dart', 'Android', 'Java', 'Kotlin']
-    }
-  ]
-}
+const skillCards = [
+  // Card 1: Cloud & Git — certificaciones y control de versiones
+  {
+    id: 'cloud',
+    icon: '☁️',
+    title: 'Cloud & Git',
+    delay: 0,
+    duration: 4.5,
+    tags: [
+      {
+        label: 'Azure AI-900',
+        certified: true,
+        url: 'https://learn.microsoft.com/es-mx/users/marcosjesusriosduran-4079/credentials/4ae86f377cd55fa8'
+      },
+      {
+        label: 'GitHub',
+        certified: false,
+        url: 'https://github.com/Marcos-Jesus-Rios-Duran'
+      },
+      {
+        label: 'GitLab',
+        certified: false,
+        // Sin link — repositorios privados
+      },
+    ]
+  },
+
+  // Card 2: Frontend
+  {
+    id: 'frontend',
+    icon: '💻',
+    title: 'Frontend',
+    delay: 0.05,
+    duration: 5.2,
+    tags: [
+      { label: 'TypeScript', certified: false },
+      { label: 'JavaScript', certified: false },
+      { label: 'Vue.js', certified: false },
+      { label: 'React', certified: false },
+      { label: 'Angular', certified: false },
+      { label: 'Pug', certified: false },
+    ]
+  },
+
+  // Card 3: Backend
+  {
+    id: 'backend',
+    icon: '⚙️',
+    title: 'Backend',
+    delay: 0.10,
+    duration: 4.8,
+    tags: [
+      { label: 'Java 17/21', certified: false },
+      { label: 'Python', certified: false },
+      { label: 'Spring Boot', certified: false },
+      { label: 'FastAPI', certified: false },
+      { label: 'Express.js', certified: false },
+      { label: 'Node.js', certified: false },
+    ]
+  },
+
+  // Card 4: Mobile & Desktop
+  {
+    id: 'mobile',
+    icon: '📱',
+    title: 'Mobile & Desktop',
+    delay: 0.15,
+    duration: 5.5,
+    tags: [
+      { label: 'Flutter', certified: false },
+      { label: 'Dart', certified: false },
+      { label: 'Android', certified: false },
+      { label: 'Kotlin', certified: false },
+      { label: 'Java', certified: false },
+    ]
+  },
+
+  // Card 5: Bases de Datos — sube desde info-card
+  {
+    id: 'databases',
+    icon: '🗄️',
+    title: 'Bases de Datos',
+    delay: 0.20,
+    duration: 4.6,
+    tags: [
+      { label: 'MySQL', certified: false },
+      { label: 'PostgreSQL', certified: false },
+      { label: 'MongoDB', certified: false },
+      { label: 'Neo4j', certified: false },
+      { label: 'SQLite', certified: false },
+    ]
+  },
+
+  // Card 6: Análisis & Ciberseguridad
+  {
+    id: 'security',
+    icon: '🛡️',
+    title: 'Análisis & Ciberseguridad',
+    delay: 0.25,
+    duration: 5.0,
+    tags: [
+      { label: 'Linux', certified: false },
+      { label: 'Ciberseguridad', certified: false },
+      { label: 'Power BI', certified: false },
+    ]
+  },
+]
 </script>
 
 <style scoped>
@@ -130,23 +189,20 @@ const skillsData = {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 60px 20px;
+  padding: 80px 20px;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 56px;
 }
 
 /* === HEADER === */
-.skills-header {
-  text-align: center;
-  margin-bottom: 20px;
-}
+.skills-header { text-align: center; }
 
 .skills-title {
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 800;
   color: var(--texto);
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   letter-spacing: -0.02em;
 }
 
@@ -156,273 +212,246 @@ const skillsData = {
   font-weight: 300;
 }
 
-/* === PHILOSOPHY CARD === */
+/* === PHILOSOPHY === */
 .philosophy-card {
-  background: linear-gradient(
-    135deg,
-    rgba(75, 150, 224, 0.15) 0%,
-    rgba(255, 179, 204, 0.1) 100%
-  );
-  border: 2px solid rgba(255, 179, 204, 0.3);
-  border-radius: 16px;
-  padding: 24px 32px;
+  background: linear-gradient(135deg, rgba(75,150,224,0.15) 0%, rgba(255,179,204,0.12) 100%);
+  border: 2px solid rgba(255,179,204,0.35);
+  border-radius: 20px;
+  padding: 28px 36px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
-  backdrop-filter: blur(8px);
+  gap: 24px;
+  backdrop-filter: blur(10px);
 }
 
 .philosophy-text {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 600;
   color: var(--texto);
   flex: 1;
+  line-height: 1.6;
 }
 
 .remote-badge {
-  background: rgba(255, 179, 204, 0.2);
-  border: 1px solid rgba(255, 179, 204, 0.5);
-  color: #FF8FAB;
-  padding: 8px 16px;
+  background: rgba(255,179,204,0.25);
+  border: 1.5px solid rgba(255,143,171,0.5);
+  color: #c0446a;
+  padding: 10px 20px;
   border-radius: 50px;
-  font-weight: 600;
-  font-size: 0.95rem;
+  font-weight: 700;
+  font-size: 0.9rem;
   white-space: nowrap;
+  letter-spacing: 0.02em;
 }
 
 [data-theme="dark"] .philosophy-card {
-  background: linear-gradient(
-    135deg,
-    rgba(0, 229, 255, 0.1) 0%,
-    rgba(255, 143, 171, 0.08) 100%
-  );
-  border-color: rgba(0, 229, 255, 0.2);
+  background: linear-gradient(135deg, rgba(0,229,255,0.08) 0%, rgba(255,143,171,0.06) 100%);
+  border-color: rgba(0,229,255,0.2);
 }
-
 [data-theme="dark"] .remote-badge {
-  background: rgba(0, 229, 255, 0.15);
-  border-color: rgba(0, 229, 255, 0.4);
+  background: rgba(0,229,255,0.12);
+  border-color: rgba(0,229,255,0.35);
   color: #00e5ff;
 }
 
-/* === CATEGORIES GRID === */
-.categories-grid {
+/* === TECH CARDS GRID === */
+.tech-cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
 }
 
-.category-card {
-  background: rgba(255, 255, 255, 0.8);
-  border: 2px solid rgba(255, 179, 204, 0.25);
-  border-radius: 12px;
-  padding: 24px;
-  backdrop-filter: blur(8px);
-  transition: all 0.3s ease;
-}
-
-.category-card:hover {
-  border-color: rgba(255, 179, 204, 0.5);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(255, 179, 204, 0.15);
-}
-
-[data-theme="dark"] .category-card {
-  background: rgba(20, 20, 30, 0.6);
-  border-color: rgba(0, 229, 255, 0.2);
-}
-
-[data-theme="dark"] .category-card:hover {
-  border-color: rgba(0, 229, 255, 0.4);
-  box-shadow: 0 8px 24px rgba(0, 229, 255, 0.1);
-}
-
-.category-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 16px;
-}
-
-.category-icon {
-  font-size: 28px;
-}
-
-.category-title {
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--texto);
-}
-
-.technologies {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.tech-tag {
-  background: rgba(255, 179, 204, 0.15);
-  color: #FF8FAB;
-  padding: 6px 12px;
+.tech-cards-grid :deep(.tech-card) {
+  width: 100%;
+  min-height: 150px;
+  padding: 24px 26px;
+  gap: 18px;
   border-radius: 20px;
-  font-size: 0.85rem;
+}
+
+.tech-cards-grid :deep(.tech-card__icon) {
+  width: 54px;
+  height: 54px;
+  font-size: 26px;
+  border-radius: 14px;
+  flex-shrink: 0;
+}
+
+.tech-cards-grid :deep(.tech-card__title) {
+  font-size: 15px;
+  font-weight: 800;
+  color: #1a0812;
+  margin-bottom: 12px;
+  letter-spacing: -0.1px;
+}
+
+[data-theme="dark"] .tech-cards-grid :deep(.tech-card__title) {
+  color: #ffffff;
+}
+
+.tech-cards-grid :deep(.tech-card__tags) {
+  gap: 7px;
+}
+
+.tech-cards-grid :deep(.tag) {
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 20px;
+  color: #2D0615;
+  letter-spacing: 0.02em;
+}
+
+[data-theme="dark"] .tech-cards-grid :deep(.tag) {
+  color: rgba(0,229,255,0.9);
+}
+
+/* ✓ verde vibrante */
+.tech-cards-grid :deep(.tag__badge) {
+  color: #16a34a !important;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+[data-theme="dark"] .tech-cards-grid :deep(.tag__badge) {
+  color: #22c55e !important;
+}
+
+/* Tag certificado con acento verde */
+.tech-cards-grid :deep(.tag--certified) {
+  border-color: rgba(22,163,74,0.45) !important;
+  background: rgba(255,255,255,0.92) !important;
+  color: #14532d !important;
+}
+
+[data-theme="dark"] .tech-cards-grid :deep(.tag--certified) {
+  border-color: rgba(34,197,94,0.45) !important;
+  background: rgba(34,197,94,0.1) !important;
+  color: #22c55e !important;
+}
+
+/* === INFO CARDS === */
+.info-card {
+  background: rgba(255,255,255,0.82);
+  border: 2px solid rgba(255,179,204,0.28);
+  border-radius: 20px;
+  padding: 36px 40px;
+  backdrop-filter: blur(10px);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-card:hover {
+  border-color: rgba(255,143,171,0.45);
+  box-shadow: 0 8px 32px rgba(255,143,171,0.12);
+}
+
+[data-theme="dark"] .info-card {
+  background: rgba(15,15,25,0.65);
+  border-color: rgba(0,229,255,0.14);
+}
+
+[data-theme="dark"] .info-card:hover {
+  border-color: rgba(0,229,255,0.3);
+  box-shadow: 0 8px 32px rgba(0,229,255,0.08);
+}
+
+.info-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--texto);
+  margin-bottom: 28px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid rgba(255,179,204,0.35);
+  letter-spacing: -0.01em;
+}
+
+[data-theme="dark"] .info-title {
+  border-bottom-color: rgba(0,229,255,0.18);
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.info-label {
+  font-weight: 800;
+  color: #c0446a;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+[data-theme="dark"] .info-label {
+  color: #00e5ff;
+}
+
+.info-value {
+  color: #2a1520;
+  line-height: 1.75;
+  font-size: 0.95rem;
   font-weight: 500;
 }
 
-[data-theme="dark"] .tech-tag {
-  background: rgba(0, 229, 255, 0.15);
-  color: #00e5ff;
-}
-
-/* === ARCHITECTURE SECTION === */
-.architecture-section,
-.databases-section,
-.specializations-section {
-  margin-top: 20px;
-}
-
-.arch-card,
-.db-card,
-.spec-card,
-.mentors-card {
-  background: rgba(255, 255, 255, 0.8);
-  border: 2px solid rgba(75, 150, 224, 0.2);
-  border-radius: 12px;
-  padding: 32px;
-  backdrop-filter: blur(8px);
-}
-
-[data-theme="dark"] .arch-card,
-[data-theme="dark"] .db-card,
-[data-theme="dark"] .spec-card,
-[data-theme="dark"] .mentors-card {
-  background: rgba(20, 20, 30, 0.6);
-  border-color: rgba(0, 229, 255, 0.15);
-}
-
-.arch-title,
-.db-title,
-.spec-title,
-.mentors-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--texto);
-  margin-bottom: 24px;
-  border-bottom: 2px solid rgba(255, 179, 204, 0.3);
-  padding-bottom: 12px;
-}
-
-[data-theme="dark"] .arch-title,
-[data-theme="dark"] .db-title,
-[data-theme="dark"] .spec-title,
-[data-theme="dark"] .mentors-title {
-  border-bottom-color: rgba(0, 229, 255, 0.2);
-}
-
-.arch-content,
-.db-content {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 24px;
-}
-
-.arch-item,
-.db-item {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.arch-label,
-.db-label {
-  font-weight: 700;
-  color: #FF8FAB;
-  font-size: 0.95rem;
-}
-
-[data-theme="dark"] .arch-label,
-[data-theme="dark"] .db-label {
-  color: #00e5ff;
-}
-
-.arch-value,
-.db-value {
-  color: var(--textoSub);
-  line-height: 1.6;
-  font-size: 0.95rem;
+[data-theme="dark"] .info-value {
+  color: rgba(255,255,255,0.75);
 }
 
 /* === SPECIALIZATIONS === */
 .spec-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 14px;
 }
 
 .spec-tag {
-  background: linear-gradient(135deg, rgba(255, 179, 204, 0.2), rgba(255, 143, 171, 0.15));
-  border: 1px solid rgba(255, 179, 204, 0.4);
-  color: #FF8FAB;
-  padding: 10px 16px;
-  border-radius: 25px;
-  font-weight: 600;
+  background: linear-gradient(135deg, rgba(255,179,204,0.25), rgba(255,143,171,0.18));
+  border: 1.5px solid rgba(255,143,171,0.4);
+  color: #a03055;
+  padding: 12px 22px;
+  border-radius: 50px;
+  font-weight: 700;
   font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  transition: all 0.2s ease;
+}
+
+.spec-tag:hover {
+  background: linear-gradient(135deg, rgba(255,143,171,0.35), rgba(255,100,150,0.25));
+  transform: translateY(-2px);
 }
 
 [data-theme="dark"] .spec-tag {
-  background: linear-gradient(135deg, rgba(0, 229, 255, 0.15), rgba(0, 200, 255, 0.1));
-  border-color: rgba(0, 229, 255, 0.3);
+  background: linear-gradient(135deg, rgba(0,229,255,0.12), rgba(0,200,255,0.08));
+  border-color: rgba(0,229,255,0.28);
   color: #00e5ff;
 }
 
 /* === RESPONSIVE === */
+@media (max-width: 1100px) {
+  .info-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
 @media (max-width: 1024px) {
-  .skills-section {
-    padding: 50px 16px;
-    gap: 32px;
-  }
-
-  .philosophy-card {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .categories-grid {
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 16px;
-  }
-
-  .arch-content,
-  .db-content {
-    grid-template-columns: 1fr;
-  }
+  .skills-section { padding: 60px 16px; gap: 40px; }
+  .tech-cards-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+  .philosophy-card { flex-direction: column; align-items: flex-start; }
+  .info-card { padding: 28px; }
 }
 
 @media (max-width: 768px) {
-  .skills-section {
-    padding: 40px 12px;
-    gap: 24px;
-  }
-
-  .skills-title {
-    font-size: 1.8rem;
-  }
-
-  .category-card,
-  .arch-card,
-  .db-card,
-  .spec-card,
-  .mentors-card {
-    padding: 20px;
-  }
-
-  .categories-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .philosophy-text {
-    font-size: 1rem;
-  }
+  .skills-section { padding: 48px 12px; gap: 28px; }
+  .skills-title { font-size: 1.8rem; }
+  .tech-cards-grid { grid-template-columns: 1fr; }
+  .info-grid { grid-template-columns: 1fr; gap: 20px; }
+  .info-card { padding: 22px 20px; }
 }
 </style>
