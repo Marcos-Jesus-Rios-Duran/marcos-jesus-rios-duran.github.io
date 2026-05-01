@@ -7,15 +7,15 @@
     >
       <div class="hero-container" key="hero">
         <HeroLeft class="hero-left-col" />
-        <HeroRight class="hero-right-col" />
+        <AnimatedCode class="hero-right-col" />
       </div>
     </Transition>
   </section>
 </template>
 
 <script setup>
-import HeroLeft  from '@/components/organisms//hero/HeroLeft.vue'
-import HeroRight from '@/components/organisms//hero/HeroRight.vue'
+import HeroLeft from '@/components/organisms/hero/HeroLeft.vue'
+import AnimatedCode from '@/components/organisms/hero/AnimatedCode.vue'
 </script>
 
 <style scoped>
