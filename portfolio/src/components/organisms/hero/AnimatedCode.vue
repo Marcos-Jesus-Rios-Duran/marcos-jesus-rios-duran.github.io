@@ -126,53 +126,136 @@ class CreateOrderUseCase {
   }
 ]
 
-// Función para colorear el código
+// Palabras reservadas clasificadas
+const keywords = {
+  special: new Set(['override', 'static', 'abstract', 'throws', 'protected', 'private', 'public', 'final']),
+  main: new Set(['class', 'interface', 'function', 'const', 'let', 'var', 'async', 'await', 'return', 'import', 'export', 'extends', 'implements', 'void', 'int', 'String', 'boolean', 'if', 'else', 'for', 'while', 'do', 'switch', 'case', 'break', 'continue', 'throw', 'try', 'catch', 'finally']),
+  literal: new Set(['true', 'false', 'null', 'undefined', 'this', 'super', 'new', 'instanceof', 'typeof', 'delete'])
+}
+
+// Función para colorear el código - versión mejorada
 const colorizeCode = (code) => {
   const tokens = []
   let i = 0
-
-  const patterns = [
-    // Comments (must be first)
-    { regex: /^\/\/.*$/m, class: 'comment' },
-    { regex: /^#.*$/m, class: 'comment' },
-    { regex: /\/\*[\s\S]*?\*\//, class: 'comment' },
-    // Strings
-    { regex: /`[^`]*`/g, class: 'string' },
-    { regex: /"[^"]*"/g, class: 'string' },
-    { regex: /'[^']*'/g, class: 'string' },
-    // Special keywords (override, static, abstract, throws)
-    { regex: /\b(override|static|abstract|throws|protected|private|public)\b/g, class: 'special' },
-    // Main keywords
-    { regex: /\b(class|interface|function|const|let|var|async|await|return|import|export|extends|implements|final|void|int|String|boolean)\b/g, class: 'keyword' },
-    // Literals
-    { regex: /\b(true|false|null|undefined|this|super|new|instanceof|typeof|delete)\b/g, class: 'literal' },
-    // Numbers
-    { regex: /\b\d+\b/g, class: 'literal' },
-    // Symbols
-    { regex: /[{}\[\]();:,.<>=+\-*/%&|^!~]/g, class: 'symbol' },
-  ]
-
   const codeLength = code.length
+
   while (i < codeLength) {
-    let matched = false
+    const char = code[i]
 
-    for (const pattern of patterns) {
-      const substring = code.substring(i)
-      const match = substring.match(pattern.regex)
+    // Detectar comentarios de línea //
+    if (char === '/' && code[i + 1] === '/') {
+      let end = code.indexOf('\n', i)
+      if (end === -1) end = codeLength
+      tokens.push({ text: code.substring(i, end), class: 'comment' })
+      i = end
+      continue
+    }
 
-      if (match && match.index === 0) {
-        const text = match[0]
-        tokens.push({ text, class: pattern.class })
-        i += text.length
-        matched = true
-        break
+    // Detectar comentarios de bloque /* */
+    if (char === '/' && code[i + 1] === '*') {
+      let end = code.indexOf('*/', i + 2)
+      if (end === -1) end = codeLength
+      else end += 2
+      tokens.push({ text: code.substring(i, end), class: 'comment' })
+      i = end
+      continue
+    }
+
+    // Detectar comentarios # (Python)
+    if (char === '#') {
+      let end = code.indexOf('\n', i)
+      if (end === -1) end = codeLength
+      tokens.push({ text: code.substring(i, end), class: 'comment' })
+      i = end
+      continue
+    }
+
+    // Detectar strings con comillas dobles
+    if (char === '"') {
+      let end = i + 1
+      while (end < codeLength && code[end] !== '"') {
+        if (code[end] === '\\') end += 2
+        else end++
       }
+      if (end < codeLength) end++
+      tokens.push({ text: code.substring(i, end), class: 'string' })
+      i = end
+      continue
     }
 
-    if (!matched) {
-      tokens.push({ text: code[i], class: 'text' })
-      i++
+    // Detectar strings con comillas simples
+    if (char === "'") {
+      let end = i + 1
+      while (end < codeLength && code[end] !== "'") {
+        if (code[end] === '\\') end += 2
+        else end++
+      }
+      if (end < codeLength) end++
+      tokens.push({ text: code.substring(i, end), class: 'string' })
+      i = end
+      continue
     }
+
+    // Detectar template literals con backticks
+    if (char === '`') {
+      let end = i + 1
+      while (end < codeLength && code[end] !== '`') {
+        if (code[end] === '\\') end += 2
+        else end++
+      }
+      if (end < codeLength) end++
+      tokens.push({ text: code.substring(i, end), class: 'string' })
+      i = end
+      continue
+    }
+
+    // Detectar palabras (identificadores y palabras clave)
+    if (/[a-zA-Z_$]/.test(char)) {
+      let end = i
+      while (end < codeLength && /[a-zA-Z0-9_$]/.test(code[end])) {
+        end++
+      }
+      const word = code.substring(i, end)
+
+      if (keywords.special.has(word)) {
+        tokens.push({ text: word, class: 'special' })
+      } else if (keywords.main.has(word)) {
+        tokens.push({ text: word, class: 'keyword' })
+      } else if (keywords.literal.has(word)) {
+        tokens.push({ text: word, class: 'literal' })
+      } else {
+        tokens.push({ text: word, class: 'text' })
+      }
+
+      i = end
+      continue
+    }
+
+    // Detectar números
+    if (/[0-9]/.test(char)) {
+      let end = i
+      while (end < codeLength && /[0-9.]/.test(code[end])) {
+        end++
+      }
+      tokens.push({ text: code.substring(i, end), class: 'literal' })
+      i = end
+      continue
+    }
+
+    // Detectar símbolos y operadores
+    if (/[{}\[\]();:,.<>=+\-*/%&|^!~\s]/.test(char)) {
+      if (char === ' ' || char === '\n' || char === '\t') {
+        tokens.push({ text: char, class: 'text' })
+      } else {
+        tokens.push({ text: char, class: 'symbol' })
+      }
+      i++
+      continue
+    }
+
+    // Cualquier otro carácter
+    tokens.push({ text: char, class: 'text' })
+    i++
   }
 
   return tokens
