@@ -120,14 +120,6 @@
     "specializations": {
       "title": "Specializations",
       "items": ["Cybersecurity", "Azure AI-900 ✓"]
-    },
-    "mentors": {
-      "title": "Mentors & Inspiration",
-      "list": [
-        "Dra. Janeth Cruz Enríquez - INAOE (Computational Systems)",
-        "Juan Carlos Escamilla Abarca - Lic. Computer Science",
-        "Dr. Jesús Fonseca Bustos - INAOE (Computational Systems)"
-      ]
     }
   },
   "projects": {
@@ -137,7 +129,12 @@
   "mentors": {
     "title": "My Mentors",
     "subtitle": "People who shaped my path",
-    "inaoe": "National Institute of Astrophysics, Optics and Electronics"
+    "inaoe": "National Institute of Astrophysics, Optics and Electronics",
+    "list": [
+      "Dra. Janeth Cruz Enríquez - INAOE (Computational Systems)",
+      "Juan Carlos Escamilla Abarca - Lic. Computer Science",
+      "Dr. Jesús Fonseca Bustos - INAOE (Computational Systems)"
+    ]
   },
   "contact": {
     "title": "Contact",

@@ -83,6 +83,45 @@
       }
     ]
   },
+  "skills": {
+    "title": "Architektur & Fähigkeiten",
+    "subtitle": "Mein Werkzeugkasten und meine Philosophie",
+    "philosophy": "Clean Code • Pragmatische Programmierung • Kontinuierliches Lernen",
+    "remote": "Remote-First Entwickler",
+    "categories": {
+      "frontend": {
+        "title": "Frontend",
+        "icon": "💻",
+        "technologies": ["TypeScript", "JavaScript", "Angular", "React", "Vue.js", "Pug"]
+      },
+      "backend": {
+        "title": "Backend",
+        "icon": "⚙️",
+        "technologies": ["Java 17", "Java 21", "Python", "Node.js", "Spring Boot", "FastAPI", "Express.js"]
+      },
+      "mobile": {
+        "title": "Mobile & Desktop",
+        "icon": "📱",
+        "technologies": ["Flutter", "Dart", "Android", "Java", "Kotlin"]
+      }
+    },
+    "architecture": {
+      "title": "Architektur & Design",
+      "principles": "SOLID • DRY • KISS • Hexagonal Architecture • Clean Code",
+      "patterns": "Singleton • Factory • Facade • Strategy • DAO/DTO • MVC • MVVM",
+      "methodologies": "Feature-First • Scrum • Git Flow",
+      "vcs": "GitHub • GitLab (Privat)"
+    },
+    "databases": {
+      "title": "Datenbanken",
+      "sql": "MySQL • MariaDB • PostgreSQL",
+      "nosql": "MongoDB • Neo4j"
+    },
+    "specializations": {
+      "title": "Spezialisierungen",
+      "items": ["Cybersicherheit", "Azure AI-900 ✓"]
+    }
+  },
   "projects": {
     "title": "Projekte",
     "subtitle": "Was ich gebaut habe"
@@ -90,7 +129,12 @@
   "mentors": {
     "title": "Meine Mentoren",
     "subtitle": "Menschen die meinen Weg geprägt haben",
-    "inaoe": "Nationales Institut für Astrophysik, Optik und Elektronik"
+    "inaoe": "Nationales Institut für Astrophysik, Optik und Elektronik",
+    "list": [
+      "Dra. Janeth Cruz Enríquez - INAOE (Computersysteme)",
+      "Juan Carlos Escamilla Abarca - Lic. Informatik",
+      "Dr. Jesús Fonseca Bustos - INAOE (Computersysteme)"
+    ]
   },
   "contact": {
     "title": "Kontakt",

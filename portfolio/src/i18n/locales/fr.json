@@ -83,6 +83,45 @@
       }
     ]
   },
+  "skills": {
+    "title": "Architecture & Compétences",
+    "subtitle": "Ma boîte à outils et ma philosophie",
+    "philosophy": "Code Propre • Programmation Pragmatique • Apprentissage Continu",
+    "remote": "Développeur Basé à Distance",
+    "categories": {
+      "frontend": {
+        "title": "Frontend",
+        "icon": "💻",
+        "technologies": ["TypeScript", "JavaScript", "Angular", "React", "Vue.js", "Pug"]
+      },
+      "backend": {
+        "title": "Backend",
+        "icon": "⚙️",
+        "technologies": ["Java 17", "Java 21", "Python", "Node.js", "Spring Boot", "FastAPI", "Express.js"]
+      },
+      "mobile": {
+        "title": "Mobile & Desktop",
+        "icon": "📱",
+        "technologies": ["Flutter", "Dart", "Android", "Java", "Kotlin"]
+      }
+    },
+    "architecture": {
+      "title": "Architecture & Conception",
+      "principles": "SOLID • DRY • KISS • Hexagonal Architecture • Clean Code",
+      "patterns": "Singleton • Factory • Facade • Strategy • DAO/DTO • MVC • MVVM",
+      "methodologies": "Feature-First • Scrum • Git Flow",
+      "vcs": "GitHub • GitLab (Privé)"
+    },
+    "databases": {
+      "title": "Bases de Données",
+      "sql": "MySQL • MariaDB • PostgreSQL",
+      "nosql": "MongoDB • Neo4j"
+    },
+    "specializations": {
+      "title": "Spécialisations",
+      "items": ["Cybersécurité", "Azure AI-900 ✓"]
+    }
+  },
   "projects": {
     "title": "Projets",
     "subtitle": "Ce que j'ai construit"
@@ -90,7 +129,12 @@
   "mentors": {
     "title": "Mes Mentors",
     "subtitle": "Les personnes qui ont façonné mon chemin",
-    "inaoe": "Institut National d'Astrophysique, d'Optique et d'Électronique"
+    "inaoe": "Institut National d'Astrophysique, d'Optique et d'Électronique",
+    "list": [
+      "Dra. Janeth Cruz Enríquez - INAOE (Systèmes Informatiques)",
+      "Juan Carlos Escamilla Abarca - Lic. Informatique",
+      "Dr. Jesús Fonseca Bustos - INAOE (Systèmes Informatiques)"
+    ]
   },
   "contact": {
     "title": "Contact",

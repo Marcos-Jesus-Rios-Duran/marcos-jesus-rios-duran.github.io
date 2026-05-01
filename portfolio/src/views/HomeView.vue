@@ -1,7 +1,8 @@
 <template>
   <HeroSection />
+  <SkillsSection />
 </template>
 
 <script setup>
-import HeroSection from '@/components/organisms//hero/HeroSection.vue'
+import HeroSection from '@/components/organisms/hero/HeroSection.vue'
 </script>
