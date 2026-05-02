@@ -139,7 +139,26 @@
   "contact": {
     "title": "Contact",
     "subtitle": "Have a project in mind?",
-    "email": "Write me"
+    "heading": "Let's talk?",
+    "description": "I'm available for freelance projects, collaborations, or new opportunities. Write to me and I'll be happy to chat.",
+    "available": "Available for new projects",
+    "cv": {
+      "title": "My CV",
+      "download": "Download CV"
+    },
+    "form": {
+      "title": "Send me a message",
+      "name": "Name",
+      "name_placeholder": "Your name",
+      "email": "Email",
+      "email_placeholder": "your\\@email.com",
+      "message": "Message",
+      "message_placeholder": "Tell me about your project...",
+      "send": "Send message",
+      "sending": "Sending",
+      "success": "Message sent! I'll reply soon.",
+      "error": "Something went wrong. Try again or write me directly."
+    }
   },
   "footer": {
     "made_with": "Made with Vue 🌸 from Huauchinango, Puebla",

@@ -139,7 +139,26 @@
   "contact": {
     "title": "Kontakt",
     "subtitle": "Haben Sie ein Projekt im Sinn?",
-    "email": "Schreib mir"
+    "heading": "Lass uns sprechen?",
+    "description": "Ich bin verfügbar für Freiberufler-Projekte, Zusammenarbeit oder neue Möglichkeiten. Schreib mir und ich antworte gerne.",
+    "available": "Verfügbar für neue Projekte",
+    "cv": {
+      "title": "Mein Lebenslauf",
+      "download": "Lebenslauf herunterladen"
+    },
+    "form": {
+      "title": "Sende mir eine Nachricht",
+      "name": "Name",
+      "name_placeholder": "Dein Name",
+      "email": "E-Mail",
+      "email_placeholder": "deine\\@email.de",
+      "message": "Nachricht",
+      "message_placeholder": "Erzähl mir von deinem Projekt...",
+      "send": "Nachricht senden",
+      "sending": "Wird gesendet",
+      "success": "Nachricht gesendet! Ich antworte bald.",
+      "error": "Etwas ist schief gelaufen. Versuchen Sie es erneut oder schreiben Sie mir direkt."
+    }
   },
   "footer": {
     "made_with": "Gemacht mit Vue 🌸 aus Huauchinango, Puebla",

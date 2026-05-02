@@ -13,6 +13,7 @@
     "format": "prettier --write --experimental-cli src/"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "pinia": "^3.0.4",
     "vue": "^3.5.32",
     "vue-i18n": "^11.4.0",

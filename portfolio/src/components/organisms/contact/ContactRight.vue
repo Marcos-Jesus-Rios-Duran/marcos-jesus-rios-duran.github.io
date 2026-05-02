@@ -95,6 +95,7 @@
 </template>
 
 <script setup>
+import emailjs from '@emailjs/browser'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -118,17 +119,15 @@ async function sendEmail() {
   feedbackMsg.value = ''
 
   try {
-    // Carga EmailJS dinámicamente (sin instalar nada)
-    const emailjs = await import('https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js')
-
-    await emailjs.default.send(
+    await emailjs.send(
       EMAILJS_SERVICE_ID,
       EMAILJS_TEMPLATE_ID,
       {
-        from_name:    form.value.name,
-        from_email:   form.value.email,
-        message:      form.value.message,
-        to_name:      'Marcos',
+        from_name:  form.value.name,
+        from_email: form.value.email,
+        message:    form.value.message,
+        to_name:    'Marcos',
+        year:       new Date().getFullYear(),
       },
       EMAILJS_PUBLIC_KEY
     )
