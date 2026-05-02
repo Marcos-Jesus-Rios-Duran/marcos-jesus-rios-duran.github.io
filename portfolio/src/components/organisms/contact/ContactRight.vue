@@ -1,44 +1,6 @@
 <!-- src/components/organisms/contact/ContactRight.vue -->
 <template>
   <div class="contact-right">
-
-    <!-- CV Section -->
-    <div class="cv-card info-card">
-      <h3 class="card-title">{{ t('contact.cv.title') }}</h3>
-
-      <!-- Selector idioma CV -->
-      <div class="cv-tabs">
-        <button
-          class="cv-tab"
-          :class="{ active: cvLang === 'es' }"
-          @click="cvLang = 'es'"
-        >🇲🇽 Español</button>
-        <button
-          class="cv-tab"
-          :class="{ active: cvLang === 'en' }"
-          @click="cvLang = 'en'"
-        >🇺🇸 English</button>
-      </div>
-
-      <!-- PDF Preview -->
-      <div class="cv-preview">
-        <iframe
-          :src="`/cv/cv-${cvLang}.pdf`"
-          class="cv-iframe"
-          :title="`CV ${cvLang.toUpperCase()}`"
-        />
-      </div>
-
-      <!-- Botón descarga -->
-      <a
-        :href="`/cv/cv-${cvLang}.pdf`"
-        :download="`Marcos-Rios-CV-${cvLang.toUpperCase()}.pdf`"
-        class="btn-download"
-      >
-        ⬇️ {{ t('contact.cv.download') }} ({{ cvLang.toUpperCase() }})
-      </a>
-    </div>
-
     <!-- Formulario EmailJS -->
     <div class="form-card info-card">
       <h3 class="card-title">{{ t('contact.form.title') }}</h3>
@@ -91,6 +53,57 @@
       </form>
     </div>
 
+    <!-- CV Modal -->
+    <transition name="modal">
+      <div v-if="showCVModal" class="cv-modal-overlay" @click="closeCVModal">
+        <div class="cv-modal" @click.stop>
+          <!-- Header -->
+          <div class="cv-modal-header">
+            <h2>{{ t('contact.cv.title') }}</h2>
+            <button class="cv-modal-close" @click="closeCVModal">✕</button>
+          </div>
+
+          <!-- Tabs -->
+          <div class="cv-modal-tabs">
+            <button
+              class="cv-modal-tab"
+              :class="{ active: cvLang === 'en' }"
+              @click="cvLang = 'en'"
+            >🇺🇸 English</button>
+            <button
+              class="cv-modal-tab"
+              :class="{ active: cvLang === 'es' }"
+              @click="cvLang = 'es'"
+            >🇲🇽 Español</button>
+          </div>
+
+          <!-- PDF Preview -->
+          <div class="cv-modal-preview">
+            <iframe
+              :src="`/cv/cv-${cvLang}.pdf`"
+              class="cv-modal-iframe"
+              :title="`CV ${cvLang.toUpperCase()}`"
+            />
+          </div>
+
+          <!-- Download Button -->
+          <a
+            :href="`/cv/cv-${cvLang}.pdf`"
+            :download="`Marcos-Rios-CV-${cvLang.toUpperCase()}.pdf`"
+            class="cv-modal-download"
+          >
+            ⬇️ {{ t('contact.cv.download') }} ({{ cvLang.toUpperCase() }})
+          </a>
+        </div>
+      </div>
+    </transition>
+
+    <!-- Floating Button -->
+    <button class="cv-floating-btn" @click="openCVModal" :title="t('contact.cv.title')">
+      <span class="cv-float-icon">📄</span>
+      <span class="cv-float-label">CV</span>
+    </button>
+
   </div>
 </template>
 
@@ -101,8 +114,19 @@ import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
 
-// CV lang toggle
-const cvLang = ref('es')
+// CV Modal
+const showCVModal = ref(false)
+const cvLang = ref('en') // English by default
+
+const openCVModal = () => {
+  showCVModal.value = true
+  document.body.style.overflow = 'hidden'
+}
+
+const closeCVModal = () => {
+  showCVModal.value = false
+  document.body.style.overflow = 'auto'
+}
 
 // Form state
 const form = ref({ name: '', email: '', message: '' })
@@ -190,105 +214,6 @@ async function sendEmail() {
 
 [data-theme="dark"] .card-title {
   border-bottom-color: rgba(0,229,255,0.18);
-}
-
-/* === CV TABS === */
-.cv-tabs {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 16px;
-}
-
-.cv-tab {
-  padding: 8px 20px;
-  border-radius: 50px;
-  border: 2px solid rgba(255,179,204,0.4);
-  background: transparent;
-  color: var(--textoSub);
-  font-weight: 700;
-  font-size: 0.88rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.cv-tab:hover {
-  border-color: rgba(255,143,171,0.6);
-  color: #c0446a;
-}
-
-.cv-tab.active {
-  background: linear-gradient(135deg, rgba(255,179,204,0.35), rgba(255,143,171,0.25));
-  border-color: rgba(255,143,171,0.6);
-  color: #c0446a;
-}
-
-[data-theme="dark"] .cv-tab {
-  border-color: rgba(0,229,255,0.2);
-}
-
-[data-theme="dark"] .cv-tab:hover,
-[data-theme="dark"] .cv-tab.active {
-  border-color: rgba(0,229,255,0.5);
-  color: #00e5ff;
-  background: rgba(0,229,255,0.08);
-}
-
-/* === CV PREVIEW === */
-.cv-preview {
-  width: 100%;
-  height: 320px;
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1.5px solid rgba(255,179,204,0.3);
-  margin-bottom: 16px;
-  background: rgba(255,255,255,0.5);
-}
-
-[data-theme="dark"] .cv-preview {
-  border-color: rgba(0,229,255,0.15);
-  background: rgba(10,10,20,0.5);
-}
-
-.cv-iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
-/* === DOWNLOAD BTN === */
-.btn-download {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: 100%;
-  padding: 13px 20px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, rgba(255,179,204,0.3), rgba(255,143,171,0.22));
-  border: 2px solid rgba(255,143,171,0.45);
-  color: #a03055;
-  font-weight: 800;
-  font-size: 0.95rem;
-  text-decoration: none;
-  transition: all 0.25s ease;
-  letter-spacing: 0.02em;
-}
-
-.btn-download:hover {
-  background: linear-gradient(135deg, rgba(255,143,171,0.4), rgba(255,100,150,0.3));
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(255,143,171,0.2);
-}
-
-[data-theme="dark"] .btn-download {
-  background: rgba(0,229,255,0.1);
-  border-color: rgba(0,229,255,0.3);
-  color: #00e5ff;
-}
-
-[data-theme="dark"] .btn-download:hover {
-  background: rgba(0,229,255,0.18);
-  box-shadow: 0 8px 20px rgba(0,229,255,0.12);
 }
 
 /* === FORM === */
@@ -405,5 +330,289 @@ async function sendEmail() {
   background: rgba(220,38,38,0.08);
   color: #dc2626;
   border: 1.5px solid rgba(220,38,38,0.2);
+}
+
+/* === CV MODAL === */
+.cv-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  backdrop-filter: blur(3px);
+}
+
+.cv-modal {
+  background: rgba(255,255,255,0.95);
+  border-radius: 20px;
+  width: 90%;
+  max-width: 900px;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+  overflow: hidden;
+}
+
+[data-theme="dark"] .cv-modal {
+  background: rgba(15,15,25,0.95);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.cv-modal-header {
+  padding: 20px 28px;
+  border-bottom: 2px solid rgba(255,179,204,0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+[data-theme="dark"] .cv-modal-header {
+  border-bottom-color: rgba(0,229,255,0.12);
+}
+
+.cv-modal-header h2 {
+  margin: 0;
+  font-size: 1.4rem;
+  color: #1a0812;
+  font-weight: 800;
+}
+
+[data-theme="dark"] .cv-modal-header h2 {
+  color: #fff;
+}
+
+.cv-modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #666;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.cv-modal-close:hover {
+  background: rgba(255,179,204,0.1);
+  color: #c0446a;
+}
+
+[data-theme="dark"] .cv-modal-close {
+  color: #aaa;
+}
+
+[data-theme="dark"] .cv-modal-close:hover {
+  background: rgba(0,229,255,0.1);
+  color: #00e5ff;
+}
+
+.cv-modal-tabs {
+  display: flex;
+  gap: 10px;
+  padding: 12px 28px;
+  border-bottom: 1px solid rgba(255,179,204,0.15);
+}
+
+[data-theme="dark"] .cv-modal-tabs {
+  border-bottom-color: rgba(0,229,255,0.08);
+}
+
+.cv-modal-tab {
+  padding: 8px 20px;
+  border-radius: 50px;
+  border: 2px solid rgba(255,179,204,0.4);
+  background: transparent;
+  color: #666;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cv-modal-tab:hover {
+  border-color: rgba(255,143,171,0.6);
+  color: #c0446a;
+}
+
+.cv-modal-tab.active {
+  background: linear-gradient(135deg, rgba(255,179,204,0.35), rgba(255,143,171,0.25));
+  border-color: rgba(255,143,171,0.6);
+  color: #c0446a;
+}
+
+[data-theme="dark"] .cv-modal-tab {
+  border-color: rgba(0,229,255,0.2);
+  color: #aaa;
+}
+
+[data-theme="dark"] .cv-modal-tab:hover,
+[data-theme="dark"] .cv-modal-tab.active {
+  border-color: rgba(0,229,255,0.5);
+  color: #00e5ff;
+  background: rgba(0,229,255,0.08);
+}
+
+.cv-modal-preview {
+  flex: 1;
+  overflow: hidden;
+  padding: 0 28px 28px;
+  border-radius: 12px;
+}
+
+.cv-modal-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 12px;
+}
+
+.cv-modal-download {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  margin: 0 28px 28px;
+  width: calc(100% - 56px);
+  background: linear-gradient(135deg, rgba(255,179,204,0.3), rgba(255,143,171,0.22));
+  border: 2px solid rgba(255,143,171,0.45);
+  border-radius: 14px;
+  color: #a03055;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 0.95rem;
+  transition: all 0.25s ease;
+}
+
+.cv-modal-download:hover {
+  background: linear-gradient(135deg, rgba(255,143,171,0.4), rgba(255,100,150,0.3));
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255,143,171,0.2);
+}
+
+[data-theme="dark"] .cv-modal-download {
+  background: rgba(0,229,255,0.1);
+  border-color: rgba(0,229,255,0.3);
+  color: #00e5ff;
+}
+
+[data-theme="dark"] .cv-modal-download:hover {
+  background: rgba(0,229,255,0.18);
+  box-shadow: 0 8px 20px rgba(0,229,255,0.12);
+}
+
+/* === FLOATING BUTTON === */
+.cv-floating-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FF8FAB, #FF6B9D);
+  border: none;
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  z-index: 900;
+  box-shadow: 0 8px 24px rgba(255,107,157,0.35);
+  transition: all 0.3s ease;
+}
+
+.cv-floating-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 32px rgba(255,107,157,0.45);
+}
+
+.cv-floating-btn:active {
+  transform: scale(0.95);
+}
+
+.cv-float-icon {
+  font-size: 1.5rem;
+}
+
+.cv-float-label {
+  font-size: 0.65rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+}
+
+[data-theme="dark"] .cv-floating-btn {
+  background: linear-gradient(135deg, #00e5ff, #00bcd4);
+  color: #0a0a0f;
+  box-shadow: 0 8px 24px rgba(0,229,255,0.25);
+}
+
+[data-theme="dark"] .cv-floating-btn:hover {
+  box-shadow: 0 12px 32px rgba(0,229,255,0.35);
+}
+
+/* === MODAL TRANSITIONS === */
+.modal-enter-active,
+.modal-leave-active {
+  transition: all 0.3s ease;
+}
+
+.modal-enter-from,
+.modal-leave-to {
+  opacity: 0;
+}
+
+.modal-enter-from .cv-modal,
+.modal-leave-to .cv-modal {
+  transform: scale(0.95) translateY(20px);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .cv-modal {
+    width: 95%;
+    height: 85vh;
+  }
+
+  .cv-floating-btn {
+    width: 60px;
+    height: 60px;
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .cv-float-icon {
+    font-size: 1.2rem;
+  }
+
+  .cv-float-label {
+    font-size: 0.6rem;
+  }
+
+  .cv-modal-header,
+  .cv-modal-tabs,
+  .cv-modal-preview {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .cv-modal-download {
+    margin: 0 16px 16px;
+    width: calc(100% - 32px);
+  }
 }
 </style>
