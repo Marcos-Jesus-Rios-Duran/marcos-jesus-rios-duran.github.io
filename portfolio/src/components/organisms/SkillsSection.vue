@@ -46,16 +46,6 @@
       </div>
     </div>
 
-    <!-- Especializaciones -->
-    <div class="info-card">
-      <h3 class="info-title">{{ t('skills.specializations.title') }}</h3>
-      <div class="spec-tags">
-        <span v-for="(spec, idx) in specializations" :key="idx" class="spec-tag">
-          {{ spec }}
-        </span>
-      </div>
-    </div>
-
   </section>
 </template>
 

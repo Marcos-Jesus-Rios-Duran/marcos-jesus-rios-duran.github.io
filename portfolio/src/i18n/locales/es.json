@@ -92,17 +92,38 @@
       "frontend": {
         "title": "Frontend",
         "icon": "💻",
-        "technologies": ["TypeScript", "JavaScript", "Angular", "React", "Vue.js", "Pug"]
+        "technologies": [
+          "TypeScript",
+          "JavaScript",
+          "Angular",
+          "React",
+          "Vue.js",
+          "Pug"
+        ]
       },
       "backend": {
         "title": "Backend",
         "icon": "⚙️",
-        "technologies": ["Java 17", "Java 21", "Python", "Node.js", "Spring Boot", "FastAPI", "Express.js"]
+        "technologies": [
+          "Java 17",
+          "Java 21",
+          "Python",
+          "Node.js",
+          "Spring Boot",
+          "FastAPI",
+          "Express.js"
+        ]
       },
       "mobile": {
         "title": "Mobile & Desktop",
         "icon": "📱",
-        "technologies": ["Flutter", "Dart", "Android", "Java", "Kotlin"]
+        "technologies": [
+          "Flutter",
+          "Dart",
+          "Android",
+          "Java",
+          "Kotlin"
+        ]
       }
     },
     "architecture": {
@@ -119,7 +140,10 @@
     },
     "specializations": {
       "title": "Especializaciones",
-      "items": ["Ciberseguridad", "Azure AI-900 ✓"]
+      "items": [
+        "Ciberseguridad",
+        "Azure AI-900 ✓"
+      ]
     }
   },
   "projects": {
@@ -139,7 +163,26 @@
   "contact": {
     "title": "Contacto",
     "subtitle": "¿Tienes un proyecto en mente?",
-    "email": "Escríbeme"
+    "heading": "¿Hablamos?",
+    "description": "Estoy disponible para proyectos freelance, colaboraciones o nuevas oportunidades. Escríbeme y con gusto platicamos.",
+    "available": "Disponible para nuevos proyectos",
+    "cv": {
+      "title": "Mi Currículum",
+      "download": "Descargar CV"
+    },
+    "form": {
+      "title": "Envíame un mensaje",
+      "name": "Nombre",
+      "name_placeholder": "Tu nombre",
+      "email": "Email",
+      "email_placeholder": "tu@email.com",
+      "message": "Mensaje",
+      "message_placeholder": "Cuéntame sobre tu proyecto...",
+      "send": "Enviar mensaje",
+      "sending": "Enviando",
+      "success": "¡Mensaje enviado! Te responderé pronto.",
+      "error": "Algo salió mal. Intenta de nuevo o escríbeme directo."
+    }
   },
   "footer": {
     "made_with": "Hecho con Vue, desde la sierra norte de Puebla",
