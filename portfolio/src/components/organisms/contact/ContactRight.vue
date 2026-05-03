@@ -79,11 +79,12 @@
 
           <!-- PDF Preview -->
           <div class="cv-modal-preview">
-          <iframe
-  v-if="showCVModal"
-  :src="`/cv/cv-${cvLang}.pdf`"
-  class="cv-modal-iframe"
-/>
+            <iframe
+              v-if="cvEverOpened"
+              v-show="showCVModal"
+              :src="`/cv/cv-${cvLang}.pdf`"
+              class="cv-modal-iframe"
+            />
           </div>
 
           <!-- Download Button -->
@@ -114,6 +115,8 @@ import { useI18n } from 'vue-i18n'
 import { inject } from 'vue'
 
 const canvasPaused = inject('canvasPaused', null)
+const cvEverOpened = ref(false)
+
 
 
 
@@ -148,6 +151,7 @@ const showCVModal = ref(false)
 const cvLang = ref('en') // English by default
 
 const openCVModal = () => {
+  cvEverOpened.value = true
   showCVModal.value = true
   document.body.style.overflow = 'hidden'
   if (canvasPaused) canvasPaused.value = true // ← pausa el canvas al abrir el modal
@@ -370,12 +374,11 @@ padding-top: 70px;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.75);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 999;
-  backdrop-filter: blur(3px);
 }
 
 .cv-modal {
