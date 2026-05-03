@@ -1,16 +1,24 @@
 <template>
-  <div ref="arena" class="canvas-wrap" @mousemove="onMove" @mouseleave="onLeave">
+
+  <div ref="arena" class="canvas-wrap"
+  :style="{ cursor: paused ? 'auto' : 'none' }"
+  @mousemove="onMove"
+  @mouseleave="onLeave">
     <canvas ref="canvas" class="canvas" />
     <div class="cursor-dot" :style="dotStyle" />
     <div class="slot-content">
       <slot />
     </div>
   </div>
+
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, watch } from 'vue'
+import { ref, onMounted, onUnmounted, watch, provide } from 'vue'
 import { useTheme } from '@/stores/useTheme'
+
+const paused = ref(false)
+provide('canvasPaused', paused) // ← lo inyectas desde hijos
 
 // ✅ NO desestructurar — acceder como store.mode
 const store = useTheme()
@@ -95,7 +103,7 @@ function draw() {
   ctx.clearRect(0, 0, W, H)
   drawBg()
 
-  if (mouse.x > 0) {
+  if (!paused.value && mouse.x > 0) {
     const grd = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, REPEL * 1.6)
     grd.addColorStop(0, cfg.glow)
     grd.addColorStop(1, 'transparent')
@@ -137,6 +145,12 @@ function draw() {
 }
 
 function onMove(e) {
+
+  // ← si el canvas está pausado, no actualizamos la posición del mouse ni el estilo del cursor
+    if (paused.value) {
+    dotStyle.value = { left: '-99px', top: '-99px' } // esconde el dot
+    return
+  }
   const r = arena.value.getBoundingClientRect()
   mouse.x = e.clientX - r.left
   mouse.y = e.clientY - r.top

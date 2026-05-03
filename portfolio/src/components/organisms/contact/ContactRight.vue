@@ -54,7 +54,7 @@
     </div>
 
     <!-- CV Modal -->
-    <transition name="modal">
+    <transition name="modal" @after-leave="onModalClosed">
       <div v-if="showCVModal" class="cv-modal-overlay" @click="closeCVModal">
         <div class="cv-modal" @click.stop>
           <!-- Header -->
@@ -79,11 +79,11 @@
 
           <!-- PDF Preview -->
           <div class="cv-modal-preview">
-            <iframe
-              :src="`/cv/cv-${cvLang}.pdf`"
-              class="cv-modal-iframe"
-              :title="`CV ${cvLang.toUpperCase()}`"
-            />
+          <iframe
+  v-if="showCVModal"
+  :src="`/cv/cv-${cvLang}.pdf`"
+  class="cv-modal-iframe"
+/>
           </div>
 
           <!-- Download Button -->
@@ -109,10 +109,39 @@
 
 <script setup>
 import emailjs from '@emailjs/browser'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { inject } from 'vue'
+
+const canvasPaused = inject('canvasPaused', null)
+
+
 
 const { t } = useI18n()
+
+
+
+onMounted(() => {
+  // Espera 3 segundos después de que cargó la página, luego precarga los PDFs
+  setTimeout(() => {
+    const linkEs = document.createElement('link')
+    linkEs.rel = 'prefetch'
+    linkEs.href = '/cv/cv-es.pdf'
+    document.head.appendChild(linkEs)
+
+    const linkEn = document.createElement('link')
+    linkEn.rel = 'prefetch'
+    linkEn.href = '/cv/cv-en.pdf'
+    document.head.appendChild(linkEn)
+  }, 3000)
+})
+
+const onModalClosed = () => {
+  // Espera un tick antes de reactivar para no bloquear la transición
+  setTimeout(() => {
+    if (canvasPaused) canvasPaused.value = false
+  }, 50)
+}
 
 // CV Modal
 const showCVModal = ref(false)
@@ -121,6 +150,7 @@ const cvLang = ref('en') // English by default
 const openCVModal = () => {
   showCVModal.value = true
   document.body.style.overflow = 'hidden'
+  if (canvasPaused) canvasPaused.value = true // ← pausa el canvas al abrir el modal
 }
 
 const closeCVModal = () => {
@@ -334,6 +364,7 @@ async function sendEmail() {
 
 /* === CV MODAL === */
 .cv-modal-overlay {
+padding-top: 70px;
   position: fixed;
   top: 0;
   left: 0;
