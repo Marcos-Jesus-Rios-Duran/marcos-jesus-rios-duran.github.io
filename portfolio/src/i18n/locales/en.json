@@ -243,11 +243,13 @@
     "title": "My Mentors",
     "subtitle": "People who shaped my path",
     "inaoe": "National Institute of Astrophysics, Optics and Electronics",
+    "intro": "I deeply thank my mentors at the National Institute of Astrophysics, Optics and Electronics (INAOE) for their guidance, inspiration and dedication in my professional training:",
     "list": [
-      "Dra. Janeth Cruz Enríquez - INAOE (Computational Systems)",
-      "Juan Carlos Escamilla Abarca - Lic. Computer Science",
-      "Dr. Jesús Fonseca Bustos - INAOE (Computational Systems)"
-    ]
+      "Dra. Janeth Cruz Enríquez - Senior Technologist INAOE, Head of Computational Systems",
+      "Juan Carlos Escamilla Abarca - Lic. Computer Science, Computational Systems",
+      "Dr. Jesús Fonseca Bustos - Senior Technologist INAOE, Computational Systems"
+    ],
+    "closing": "Their experience and mentoring have been fundamental to my development as a software engineer and will continue to be an inspiration for my professional career."
   },
   "contact": {
     "title": "Contact",

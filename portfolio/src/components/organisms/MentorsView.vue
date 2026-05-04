@@ -11,8 +11,7 @@
       <h2>{{ t('mentors.inaoe') }}</h2>
 
       <p class="intro-text">
-        Agradezco profundamente a mis mentores en el Instituto Nacional de Astrofísica, Óptica y
-        Electrónica (INAOE) por su guía, inspiración y dedicación en mi formación profesional:
+        {{ t('mentors.intro') }}
       </p>
 
       <div class="mentors-list-styled">
@@ -23,8 +22,7 @@
       </div>
 
       <p class="closing-text">
-        Su experiencia y mentoría han sido fundamentales en mi desarrollo como ingeniero de software
-        y seguirán siendo una inspiración para mi carrera profesional.
+        {{ t('mentors.closing') }}
       </p>
     </div>
   </section>

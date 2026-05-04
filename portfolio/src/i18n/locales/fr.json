@@ -241,11 +241,13 @@
     "title": "Mes Mentors",
     "subtitle": "Les personnes qui ont façonné mon chemin",
     "inaoe": "Institut National d'Astrophysique, d'Optique et d'Électronique",
+    "intro": "Je remercie profondément mes mentors à l'Institut National d'Astrophysique, d'Optique et d'Électronique (INAOE) pour leur orientation, inspiration et dévouement dans ma formation professionnelle:",
     "list": [
-      "Dra. Janeth Cruz Enríquez - INAOE (Systèmes Informatiques)",
-      "Juan Carlos Escamilla Abarca - Lic. Informatique",
-      "Dr. Jesús Fonseca Bustos - INAOE (Systèmes Informatiques)"
-    ]
+      "Dra. Janeth Cruz Enríquez - Technologue Senior INAOE, Responsable du département Systèmes Informatiques",
+      "Juan Carlos Escamilla Abarca - Lic. Informatique, Systèmes Informatiques",
+      "Dr. Jesús Fonseca Bustos - Technologue Senior INAOE, Systèmes Informatiques"
+    ],
+    "closing": "Leur expérience et leur mentorat ont été fondamentaux pour mon développement en tant qu'ingénieur logiciel et continueront à être une inspiration pour ma carrière professionnelle."
   },
   "contact": {
     "title": "Contact",

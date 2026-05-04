@@ -269,12 +269,12 @@ const getStatusClass = (status) => {
 
 [data-theme="light"] .project-card__cta {
   background: #ffb3cc;
-  color: #7A1840;
+  color: #ffffff;
 }
 
 [data-theme="light"] .project-card__cta:hover {
   background: #ff8fb3;
-  color: #7A1840;
+  color: #ffffff;
 }
 
 /* === DARK MODE === */

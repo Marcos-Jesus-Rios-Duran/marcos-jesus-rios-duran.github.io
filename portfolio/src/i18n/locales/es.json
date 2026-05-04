@@ -267,11 +267,13 @@
     "title": "Mis Mentores",
     "subtitle": "Personas que han formado mi camino",
     "inaoe": "Instituto Nacional de Astrofísica, Óptica y Electrónica",
+    "intro": "Agradezco profundamente a mis mentores en el Instituto Nacional de Astrofísica, Óptica y Electrónica (INAOE) por su guía, inspiración y dedicación en mi formación profesional:",
     "list": [
-      "Dra. Janeth Cruz Enríquez - INAOE (Sistemas Computacionales)",
-      "Juan Carlos Escamilla Abarca - Lic. Ciencias de la Computación",
-      "Dr. Jesús Fonseca Bustos - INAOE (Sistemas Computacionales)"
-    ]
+      "Dra. Janeth Cruz Enríquez - Tecnóloga titular INAOE, Responsable del área de Sistemas Computacionales",
+      "Juan Carlos Escamilla Abarca - Lic. Ciencias de la Computación, Sistemas Computacionales",
+      "Dr. Jesús Fonseca Bustos - Tecnólogo titular INAOE, Sistemas Computacionales"
+    ],
+    "closing": "Su experiencia y mentoría han sido fundamentales en mi desarrollo como ingeniero de software y seguirán siendo una inspiración para mi carrera profesional."
   },
   "contact": {
     "title": "Contacto",

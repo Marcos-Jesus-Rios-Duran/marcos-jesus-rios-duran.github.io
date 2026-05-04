@@ -40,17 +40,46 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, ref, inject, onMounted, onUnmounted, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useTheme } from '@/stores/useTheme'
 import ProjectsGrid from '@/components/molecules/ProjectsGrid.vue'
 import ProjectModal from '@/components/molecules/ProjectModal.vue'
 
 const { t, tm } = useI18n()
+const { mode } = useTheme()
+const canvasPaused = inject('canvasPaused', null)
 const activeFilter = ref('all')
 const selectedProject = ref(null)
 const isModalOpen = ref(false)
 
-const projectStatus = computed(() => t('projects.status'))
+// Pausar canvas en modo light mientras el componente está montado
+const isMounted = ref(false)
+
+onMounted(() => {
+  isMounted.value = true
+  // Pausa inicial si estamos en light
+  if (mode.value === 'light' && canvasPaused) {
+    canvasPaused.value = true
+  }
+})
+
+// Watcher para detectar cambios en el tema
+watch(mode, (newMode) => {
+  if (!canvasPaused) return
+  if (newMode === 'light' && isMounted.value) {
+    canvasPaused.value = true
+  } else if (newMode === 'dark') {
+    canvasPaused.value = false
+  }
+})
+
+onUnmounted(() => {
+  isMounted.value = false
+  if (canvasPaused) {
+    canvasPaused.value = false
+  }
+})
 
 const allProjects = computed(() => {
   const result = tm('projects')
