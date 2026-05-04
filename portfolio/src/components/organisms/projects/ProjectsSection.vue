@@ -42,12 +42,13 @@
 <script setup>
 import { computed, ref, inject, onMounted, onUnmounted, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { storeToRefs } from 'pinia'
 import { useTheme } from '@/stores/useTheme'
 import ProjectsGrid from '@/components/molecules/ProjectsGrid.vue'
 import ProjectModal from '@/components/molecules/ProjectModal.vue'
 
 const { t, tm } = useI18n()
-const { mode } = useTheme()
+const { mode } = storeToRefs(useTheme())
 const canvasPaused = inject('canvasPaused', null)
 const activeFilter = ref('all')
 const selectedProject = ref(null)

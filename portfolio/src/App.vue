@@ -6,7 +6,7 @@
     <AntigravityCanvas class="canvas-base">
       <main class="main-content">
         <RouterView v-slot="{ Component }">
-          <Transition name="page" mode="out-in">
+          <Transition name="page">
             <component :is="Component" />
           </Transition>
         </RouterView>
@@ -84,6 +84,8 @@ body {
   /* flex: 1 aquí asegura que el main crezca dentro del canvas */
   flex: 1;
   padding-top: 70px;
+  /* Necesario para anclar el page-leave-active (position:absolute) dentro del layout */
+  position: relative;
 }
 
 .footer {
@@ -110,10 +112,19 @@ body {
   opacity: 0.7;
 }
 
-/* Transición de páginas — fade suave para eliminar el frame vacío */
+/* Transición de páginas — cross-fade sin gap (sin mode out-in para evitar frame vacío) */
 .page-enter-active,
 .page-leave-active {
-  transition: opacity 0.15s ease;
+  transition: opacity 0.12s ease;
+}
+
+/* El que sale va a position absolute para no ocupar espacio mientras el nuevo entra */
+.page-leave-active {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
 }
 
 .page-enter-from,
