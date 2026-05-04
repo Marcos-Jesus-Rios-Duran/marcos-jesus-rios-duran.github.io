@@ -22,12 +22,6 @@
       </div>
     </div>
 
-    <!-- Status badge -->
-    <div v-if="projectStatus" class="status-info">
-      <span class="status-badge">{{ projectStatus }}</span>
-      <span class="status-text">{{ t('projects.status') }}</span>
-    </div>
-
     <!-- Projects Grid -->
     <ProjectsGrid :projects="filteredProjects" @projectOpened="openModal" />
 
@@ -82,6 +76,7 @@ const allProjects = computed(() => {
 const availableFilters = [
   { label: t('projects.filter_all') || 'Todos', value: 'all' },
   { label: t('projects.filter_featured') || 'Destacados', value: 'featured' },
+  { label: t('projects.filter_development') || 'En Desarrollo', value: 'development' },
   { label: t('projects.filter_opensource') || 'Open Source', value: 'opensource' }
 ]
 
@@ -92,7 +87,9 @@ const filteredProjects = computed(() => {
     let shouldInclude = false
 
     if (activeFilter.value === 'featured') {
-      shouldInclude = !project.status || project.status.includes('desarrollo')
+      shouldInclude = project.status === 'featured'
+    } else if (activeFilter.value === 'development') {
+      shouldInclude = project.status?.includes('Desarrollo')
     } else if (activeFilter.value === 'opensource') {
       shouldInclude = project.status?.includes('Open Source')
     }
@@ -140,13 +137,13 @@ const openModal = (project) => {
   font-size: 3rem;
   font-weight: 900;
   margin: 0 0 12px 0;
-  color: white;
+  color: var(--texto);
   letter-spacing: -0.02em;
 }
 
 .projects-subtitle {
   font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--textoSub);
   margin: 0;
   line-height: 1.6;
 }
@@ -161,27 +158,34 @@ const openModal = (project) => {
 }
 
 .filter-btn {
-  padding: 10px 18px;
+  padding: 12px 24px;
   border-radius: 50px;
-  border: 1.5px solid rgba(255, 179, 204, 0.3);
-  background: transparent;
-  color: rgba(255, 255, 255, 0.7);
-  font-weight: 500;
+  border: none;
+  background: rgba(255, 255, 255, 0.8);
+  color: #b0456e;
+  font-weight: 600;
   font-size: 0.9rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(255, 120, 170, 0.15);
+  backdrop-filter: blur(8px);
+  letter-spacing: 0.3px;
 }
 
 .filter-btn:hover {
-  border-color: rgba(255, 179, 204, 0.6);
-  color: rgba(255, 255, 255, 1);
+  background: rgba(255, 255, 255, 0.95);
+  color: #7A1840;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(255, 120, 170, 0.25);
 }
 
 .filter-btn--active {
-  background: linear-gradient(135deg, rgba(255, 179, 204, 0.2), rgba(255, 143, 181, 0.15));
-  border-color: rgba(255, 179, 204, 0.6);
-  color: white;
-  font-weight: 600;
+  background: #ffb3cc;
+  border: none;
+  color: #7A1840;
+  font-weight: 700;
+  box-shadow: 0 8px 24px rgba(255, 120, 170, 0.3);
+  transform: translateY(-2px);
 }
 
 /* === STATUS INFO === */
@@ -206,31 +210,56 @@ const openModal = (project) => {
 
 .status-text {
   font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--textoSub);
 }
 
 /* === EMPTY STATE === */
 .empty-state {
   text-align: center;
   padding: 60px 20px;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--textoSub);
   font-size: 1.1rem;
+}
+
+/* === LIGHT MODE === */
+[data-theme="light"] .filter-btn {
+  background: rgba(255, 255, 255, 0.85);
+  color: #b0456e;
+  box-shadow: 0 4px 15px rgba(255, 120, 170, 0.12);
+}
+
+[data-theme="light"] .filter-btn:hover {
+  background: rgba(255, 255, 255, 0.98);
+  color: #7A1840;
+  box-shadow: 0 8px 24px rgba(255, 120, 170, 0.2);
+}
+
+[data-theme="light"] .filter-btn--active {
+  background: #ffb3cc;
+  color: #7A1840;
+  box-shadow: 0 8px 24px rgba(255, 120, 170, 0.28);
 }
 
 /* === DARK MODE === */
 [data-theme="dark"] .filter-btn {
-  border-color: rgba(0, 229, 255, 0.2);
+  background: rgba(30, 30, 40, 0.7);
+  border: 1.5px solid rgba(0, 229, 255, 0.2);
   color: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4px 15px rgba(0, 229, 255, 0.1);
 }
 
 [data-theme="dark"] .filter-btn:hover {
+  background: rgba(40, 40, 50, 0.85);
   border-color: rgba(0, 229, 255, 0.5);
   color: rgba(255, 255, 255, 1);
+  box-shadow: 0 8px 24px rgba(0, 229, 255, 0.15);
 }
 
 [data-theme="dark"] .filter-btn--active {
-  background: linear-gradient(135deg, rgba(0, 229, 255, 0.15), rgba(0, 188, 212, 0.1));
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.2), rgba(0, 188, 212, 0.15));
   border-color: rgba(0, 229, 255, 0.5);
+  color: #00e5ff;
+  box-shadow: 0 8px 24px rgba(0, 229, 255, 0.25);
 }
 
 /* === RESPONSIVE === */

@@ -84,29 +84,30 @@ const getStatusClass = (status) => {
 .project-card {
   background: linear-gradient(
     135deg,
-    rgba(255, 179, 204, 0.08) 0%,
-    rgba(255, 143, 181, 0.06) 100%
+    #fff0f6 0%,
+    #ffe8f2 100%
   );
-  border: 1.5px solid rgba(255, 179, 204, 0.2);
-  border-radius: 16px;
-  padding: 16px;
+  border: 2px solid #ffc6e0;
+  border-radius: 20px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 12px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   min-height: 240px;
+  box-shadow: 0 6px 20px rgba(255, 120, 170, 0.15);
 }
 
 .project-card:hover {
-  border-color: rgba(255, 120, 170, 0.5);
+  border-color: #ff8fb3;
   background: linear-gradient(
     135deg,
-    rgba(255, 179, 204, 0.14) 0%,
-    rgba(255, 143, 181, 0.12) 100%
+    #ffdeef 0%,
+    #ffd5eb 100%
   );
-  box-shadow: 0 12px 32px rgba(255, 120, 170, 0.2);
-  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(255, 120, 170, 0.25);
+  transform: translateY(-4px);
 }
 
 /* === TECH HEADER === */
@@ -120,20 +121,21 @@ const getStatusClass = (status) => {
 .tech-badge {
   display: inline-flex;
   align-items: center;
-  padding: 4px 8px;
-  border-radius: 10px;
+  padding: 5px 12px;
+  border-radius: 14px;
   font-size: 0.7rem;
-  font-weight: 600;
-  background: rgba(0, 229, 255, 0.15);
-  color: #00e5ff;
-  border: 1px solid rgba(0, 229, 255, 0.25);
+  font-weight: 700;
+  background: #ffd6e8;
+  color: #b0456e;
+  border: 1.5px solid #ffb3cc;
   white-space: nowrap;
   transition: all 0.2s;
 }
 
 .tech-badge:hover {
-  background: rgba(0, 229, 255, 0.22);
-  border-color: rgba(0, 229, 255, 0.4);
+  background: #ffb3cc;
+  border-color: #ff8fb3;
+  color: #7A1840;
 }
 
 .tech-more {
@@ -155,11 +157,12 @@ const getStatusClass = (status) => {
 
 .project-card__title {
   font-size: 1.2rem;
-  font-weight: 700;
-  color: white;
+  font-weight: 800;
+  color: #1a0812;
   margin: 0;
   flex: 1;
   line-height: 1.3;
+  letter-spacing: -0.3px;
 }
 
 .status-badge {
@@ -206,7 +209,7 @@ const getStatusClass = (status) => {
 /* === DESCRIPCIÓN === */
 .project-card__description {
   font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.75);
+  color: #5a5a5a;
   line-height: 1.5;
   margin: 0;
   flex-grow: 1;
@@ -218,37 +221,60 @@ const getStatusClass = (status) => {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 10px 14px;
+  padding: 11px 16px;
   border-radius: 50px;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 179, 204, 0.15) 0%,
-    rgba(255, 143, 181, 0.10) 100%
-  );
-  border: 1.5px solid rgba(255, 179, 204, 0.35);
-  color: rgba(255, 255, 255, 0.9);
-  font-weight: 600;
+  background: #ffb3cc;
+  border: none;
+  color: #7A1840;
+  font-weight: 700;
   font-size: 0.85rem;
   cursor: pointer;
   transition: all 0.25s;
   white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(255, 120, 170, 0.2);
 }
 
 .project-card__cta:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 179, 204, 0.25) 0%,
-    rgba(255, 143, 181, 0.20) 100%
-  );
-  border-color: rgba(255, 179, 204, 0.5);
-  color: white;
+  background: #ff8fb3;
+  color: #7A1840;
   transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 120, 170, 0.3);
 }
 
 .github-icon {
   width: 16px;
   height: 16px;
   flex-shrink: 0;
+}
+
+/* === LIGHT MODE === */
+[data-theme="light"] .tech-badge {
+  background: rgba(255, 179, 204, 0.22);
+  color: #7A1840;
+  border-color: rgba(255, 179, 204, 0.35);
+}
+
+[data-theme="light"] .tech-badge:hover {
+  background: rgba(255, 179, 204, 0.32);
+  border-color: rgba(255, 120, 170, 0.5);
+}
+
+[data-theme="light"] .project-card__title {
+  color: #1a0812;
+}
+
+[data-theme="light"] .project-card__description {
+  color: #5a5a5a;
+}
+
+[data-theme="light"] .project-card__cta {
+  background: #ffb3cc;
+  color: #7A1840;
+}
+
+[data-theme="light"] .project-card__cta:hover {
+  background: #ff8fb3;
+  color: #7A1840;
 }
 
 /* === DARK MODE === */
@@ -259,6 +285,25 @@ const getStatusClass = (status) => {
     rgba(0, 188, 212, 0.06) 100%
   );
   border-color: rgba(0, 229, 255, 0.15);
+}
+
+[data-theme="dark"] .tech-badge {
+  background: rgba(0, 229, 255, 0.15);
+  color: #00e5ff;
+  border: 1px solid rgba(0, 229, 255, 0.25);
+}
+
+[data-theme="dark"] .tech-badge:hover {
+  background: rgba(0, 229, 255, 0.22);
+  border-color: rgba(0, 229, 255, 0.4);
+}
+
+[data-theme="dark"] .project-card__title {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .project-card__description {
+  color: rgba(255, 255, 255, 0.75);
 }
 
 [data-theme="dark"] .project-card:hover {

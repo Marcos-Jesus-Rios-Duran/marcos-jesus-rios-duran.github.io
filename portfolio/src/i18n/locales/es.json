@@ -152,6 +152,7 @@
     "subtitle": "Lo que he construido",
     "Soodan": {
       "name": "Soodan",
+      "status": "En Desarrollo",
       "description": "Plataforma integral de telemedicina y gestión clínica diseñada para digitalizar la operación médica. Implementa una arquitectura robusta para la gestión de citas, expedientes electrónicos y control de inventarios, priorizando la seguridad de datos sensibles.",
       "technologies": [
         "Python (FastAPI)",
@@ -170,7 +171,7 @@
     },
     "ModuloConfiguracion": {
       "name": "Módulo de Configuración Multiplataforma",
-      "status": "Confidencial",
+      "status": "featured",
       "description": "Desarrollo de un módulo de configuración a nivel de hardware para una aplicación multiplataforma orientada a la accesibilidad. Proyecto realizado durante una estancia técnica bajo la dirección y mentoría de investigadores del INAOE.",
       "confidentiality": "Detalles técnicos y código fuente no divulgados por acuerdos de confidencialidad.",
       "technologies": [
@@ -187,7 +188,7 @@
         "Gestión de Estados: Implementación robusta de guardado de perfiles de usuario, manejo de excepciones de hardware y sincronización de datos con SQLite local."
       ],
       "mentorship": "Desarrollado en colaboración con el Instituto Nacional de Astrofísica, Óptica y Electrónica (INAOE).",
-      "view_mode": "Architectural Case Study"
+      "view_mode": "Estudio de Caso Arquitectónico"
     },
     "BienesRaices": {
       "name": "Bienes Raíces SOA",
@@ -258,6 +259,7 @@
     "cta_visit": "Visitar",
     "filter_all": "Todos",
     "filter_featured": "Destacados",
+    "filter_development": "En Desarrollo",
     "filter_opensource": "Open Source",
     "empty_message": "Los proyectos serán publicados próximamente."
   },

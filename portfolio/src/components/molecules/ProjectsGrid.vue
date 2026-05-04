@@ -44,6 +44,16 @@ const processProject = (project, key) => {
   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
   gap: 24px;
   width: 100%;
+  background: linear-gradient(135deg, #f0e5f5 0%, #fff0f6 100%);
+  border: 2.5px solid #ffc6e0;
+  border-radius: 28px;
+  padding: 36px;
+  backdrop-filter: blur(10px);
+}
+
+[data-theme="dark"] .projects-grid {
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.06) 0%, rgba(255, 143, 181, 0.04) 100%);
+  border-color: rgba(0, 229, 255, 0.15);
 }
 
 /* === RESPONSIVE === */
@@ -51,6 +61,7 @@ const processProject = (project, key) => {
   .projects-grid {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
+    padding: 28px;
   }
 }
 
@@ -58,6 +69,7 @@ const processProject = (project, key) => {
   .projects-grid {
     grid-template-columns: 1fr;
     gap: 16px;
+    padding: 20px;
   }
 }
 </style>

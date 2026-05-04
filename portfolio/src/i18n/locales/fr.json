@@ -128,6 +128,7 @@
     "subtitle": "Ce que j'ai construit",
     "Soodan": {
       "name": "Soodan",
+      "status": "En développement",
       "description": "Plateforme complète de télémédecine et de gestion clinique conçue pour numériser les opérations médicales. Implémente une architecture robuste pour la gestion des rendez-vous, les dossiers électroniques et le contrôle des stocks, en donnant priorité à la sécurité des données sensibles.",
       "technologies": [
         "Python (FastAPI)",
@@ -146,7 +147,7 @@
     },
     "ModuloConfiguracion": {
       "name": "Module de Configuration Multiplateforme",
-      "status": "Confidentiel",
+      "status": "featured",
       "description": "Développement d'un module de configuration au niveau matériel pour une application multiplateforme axée sur l'accessibilité. Projet réalisé lors d'un stage technique sous la direction et le mentorat des chercheurs de l'INAOE.",
       "confidentiality": "Les détails techniques et le code source ne sont pas divulgués en raison d'accords de confidentialité.",
       "technologies": [
@@ -233,8 +234,7 @@
     "cta_view": "Voir sur GitHub",
     "cta_visit": "Visiter",
     "filter_all": "Tous",
-    "filter_featured": "En vedette",
-    "filter_opensource": "Open Source",
+    "filter_featured": "En vedette",    "filter_development": "En développement",    "filter_opensource": "Open Source",
     "empty_message": "Les projets seront publiés bientôt."
   },
   "mentors": {

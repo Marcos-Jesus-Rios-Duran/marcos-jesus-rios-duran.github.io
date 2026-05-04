@@ -128,6 +128,7 @@
     "subtitle": "Was ich gebaut habe",
     "Soodan": {
       "name": "Soodan",
+      "status": "In Entwicklung",
       "description": "Umfassende Telemedizin- und Klinikalternativplattform zur Digitalisierung des Medizinbetriebs. Implementiert eine robuste Architektur für Terminverwaltung, elektronische Krankenakten und Bestandskontrolle mit Priorität auf Sicherheit sensibler Daten.",
       "technologies": [
         "Python (FastAPI)",
@@ -146,7 +147,7 @@
     },
     "ModuloConfiguracion": {
       "name": "Mehrplattformiges Konfigurationsmodul",
-      "status": "Vertraulich",
+      "status": "featured",
       "description": "Entwicklung eines Hardware-Level-Konfigurationsmoduls für eine multiplattformige, barrierefreie Anwendung. Projekt durchgeführt während eines technischen Praktikums unter der Leitung und Betreuung von INAOE-Forschern.",
       "confidentiality": "Technische Details und Quellcode werden aufgrund von Vertraulichkeitsabkommen nicht veröffentlicht.",
       "technologies": [
@@ -234,6 +235,7 @@
     "cta_visit": "Besuchen",
     "filter_all": "Alle",
     "filter_featured": "Empfohlen",
+    "filter_development": "In Entwicklung",
     "filter_opensource": "Open Source",
     "empty_message": "Projekte werden bald veröffentlicht."
   },
