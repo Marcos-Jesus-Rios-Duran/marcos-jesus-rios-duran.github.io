@@ -65,41 +65,6 @@ function goTo(name) {
   max-width: 560px;
 }
 
-/* === BADGE === */
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(255, 255, 255, 0.20);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.40);
-  border-radius: 50px;
-  padding: 6px 16px;
-  font-size: 13px;
-  font-weight: 700;
-  color: white;
-  width: fit-content;
-  letter-spacing: 0.04em;
-}
-
-.badge__dot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: var(--rosaVivo);
-  box-shadow: 0 0 6px var(--rosaVivo);
-  animation: pulse 2s ease-in-out infinite;
-}
-
-[data-theme="dark"] .badge {
-  background: rgba(0, 229, 255, 0.08);
-  border-color: rgba(0, 229, 255, 0.25);
-  color: #00e5ff;
-}
-
-[data-theme="dark"] .badge__dot {
-  background: #00e5ff;
-  box-shadow: 0 0 6px #00e5ff;
-}
 
 /* === SALUDO === */
 .greeting {

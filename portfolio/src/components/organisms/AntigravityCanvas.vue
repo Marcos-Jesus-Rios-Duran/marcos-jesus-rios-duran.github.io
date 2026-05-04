@@ -52,7 +52,7 @@ const PARTICLE_CONFIG = {
   }
 }
 
-let ctx, W, H, raf
+let ctx, W, H, raf, ro
 let mouse = { x: -999, y: -999 }
 let parts = []
 
@@ -60,6 +60,8 @@ const REPEL = 110, FORCE = 22, RETURN = 0.055, DAMPING = 0.80
 
 function resize() {
   const r = arena.value.getBoundingClientRect()
+  // Guard: si el layout colapsó temporalmente (durante swap de ruta), conservar últimas dims válidas
+  if (r.width === 0 || r.height === 0) return
   W = canvas.value.width  = r.width
   H = canvas.value.height = r.height
 }
@@ -177,8 +179,8 @@ onMounted(() => {
   resize()
   makeParts()
   draw()
-  const ro = new ResizeObserver(() => { resize(); makeParts() })
-ro.observe(arena.value)
+  ro = new ResizeObserver(() => { resize(); makeParts() })
+  ro.observe(arena.value)
 })
 
 onUnmounted(() => {

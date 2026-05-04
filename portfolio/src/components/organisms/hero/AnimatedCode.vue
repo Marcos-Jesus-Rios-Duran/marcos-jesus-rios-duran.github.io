@@ -20,19 +20,22 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useTheme } from '@/stores/useTheme'
 
 const store = useTheme()
 const { mode: theme } = storeToRefs(store)
 
-const displayedText = ref('')
 const colorizedTokens = ref([])
 const currentCodeIndex = ref(0)
 const currentCharIndex = ref(0)
 const showCursor = ref(true)
 const currentLanguage = ref('TypeScript')
+
+// IDs para limpiar en onUnmounted y evitar updates sobre componente desmontado
+let cursorIntervalId = null
+let pendingTimeoutId = null
 
 // Ejemplos de código con syntax highlighting
 const codeExamples = [
@@ -129,132 +132,109 @@ const keywords = {
   literal: new Set(['true', 'false', 'null', 'undefined', 'this', 'super', 'new', 'instanceof', 'typeof', 'delete'])
 }
 
-// Función para colorear el código - versión mejorada
-const colorizeCode = (code) => {
-  const tokens = []
-  let i = 0
-  const codeLength = code.length
 
-  while (i < codeLength) {
-    const char = code[i]
+// Coloriza SOLO el último carácter (o fragmento) nuevo — sin re-parsear todo
+const appendChar = (char) => {
+  const tokens = colorizedTokens.value
+  const last = tokens.length > 0 ? tokens[tokens.length - 1] : null
 
-    // Detectar comentarios de línea //
-    if (char === '/' && code[i + 1] === '/') {
-      let end = code.indexOf('\n', i)
-      if (end === -1) end = codeLength
-      tokens.push({ text: code.substring(i, end), class: 'comment' })
-      i = end
-      continue
+  // Comentarios de línea: si ya hay un token comment abierto (sin \n), extendérlo
+  if (last && last.class === 'comment' && !last.closed) {
+    if (char === '\n') {
+      last.text += char
+      last.closed = true
+    } else {
+      last.text += char
     }
-
-    // Detectar comentarios de bloque /* */
-    if (char === '/' && code[i + 1] === '*') {
-      let end = code.indexOf('*/', i + 2)
-      if (end === -1) end = codeLength
-      else end += 2
-      tokens.push({ text: code.substring(i, end), class: 'comment' })
-      i = end
-      continue
-    }
-
-    // Detectar comentarios # (Python)
-    if (char === '#') {
-      let end = code.indexOf('\n', i)
-      if (end === -1) end = codeLength
-      tokens.push({ text: code.substring(i, end), class: 'comment' })
-      i = end
-      continue
-    }
-
-    // Detectar strings con comillas dobles
-    if (char === '"') {
-      let end = i + 1
-      while (end < codeLength && code[end] !== '"') {
-        if (code[end] === '\\') end += 2
-        else end++
-      }
-      if (end < codeLength) end++
-      tokens.push({ text: code.substring(i, end), class: 'string' })
-      i = end
-      continue
-    }
-
-    // Detectar strings con comillas simples
-    if (char === "'") {
-      let end = i + 1
-      while (end < codeLength && code[end] !== "'") {
-        if (code[end] === '\\') end += 2
-        else end++
-      }
-      if (end < codeLength) end++
-      tokens.push({ text: code.substring(i, end), class: 'string' })
-      i = end
-      continue
-    }
-
-    // Detectar template literals con backticks
-    if (char === '`') {
-      let end = i + 1
-      while (end < codeLength && code[end] !== '`') {
-        if (code[end] === '\\') end += 2
-        else end++
-      }
-      if (end < codeLength) end++
-      tokens.push({ text: code.substring(i, end), class: 'string' })
-      i = end
-      continue
-    }
-
-    // Detectar palabras (identificadores y palabras clave)
-    if (/[a-zA-Z_$]/.test(char)) {
-      let end = i
-      while (end < codeLength && /[a-zA-Z0-9_$]/.test(code[end])) {
-        end++
-      }
-      const word = code.substring(i, end)
-
-      if (keywords.special.has(word)) {
-        tokens.push({ text: word, class: 'special' })
-      } else if (keywords.main.has(word)) {
-        tokens.push({ text: word, class: 'keyword' })
-      } else if (keywords.literal.has(word)) {
-        tokens.push({ text: word, class: 'literal' })
-      } else {
-        tokens.push({ text: word, class: 'text' })
-      }
-
-      i = end
-      continue
-    }
-
-    // Detectar números
-    if (/[0-9]/.test(char)) {
-      let end = i
-      while (end < codeLength && /[0-9.]/.test(code[end])) {
-        end++
-      }
-      tokens.push({ text: code.substring(i, end), class: 'literal' })
-      i = end
-      continue
-    }
-
-    // Detectar símbolos y operadores
-    if (/[{}\[\]();:,.<>=+\-*/%&|^!~\s]/.test(char)) {
-      if (char === ' ' || char === '\n' || char === '\t') {
-        tokens.push({ text: char, class: 'text' })
-      } else {
-        tokens.push({ text: char, class: 'symbol' })
-      }
-      i++
-      continue
-    }
-
-    // Cualquier otro carácter
-    tokens.push({ text: char, class: 'text' })
-    i++
+    return
   }
 
-  return tokens
+  // Palabras/identificadores: si ya hay un token text/keyword/etc que sigue siendo alfanumérico
+  if (last && last.growing && /[a-zA-Z0-9_$]/.test(char)) {
+    last.text += char
+    // Re-clasificar la palabra completa
+    const word = last.text
+    if (keywords.special.has(word))  last.class = 'special'
+    else if (keywords.main.has(word)) last.class = 'keyword'
+    else if (keywords.literal.has(word)) last.class = 'literal'
+    else last.class = 'text'
+    return
+  }
+
+  // Cerrar token creciente
+  if (last && last.growing) {
+    delete last.growing
+  }
+
+  // Strings: si hay un token string abierto, extendérlo
+  if (last && last.class === 'string' && !last.closed) {
+    last.text += char
+    if (char === last.openChar) last.closed = true
+    return
+  }
+
+  // Inicio de comentario //
+  if (char === '/') {
+    tokens.push({ text: char, class: 'comment', pending: true })
+    return
+  }
+  if (char === '/' && last && last.class === 'comment' && last.pending) {
+    last.text += char
+    delete last.pending
+    last.closed = false
+    return
+  }
+  // Si el pending no fue seguido de /, cambiarlo a símbolo
+  if (last && last.class === 'comment' && last.pending) {
+    last.class = 'symbol'
+    delete last.pending
+  }
+
+  // Comentario Python #
+  if (char === '#') {
+    tokens.push({ text: char, class: 'comment', closed: false })
+    return
+  }
+
+  // Inicio de string
+  if (char === '"' || char === "'" || char === '`') {
+    tokens.push({ text: char, class: 'string', openChar: char, closed: false })
+    return
+  }
+
+  // Inicio de palabra
+  if (/[a-zA-Z_$]/.test(char)) {
+    let cls = 'text'
+    if (keywords.special.has(char))  cls = 'special'
+    else if (keywords.main.has(char)) cls = 'keyword'
+    else if (keywords.literal.has(char)) cls = 'literal'
+    tokens.push({ text: char, class: cls, growing: true })
+    return
+  }
+
+  // Números
+  if (/[0-9]/.test(char)) {
+    if (last && last.class === 'literal' && last.numericGrowing) {
+      last.text += char
+      return
+    }
+    tokens.push({ text: char, class: 'literal', numericGrowing: true })
+    return
+  }
+
+  // Espacios / saltos de línea
+  if (char === ' ' || char === '\n' || char === '\t') {
+    // Merge con último token text si también es whitespace plain
+    if (last && last.class === 'text' && !last.growing && !last.closed) {
+      last.text += char
+      return
+    }
+    tokens.push({ text: char, class: 'text' })
+    return
+  }
+
+  // Símbolos y operadores
+  tokens.push({ text: char, class: 'symbol' })
 }
 
 // Efecto de tipeo
@@ -264,14 +244,11 @@ const typeCode = () => {
   const codeLength = code.length
 
   if (currentCharIndex.value < codeLength) {
-    displayedText.value += code[currentCharIndex.value]
+    appendChar(code[currentCharIndex.value])
     currentCharIndex.value++
-
-    // Colorizar mientras se escribe
-    colorizedTokens.value = colorizeCode(displayedText.value)
-    setTimeout(typeCode, 15)
+    pendingTimeoutId = setTimeout(typeCode, 15)
   } else {
-    setTimeout(changeCode, 3000)
+    pendingTimeoutId = setTimeout(changeCode, 3000)
   }
 }
 
@@ -280,15 +257,14 @@ const changeCode = () => {
   currentCodeIndex.value = (currentCodeIndex.value + 1) % codeExamples.length
   currentLanguage.value = codeExamples[currentCodeIndex.value].language
   currentCharIndex.value = 0
-  displayedText.value = ''
   colorizedTokens.value = []
 
-  setTimeout(typeCode, 500)
+  pendingTimeoutId = setTimeout(typeCode, 500)
 }
 
-// Cursor parpadeante
+// Cursor parpadeante — guarda el ID para limpiarlo
 const toggleCursor = () => {
-  setInterval(() => {
+  cursorIntervalId = setInterval(() => {
     showCursor.value = !showCursor.value
   }, 500)
 }
@@ -296,6 +272,11 @@ const toggleCursor = () => {
 onMounted(() => {
   typeCode()
   toggleCursor()
+})
+
+onUnmounted(() => {
+  clearInterval(cursorIntervalId)
+  clearTimeout(pendingTimeoutId)
 })
 </script>
 
@@ -496,42 +477,8 @@ onMounted(() => {
   50%, 100% { opacity: 0; }
 }
 
-/* === LANGUAGE INDICATOR === */
-.language-indicator {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  background: rgba(0, 229, 255, 0.15);
-  border: 1px solid rgba(0, 229, 255, 0.3);
-  color: #00e5ff;
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  backdrop-filter: blur(8px);
-}
 
-.animated-code[data-theme="light"] .language-indicator {
-  background: rgba(0, 102, 204, 0.1);
-  border-color: rgba(0, 102, 204, 0.3);
-  color: #0066cc;
-}
 
-/* === ANIMATIONS === */
-.char {
-  animation: fadeInChar 0.05s ease-out;
-}
-
-@keyframes fadeInChar {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
 
 /* === RESPONSIVE === */
 @media (max-width: 1024px) {

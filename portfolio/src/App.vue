@@ -5,7 +5,11 @@
     <!-- El canvas ahora envuelve el contenido y crece con flex: 1 -->
     <AntigravityCanvas class="canvas-base">
       <main class="main-content">
-        <RouterView />
+        <RouterView v-slot="{ Component }">
+          <Transition name="page" mode="out-in">
+            <component :is="Component" />
+          </Transition>
+        </RouterView>
       </main>
     </AntigravityCanvas>
 
@@ -36,6 +40,16 @@ const { mode } = storeToRefs(store)
   padding: 0;
 }
 
+/* Fondo del documento = color del canvas para evitar flash blanco */
+html {
+  background-color: #4b96e0;
+}
+
+[data-theme="dark"] html,
+html[data-theme="dark"] {
+  background-color: #0a0a0f;
+}
+
 body {
   font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif;
   color: var(--texto);
@@ -43,6 +57,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
+  /* Mismos colores que el canvas para que el body nunca muestre blanco */
+  background-color: #4b96e0;
+}
+
+[data-theme="dark"] body {
+  background-color: #0a0a0f;
 }
 
 .app-layout {
@@ -88,6 +108,17 @@ body {
 .footer-sub {
   font-size: 12px;
   opacity: 0.7;
+}
+
+/* Transición de páginas — fade suave para eliminar el frame vacío */
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.15s ease;
+}
+
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
 }
 
 /* Ajustes para el tema oscuro */

@@ -1,7 +1,9 @@
 <template>
-  <HeroSection />
-  <SkillsSection />
-  <MentorsView />
+  <div>
+    <HeroSection />
+    <SkillsSection />
+    <MentorsView />
+  </div>
 </template>
 
 <script setup>
