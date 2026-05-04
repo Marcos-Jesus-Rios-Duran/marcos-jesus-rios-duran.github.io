@@ -124,7 +124,118 @@
   },
   "projects": {
     "title": "Projects",
-    "subtitle": "What I've built"
+    "status": "In development",
+    "subtitle": "What I've built",
+    "Soodan": {
+      "name": "Soodan",
+      "description": "Comprehensive telemedicine and clinical management platform designed to digitalize medical operations. Implements a robust architecture for appointment management, electronic records and inventory control, prioritizing the security of sensitive data.",
+      "technologies": [
+        "Python (FastAPI)",
+        "PostgreSQL",
+        "React",
+        "SQLAlchemy",
+        "JWT",
+        "Cryptography (Fernet)"
+      ],
+      "features": [
+        "Advanced Security: PHI data encryption and OTP verification.",
+        "Biometrics: Secure access through biometrics in the mobile version.",
+        "Scalable Architecture: Feature-First design with SOLID principles and decoupled layers.",
+        "Audit: Exhaustive logging of security events and access logs."
+      ]
+    },
+    "ModuloConfiguracion": {
+      "name": "Multi-platform Configuration Module",
+      "status": "Confidential",
+      "description": "Development of a hardware-level configuration module for a multi-platform application focused on accessibility. Project carried out during a technical internship under the direction and mentorship of INAOE researchers.",
+      "confidentiality": "Technical details and source code not disclosed due to confidentiality agreements.",
+      "technologies": [
+        "Flutter",
+        "Dart",
+        "SQLite",
+        "FFI (Foreign Function Interface)",
+        "Win32 API"
+      ],
+      "highlights": [
+        "Low-level Interaction: Integration with native operating system APIs (Win32) via FFI for controlling multiple monitors, brightness levels and audio output devices.",
+        "Clean Architecture: Modular design under the 'Feature-First' approach, strictly applying SOLID principles, Dependency Injection and design patterns (DAO, DTO, Singleton, Facade).",
+        "Professional Methodology: Development executed under the agile Scrum framework, with advanced branch management using GitFlow and GitLab pipelines.",
+        "State Management: Robust implementation of user profile saving, hardware exception handling and data synchronization with local SQLite."
+      ],
+      "mentorship": "Developed in collaboration with the National Institute of Astrophysics, Optics and Electronics (INAOE).",
+      "view_mode": "Architectural Case Study"
+    },
+    "BienesRaices": {
+      "name": "Real Estate SOA",
+      "status": "Completed / Academic",
+      "description": "Comprehensive platform for the buying and selling of real estate based on service-oriented architecture (SOA). Includes user management, real-time geolocation and an advanced security system.",
+      "technologies": [
+        "Node.js",
+        "Express",
+        "Sequelize",
+        "MySQL",
+        "Tailwind CSS",
+        "Leaflet API"
+      ],
+      "highlights": [
+        "Security: Implementation of RSA encryption and user validation through JWT tokens.",
+        "Geolocation: Integration of dynamic maps for precise property location.",
+        "SOA Architecture: Scalable design based on services for email and image handling.",
+        "Fullstack: Complete development of the lifecycle, from database modeling to UI."
+      ],
+      "github": "https://github.com/Marcos-Jesus-Rios-Duran/BienesRaices_TI_230733"
+    },
+    "ScannerMX": {
+      "name": "Scanner.mx",
+      "status": "Open Source / In Development",
+      "description": "Multi-platform application specialized in automated data extraction (OCR) from official Mexican documents (INE and CURP). Designed under a 'Privacy-First' approach, sensitive information processing is carried out entirely locally (On-Device).",
+      "technologies": [
+        "Flutter",
+        "Dart",
+        "Google ML Kit (Vision)",
+        "Local Auth (Biometry)",
+        "Regex"
+      ],
+      "patterns": [
+        "Strategy Pattern: Implemented for dynamic processing of different document types (INE, CURP).",
+        "Factory Method: Used in DocParserFactory for the instantiation of specialized parsers.",
+        "Dependency Injection: To decouple hardware services (Biometry, Media) from business logic.",
+        "Repository/Controller Pattern: Centralization of identity logic and data flow."
+      ],
+      "highlights": [
+        "Privacy-First: Local OCR processing without persistence or transmission of personal data (PII) to external servers.",
+        "Biometric Security: Protected access through native FaceID and fingerprint integration.",
+        "Structural Validation: Use of advanced regular expressions for CURP and RFC verification.",
+        "Clean Architecture: Design based on Clean Architecture and Feature-First, ensuring high cohesion.",
+        "Input Versatility: Support for real-time capture, gallery and PDF files."
+      ],
+      "github": "https://github.com/RiosduranMarcosJesus/flutter_mex_scanner/tree/refactor_identity"
+    },
+    "CarWashAPI": {
+      "name": "CarWash Management API",
+      "status": "In Development / Refactoring",
+      "description": "Robust REST API for the management of automotive maintenance services. The system centralizes appointment management, product inventory and vehicle control, with a strong focus on hierarchical security.",
+      "technologies": [
+        "Python (FastAPI)",
+        "SQLAlchemy",
+        "PostgreSQL/MySQL",
+        "JWT & OAuth2",
+        "Pytest"
+      ],
+      "highlights": [
+        "RBAC System: Implementation of Role-Based Access Control to differentiate permissions between administrators, employees and customers.",
+        "Modular Architecture: Feature-First design to facilitate system maintenance and scalability.",
+        "Automated Testing: Suite of integration and unit tests that guarantee the integrity of authentication and business flows.",
+        "Security: Data encryption layer for sensitive information and session management through long-duration tokens."
+      ],
+      "github": "https://github.com/Marcos-Jesus-Rios-Duran/CarWash/tree/feat/rbac"
+    },
+    "cta_view": "View on GitHub",
+    "cta_visit": "Visit",
+    "filter_all": "All",
+    "filter_featured": "Featured",
+    "filter_opensource": "Open Source",
+    "empty_message": "Projects will be published soon."
   },
   "mentors": {
     "title": "My Mentors",

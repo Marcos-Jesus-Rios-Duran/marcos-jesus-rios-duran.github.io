@@ -124,7 +124,118 @@
   },
   "projects": {
     "title": "Projekte",
-    "subtitle": "Was ich gebaut habe"
+    "status": "In Entwicklung",
+    "subtitle": "Was ich gebaut habe",
+    "Soodan": {
+      "name": "Soodan",
+      "description": "Umfassende Telemedizin- und Klinikalternativplattform zur Digitalisierung des Medizinbetriebs. Implementiert eine robuste Architektur für Terminverwaltung, elektronische Krankenakten und Bestandskontrolle mit Priorität auf Sicherheit sensibler Daten.",
+      "technologies": [
+        "Python (FastAPI)",
+        "PostgreSQL",
+        "React",
+        "SQLAlchemy",
+        "JWT",
+        "Cryptography (Fernet)"
+      ],
+      "features": [
+        "Erweiterte Sicherheit: PHI-Datenverschlüsselung und OTP-Verifizierung.",
+        "Biometrie: Sicherer Zugriff durch Biometrie in der mobilen Version.",
+        "Skalierbare Architektur: Feature-First-Design mit SOLID-Prinzipien und entkoppelten Schichten.",
+        "Audit: Umfassendes Protokollieren von Sicherheitsereignissen und Zugriffsprotokollen."
+      ]
+    },
+    "ModuloConfiguracion": {
+      "name": "Mehrplattformiges Konfigurationsmodul",
+      "status": "Vertraulich",
+      "description": "Entwicklung eines Hardware-Level-Konfigurationsmoduls für eine multiplattformige, barrierefreie Anwendung. Projekt durchgeführt während eines technischen Praktikums unter der Leitung und Betreuung von INAOE-Forschern.",
+      "confidentiality": "Technische Details und Quellcode werden aufgrund von Vertraulichkeitsabkommen nicht veröffentlicht.",
+      "technologies": [
+        "Flutter",
+        "Dart",
+        "SQLite",
+        "FFI (Foreign Function Interface)",
+        "Win32 API"
+      ],
+      "highlights": [
+        "Low-Level-Interaktion: Integration mit nativen Betriebssystem-APIs (Win32) über FFI zur Steuerung mehrerer Monitore, Helligkeitsstufen und Audioausgabegeräte.",
+        "Clean Architecture: Modulares Design nach dem 'Feature-First'-Ansatz, strikte Anwendung von SOLID-Prinzipien, Abhängigkeitsinjektion und Design-Mustern (DAO, DTO, Singleton, Facade).",
+        "Professionelle Methodik: Entwicklung im agilen Scrum-Framework mit erweiterter Versionsverwaltung über GitFlow und GitLab-Pipelines.",
+        "Statusverwaltung: Robuste Implementierung des Benutzerprofil-Speicherns, Hardware-Fehlerbehandlung und Datensynchronisierung mit lokalem SQLite."
+      ],
+      "mentorship": "Entwickelt in Zusammenarbeit mit dem Nationalen Institut für Astrophysik, Optik und Elektronik (INAOE).",
+      "view_mode": "Architektur-Fallstudie"
+    },
+    "BienesRaices": {
+      "name": "Immobilien-SOA",
+      "status": "Abgeschlossen / Akademisch",
+      "description": "Umfassende Plattform für den Kauf und Verkauf von Immobilien basierend auf serviceorientierter Architektur (SOA). Umfasst Benutzerverwaltung, Echtzeitgeolokalisierung und ein fortschrittliches Sicherheitssystem.",
+      "technologies": [
+        "Node.js",
+        "Express",
+        "Sequelize",
+        "MySQL",
+        "Tailwind CSS",
+        "Leaflet API"
+      ],
+      "highlights": [
+        "Sicherheit: Implementierung von RSA-Verschlüsselung und Benutzervalidierung durch JWT-Tokens.",
+        "Geolokalisierung: Integration dynamischer Karten für präzise Immobilienstandorte.",
+        "SOA-Architektur: Skalierbares Design basierend auf Diensten für E-Mail- und Bildhandhabung.",
+        "Fullstack: Vollständige Entwicklung des Lebenszyklus, von der Datenbankmodellierung bis zur Benutzeroberfläche."
+      ],
+      "github": "https://github.com/Marcos-Jesus-Rios-Duran/BienesRaices_TI_230733"
+    },
+    "ScannerMX": {
+      "name": "Scanner.mx",
+      "status": "Open Source / In Entwicklung",
+      "description": "Multiplattform-Anwendung spezialisiert auf automatisierte Datenextrahierung (OCR) aus offiziellen mexikanischen Dokumenten (INE und CURP). Entworfen unter einem 'Privacy-First'-Ansatz erfolgt die Verarbeitung sensibler Informationen vollständig lokal (On-Device).",
+      "technologies": [
+        "Flutter",
+        "Dart",
+        "Google ML Kit (Vision)",
+        "Local Auth (Biometrie)",
+        "Regex"
+      ],
+      "patterns": [
+        "Strategy Pattern: Implementiert für die dynamische Verarbeitung verschiedener Dokumenttypen (INE, CURP).",
+        "Factory Method: Verwendet in DocParserFactory für die Instanzierung spezialisierter Parser.",
+        "Abhängigkeitsinjektion: Zum Entkoppeln von Hardware-Diensten (Biometrie, Medien) von der Geschäftslogik.",
+        "Repository/Controller Pattern: Zentralisierung der Identitätslogik und des Datenflusses."
+      ],
+      "highlights": [
+        "Privacy-First: Lokale OCR-Verarbeitung ohne Persistierung oder Übertragung persönlicher Daten (PII) an externe Server.",
+        "Biometrische Sicherheit: Geschützter Zugriff durch native FaceID- und Fingerabdruckintegration.",
+        "Strukturelle Validierung: Verwendung erweiterter regulärer Ausdrücke zur Verifizierung von CURP und RFC.",
+        "Clean Architecture: Design basierend auf Clean Architecture und Feature-First mit hoher Kohäsion.",
+        "Eingabevielseitigkeit: Unterstützung für Echtzeiterfassung, Galerie und PDF-Dateien."
+      ],
+      "github": "https://github.com/RiosduranMarcosJesus/flutter_mex_scanner/tree/refactor_identity"
+    },
+    "CarWashAPI": {
+      "name": "CarWash-Verwaltungs-API",
+      "status": "In Entwicklung / Überarbeitung",
+      "description": "Robuste REST-API zur Verwaltung von Wartungsdienstleistungen im Automobilbereich. Das System zentralisiert die Terminverwaltung, Bestandsverwaltung und Fahrzeugkontrolle mit starkem Fokus auf hierarchische Sicherheit.",
+      "technologies": [
+        "Python (FastAPI)",
+        "SQLAlchemy",
+        "PostgreSQL/MySQL",
+        "JWT & OAuth2",
+        "Pytest"
+      ],
+      "highlights": [
+        "RBAC-System: Implementierung der rollenbasierten Zugriffskontrolle zur Differenzierung von Berechtigungen zwischen Administratoren, Mitarbeitern und Kunden.",
+        "Modulare Architektur: Feature-First-Design zur Vereinfachung von Systemwartung und Skalierbarkeit.",
+        "Automatisierte Tests: Suite von Integrations- und Unit-Tests, die die Integrität von Authentifizierung und Geschäftsabläufen garantieren.",
+        "Sicherheit: Datenverschlüsselungsebene für sensitive Informationen und Session-Management durch langlebige Tokens."
+      ],
+      "github": "https://github.com/Marcos-Jesus-Rios-Duran/CarWash/tree/feat/rbac"
+    },
+    "cta_view": "Auf GitHub ansehen",
+    "cta_visit": "Besuchen",
+    "filter_all": "Alle",
+    "filter_featured": "Empfohlen",
+    "filter_opensource": "Open Source",
+    "empty_message": "Projekte werden bald veröffentlicht."
   },
   "mentors": {
     "title": "Meine Mentoren",
