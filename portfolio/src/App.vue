@@ -1,11 +1,14 @@
 <template>
   <div class="app-layout" :data-theme="mode">
     <NavBar />
+
+    <!-- El canvas ahora envuelve el contenido y crece con flex: 1 -->
     <AntigravityCanvas class="canvas-base">
       <main class="main-content">
         <RouterView />
       </main>
     </AntigravityCanvas>
+
     <footer class="footer">
       <span>© 2026 Marcos Jesús Ríos Durán</span>
       <span class="footer-sub">{{ t('footer.made_with') }}</span>
@@ -26,7 +29,12 @@ const { mode } = storeToRefs(store)
 </script>
 
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* Reset básico para asegurar que el height funcione */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 body {
   font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif;
@@ -34,25 +42,36 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
 }
 
 .app-layout {
+  /* Usamos flexbox para controlar la distribución vertical */
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
+}
+
+.canvas-base {
+  /* flex: 1 hace que este contenedor ocupe todo el espacio sobrante */
+  flex: 1;
   display: flex;
   flex-direction: column;
 }
 
-.canvas-base { flex: 1; }
-
 .main-content {
   width: 100%;
-  min-height: 100vh;
+  /* flex: 1 aquí asegura que el main crezca dentro del canvas */
+  flex: 1;
   padding-top: 70px;
 }
 
 .footer {
-  display: flex; flex-direction: column; align-items: center;
-  gap: 6px; padding: 32px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 32px 20px;
   background: rgba(75, 150, 224, 0.75);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -62,10 +81,16 @@ body {
   transition: all 0.3s;
   position: relative;
   z-index: 10;
+  /* El footer ahora se queda al final del flujo natural */
+  width: 100%;
 }
 
-.footer-sub { font-size: 12px; opacity: 0.7; }
+.footer-sub {
+  font-size: 12px;
+  opacity: 0.7;
+}
 
+/* Ajustes para el tema oscuro */
 [data-theme="dark"] .footer {
   background: rgba(10, 10, 15, 0.92);
   border-top-color: rgba(0,229,255,0.15);

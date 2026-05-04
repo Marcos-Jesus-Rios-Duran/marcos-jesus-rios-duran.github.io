@@ -148,7 +148,118 @@
   },
   "projects": {
     "title": "Proyectos",
-    "subtitle": "Lo que he construido"
+    "status": "En desarrollo",
+    "subtitle": "Lo que he construido",
+    "Soodan": {
+      "name": "Soodan",
+      "description": "Plataforma integral de telemedicina y gestión clínica diseñada para digitalizar la operación médica. Implementa una arquitectura robusta para la gestión de citas, expedientes electrónicos y control de inventarios, priorizando la seguridad de datos sensibles.",
+      "technologies": [
+        "Python (FastAPI)",
+        "PostgreSQL",
+        "React",
+        "SQLAlchemy",
+        "JWT",
+        "Cryptography (Fernet)"
+      ],
+      "features": [
+        "Seguridad avanzada: Encriptación de datos PHI y verificación OTP.",
+        "Biometría: Acceso seguro mediante biometría en la versión móvil.",
+        "Arquitectura escalable: Diseño Feature-First con principios SOLID y capas desacopladas.",
+        "Auditoría: Registro exhaustivo de eventos de seguridad y logs de acceso."
+      ]
+    },
+    "ModuloConfiguracion": {
+      "name": "Módulo de Configuración Multiplataforma",
+      "status": "Confidencial",
+      "description": "Desarrollo de un módulo de configuración a nivel de hardware para una aplicación multiplataforma orientada a la accesibilidad. Proyecto realizado durante una estancia técnica bajo la dirección y mentoría de investigadores del INAOE.",
+      "confidentiality": "Detalles técnicos y código fuente no divulgados por acuerdos de confidencialidad.",
+      "technologies": [
+        "Flutter",
+        "Dart",
+        "SQLite",
+        "FFI (Foreign Function Interface)",
+        "Win32 API"
+      ],
+      "highlights": [
+        "Interacción a bajo nivel: Integración con APIs nativas del sistema operativo (Win32) mediante FFI para el control de múltiples monitores, niveles de brillo y dispositivos de salida de audio.",
+        "Arquitectura Limpia: Diseño modular bajo el enfoque 'Feature-First', aplicando estrictamente principios SOLID, Inyección de Dependencias y patrones de diseño (DAO, DTO, Singleton, Facade).",
+        "Metodología Profesional: Desarrollo ejecutado bajo el marco ágil Scrum, con gestión avanzada de ramificaciones usando GitFlow y pipelines en GitLab.",
+        "Gestión de Estados: Implementación robusta de guardado de perfiles de usuario, manejo de excepciones de hardware y sincronización de datos con SQLite local."
+      ],
+      "mentorship": "Desarrollado en colaboración con el Instituto Nacional de Astrofísica, Óptica y Electrónica (INAOE).",
+      "view_mode": "Architectural Case Study"
+    },
+    "BienesRaices": {
+      "name": "Bienes Raíces SOA",
+      "status": "Finalizado / Académico",
+      "description": "Plataforma integral para la compra-venta de bienes inmuebles basada en una arquitectura orientada a servicios (SOA). Incluye gestión de usuarios, geolocalización en tiempo real y un sistema de seguridad avanzado.",
+      "technologies": [
+        "Node.js",
+        "Express",
+        "Sequelize",
+        "MySQL",
+        "Tailwind CSS",
+        "Leaflet API"
+      ],
+      "highlights": [
+        "Seguridad: Implementación de encriptación RSA y validación de usuarios mediante tokens JWT.",
+        "Geolocalización: Integración de mapas dinámicos para la ubicación precisa de propiedades.",
+        "Arquitectura SOA: Diseño escalable basado en servicios para el manejo de correos e imágenes.",
+        "Fullstack: Desarrollo completo del ciclo de vida, desde el modelado de base de datos hasta la UI."
+      ],
+      "github": "https://github.com/Marcos-Jesus-Rios-Duran/BienesRaices_TI_230733"
+    },
+    "ScannerMX": {
+      "name": "Scanner.mx",
+      "status": "Open Source / En Desarrollo",
+      "description": "Aplicación multiplataforma especializada en la extracción automatizada de datos (OCR) desde documentos oficiales mexicanos (INE y CURP). Diseñada bajo un enfoque 'Privacy-First', el procesamiento de información sensible se realiza íntegramente de forma local (On-Device).",
+      "technologies": [
+        "Flutter",
+        "Dart",
+        "Google ML Kit (Vision)",
+        "Local Auth (Biometría)",
+        "Regex"
+      ],
+      "patterns": [
+        "Strategy Pattern: Implementado para el procesamiento dinámico de distintos tipos de documentos (INE, CURP).",
+        "Factory Method: Utilizado en DocParserFactory para la instanciación de parsers especializados.",
+        "Dependency Injection: Para desacoplar servicios de hardware (Biometría, Media) de la lógica de negocio.",
+        "Repository/Controller Pattern: Centralización de la lógica de identidad y flujo de datos."
+      ],
+      "highlights": [
+        "Privacy-First: Procesamiento OCR local sin persistencia ni transmisión de datos personales (PII) a servidores externos.",
+        "Seguridad Biométrica: Acceso protegido mediante integración nativa de FaceID y huella dactilar.",
+        "Validación Estructural: Uso de expresiones regulares avanzadas para la verificación de CURP y RFC.",
+        "Arquitectura Limpia: Diseño basado en Clean Architecture y Feature-First, garantizando alta cohesión.",
+        "Versatilidad de Entrada: Soporte para captura en tiempo real, galería y archivos PDF."
+      ],
+      "github": "https://github.com/RiosduranMarcosJesus/flutter_mex_scanner/tree/refactor_identity"
+    },
+    "CarWashAPI": {
+      "name": "CarWash Management API",
+      "status": "En Desarrollo / Refactorización",
+      "description": "API REST robusta para la gestión de servicios de mantenimiento automotriz. El sistema centraliza la administración de citas, inventario de productos y control de vehículos, con un fuerte enfoque en la seguridad jerárquica.",
+      "technologies": [
+        "Python (FastAPI)",
+        "SQLAlchemy",
+        "PostgreSQL/MySQL",
+        "JWT & OAuth2",
+        "Pytest"
+      ],
+      "highlights": [
+        "Sistema RBAC: Implementación de Control de Acceso Basado en Roles para diferenciar permisos entre administradores, empleados y clientes.",
+        "Arquitectura Modular: Diseño basado en características (Feature-First) para facilitar el mantenimiento y la escalabilidad del sistema.",
+        "Testing Automático: Suite de pruebas de integración y unitarias que garantizan la integridad de la autenticación y los flujos de negocio.",
+        "Seguridad: Capa de encriptación de datos sensibles y gestión de sesiones mediante tokens de larga duración."
+      ],
+      "github": "https://github.com/Marcos-Jesus-Rios-Duran/CarWash/tree/feat/rbac"
+    },
+    "cta_view": "Ver en GitHub",
+    "cta_visit": "Visitar",
+    "filter_all": "Todos",
+    "filter_featured": "Destacados",
+    "filter_opensource": "Open Source",
+    "empty_message": "Los proyectos serán publicados próximamente."
   },
   "mentors": {
     "title": "Mis Mentores",

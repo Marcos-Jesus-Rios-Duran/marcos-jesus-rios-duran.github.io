@@ -5,7 +5,6 @@
     <!-- Header -->
     <div class="skills-header">
       <h2 class="skills-title">{{ t('skills.title') }}</h2>
-      <p class="skills-subtitle">{{ t('skills.subtitle') }}</p>
     </div>
 
     <!-- Philosophy & Remote -->
@@ -179,7 +178,6 @@ const skillCards = [
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 80px 20px;
   display: flex;
   flex-direction: column;
   gap: 56px;
@@ -194,12 +192,6 @@ const skillCards = [
   color: var(--texto);
   margin-bottom: 10px;
   letter-spacing: -0.02em;
-}
-
-.skills-subtitle {
-  font-size: 1.1rem;
-  color: var(--textoSub);
-  font-weight: 300;
 }
 
 /* === PHILOSOPHY === */

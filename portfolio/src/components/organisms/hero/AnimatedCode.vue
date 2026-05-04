@@ -16,10 +16,6 @@
       <pre class="code-block"><code><span v-for="(token, idx) in colorizedTokens" :key="idx" :class="token.class">{{ token.text }}</span><span v-if="showCursor" class="cursor">|</span></code></pre>
     </div>
 
-    <!-- Language Indicator -->
-    <div class="language-indicator">
-      {{ currentLanguage }}
-    </div>
   </div>
 </template>
 

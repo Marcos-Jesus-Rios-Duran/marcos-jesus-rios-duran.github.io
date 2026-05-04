@@ -1,17 +1,13 @@
 <template>
   <section class="projects-view">
     <div class="projects-container">
-      <h1>{{ t('projects.title') }}</h1>
-      <p class="subtitle">{{ t('projects.subtitle') }}</p>
-      <!-- Contenido de proyectos irá aquí -->
+      <ProjectsSection />
     </div>
   </section>
 </template>
 
 <script setup>
-import { useI18n } from 'vue-i18n'
-
-const { t } = useI18n()
+import ProjectsSection from '@/components/organisms/projects/ProjectsSection.vue'
 </script>
 
 <style scoped>
