@@ -2,13 +2,15 @@
 <template>
   <Teleport to="body" v-if="store.isActive">
     <!-- Overlay oscuro de fondo -->
-    <div class="onboarding-overlay" @click="store.skipOnboarding">
-      <!-- Canvas para el spotlight effect -->
-      <canvas
-        ref="spotlightCanvas"
-        class="spotlight-canvas"
+    <div class="onboarding-overlay" :style="overlayVars" @click="store.skipOnboarding">
+      <!-- Spotlight ring por encima del overlay (HUD estilo videojuego) -->
+      <div
+        v-if="shouldSpotlight"
+        class="spotlight-ring"
+        :style="ringStyle"
+        aria-hidden="true"
         @click.stop
-      ></canvas>
+      ></div>
 
       <!-- Card con el contenido del paso actual -->
       <div
@@ -69,82 +71,105 @@ import { ref, watch, computed, onMounted, onUnmounted } from 'vue'
 import { useOnboarding } from '@/stores/useOnboarding'
 
 const store = useOnboarding()
-const spotlightCanvas = ref(null)
-let animationId = null
 
 const currentStep = computed(() => store.currentStepData)
 
-const spotlightSize = ref(120)
-const spotlightX = ref(window.innerWidth / 2)
-const spotlightY = ref(window.innerHeight / 2)
+const spotlight = ref({
+  // Centro del spotlight (para el mask del overlay)
+  x: window.innerWidth / 2,
+  y: window.innerHeight / 2,
+  r: 1,
+  // Box del ring (para resaltar el target)
+  top: 0,
+  left: 0,
+  width: 0,
+  height: 0,
+  radius: '16px'
+})
 
-// Dibujar el spotlight effect
-function drawSpotlight() {
-  const canvas = spotlightCanvas.value
-  if (!canvas) return
+const spotlightActive = ref(false)
+const shouldSpotlight = computed(() => spotlightActive.value)
 
-  canvas.width = window.innerWidth
-  canvas.height = window.innerHeight
+const overlayVars = computed(() => ({
+  '--spotlight-x': `${spotlight.value.x}px`,
+  '--spotlight-y': `${spotlight.value.y}px`,
+  '--spotlight-r': `${spotlight.value.r}px`
+}))
 
-  const ctx = canvas.getContext('2d')
-
-  // Fondo oscuro semitransparente
-  ctx.fillStyle = 'rgba(0, 0, 0, 0.7)'
-  ctx.fillRect(0, 0, canvas.width, canvas.height)
-
-  // Spotlight circular
-  if (currentStep.value?.highlight) {
-    const gradient = ctx.createRadialGradient(
-      spotlightX.value, spotlightY.value, spotlightSize.value * 0.3,
-      spotlightX.value, spotlightY.value, spotlightSize.value
-    )
-    gradient.addColorStop(0, 'rgba(0, 229, 255, 0.3)')
-    gradient.addColorStop(1, 'rgba(0, 229, 255, 0)')
-
-    // Limpiar el spotlight (hacerlo transparente)
-    ctx.clearRect(
-      spotlightX.value - spotlightSize.value,
-      spotlightY.value - spotlightSize.value,
-      spotlightSize.value * 2,
-      spotlightSize.value * 2
-    )
-
-    // Dibujar borde del spotlight
-    ctx.strokeStyle = 'rgba(0, 229, 255, 0.6)'
-    ctx.lineWidth = 2
-    ctx.beginPath()
-    ctx.arc(spotlightX.value, spotlightY.value, spotlightSize.value, 0, Math.PI * 2)
-    ctx.stroke()
-  }
-
-  animationId = requestAnimationFrame(drawSpotlight)
-}
+const ringStyle = computed(() => ({
+  top: `${spotlight.value.top}px`,
+  left: `${spotlight.value.left}px`,
+  width: `${spotlight.value.width}px`,
+  height: `${spotlight.value.height}px`,
+  borderRadius: spotlight.value.radius
+}))
 
 // Calcular posición del target para el spotlight
 function updateSpotlightPosition() {
-  if (!currentStep.value?.target) {
-    spotlightX.value = window.innerWidth / 2
-    spotlightY.value = window.innerHeight / 2
-    spotlightSize.value = 120
+  const targetSelector = currentStep.value?.target
+
+  if (!targetSelector) {
+    spotlight.value = {
+      x: -9999,
+      y: -9999,
+      r: 1,
+      top: 0,
+      left: 0,
+      width: 0,
+      height: 0,
+      radius: '16px'
+    }
+    spotlightActive.value = false
     return
   }
 
-  const element = document.querySelector(currentStep.value.target)
-  if (element) {
-    const rect = element.getBoundingClientRect()
-    const centerX = rect.left + rect.width / 2
-    const centerY = rect.top + rect.height / 2
-    const maxDim = Math.max(rect.width, rect.height)
-
-    spotlightX.value = centerX
-    spotlightY.value = centerY
-    spotlightSize.value = maxDim / 2 + 30
+  const element = document.querySelector(targetSelector)
+  if (!element) {
+    spotlight.value = {
+      x: -9999,
+      y: -9999,
+      r: 1,
+      top: 0,
+      left: 0,
+      width: 0,
+      height: 0,
+      radius: '16px'
+    }
+    spotlightActive.value = false
+    return
   }
+
+  const rect = element.getBoundingClientRect()
+  const centerX = rect.left + rect.width / 2
+  const centerY = rect.top + rect.height / 2
+
+  const maxDim = Math.max(rect.width, rect.height)
+  const r = maxDim / 2 + 44 // tamaño del “agujero” del overlay
+
+  const ringPadding = 10
+  const computedBorderRadius = window.getComputedStyle(element).borderRadius || '16px'
+
+  spotlight.value = {
+    x: centerX,
+    y: centerY,
+    r,
+    top: rect.top - ringPadding,
+    left: rect.left - ringPadding,
+    width: rect.width + ringPadding * 2,
+    height: rect.height + ringPadding * 2,
+    radius: computedBorderRadius
+  }
+  spotlightActive.value = true
 }
 
-// Manejar resize
-function handleResize() {
-  updateSpotlightPosition()
+// Throttle con rAF para scroll/resize (evita recalcular 1000 veces/seg)
+let rafUpdate = 0
+function scheduleUpdate() {
+  if (rafUpdate) return
+  rafUpdate = requestAnimationFrame(() => {
+    rafUpdate = 0
+    updateSpotlightPosition()
+  })
 }
 
 // Navegación directo a un paso
@@ -159,15 +184,14 @@ watch(() => store.currentStep, () => {
 
 onMounted(() => {
   updateSpotlightPosition()
-  drawSpotlight()
-  window.addEventListener('resize', handleResize)
+  window.addEventListener('resize', scheduleUpdate)
+  window.addEventListener('scroll', scheduleUpdate, { passive: true })
 })
 
 onUnmounted(() => {
-  if (animationId) {
-    cancelAnimationFrame(animationId)
-  }
-  window.removeEventListener('resize', handleResize)
+  window.removeEventListener('resize', scheduleUpdate)
+  window.removeEventListener('scroll', scheduleUpdate)
+  if (rafUpdate) cancelAnimationFrame(rafUpdate)
 })
 </script>
 
@@ -185,11 +209,48 @@ onUnmounted(() => {
   pointer-events: all;
 }
 
-.spotlight-canvas {
+/* Oscurecer fondo excepto “agujero” del spotlight (CSS mask) */
+.onboarding-overlay::before {
+  content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  cursor: pointer;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+
+  /* Mask radial: transparente en el centro, opaco fuera */
+  -webkit-mask-image: radial-gradient(
+    circle var(--spotlight-r) at var(--spotlight-x) var(--spotlight-y),
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 55%,
+    rgba(0, 0, 0, 1) 75%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  mask-image: radial-gradient(
+    circle var(--spotlight-r) at var(--spotlight-x) var(--spotlight-y),
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 55%,
+    rgba(0, 0, 0, 1) 75%,
+    rgba(0, 0, 0, 1) 100%
+  );
+
+  pointer-events: none;
+}
+
+.spotlight-ring {
+  position: fixed;
+  z-index: 2;
+  pointer-events: auto;
+  border: 2px solid rgba(0, 229, 255, 0.65);
+  background: rgba(0, 229, 255, 0.06);
+  box-shadow:
+    0 0 0 2px rgba(0, 229, 255, 0.16),
+    0 0 60px rgba(0, 229, 255, 0.35);
+  transition:
+    top 250ms ease,
+    left 250ms ease,
+    width 250ms ease,
+    height 250ms ease,
+    border-radius 250ms ease;
 }
 
 .onboarding-card {
@@ -200,6 +261,7 @@ onUnmounted(() => {
   border-radius: 16px;
   padding: 32px;
   max-width: 420px;
+  z-index: 3;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9),
               0 0 60px rgba(0, 229, 255, 0.3);
   animation: slideIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -213,17 +275,6 @@ onUnmounted(() => {
   to {
     opacity: 1;
     transform: scale(1) translateY(0);
-  }
-}
-
-@keyframes pulse-glow {
-  0%, 100% {
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9),
-                0 0 60px rgba(0, 229, 255, 0.3);
-  }
-  50% {
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9),
-                0 0 80px rgba(0, 229, 255, 0.5);
   }
 }
 
