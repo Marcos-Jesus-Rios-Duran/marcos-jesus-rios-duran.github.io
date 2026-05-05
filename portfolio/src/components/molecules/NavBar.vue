@@ -81,6 +81,23 @@ const onScroll = () => { scrolled.value = window.scrollY > 50 }
 onMounted(() => window.addEventListener('scroll', onScroll))
 onUnmounted(() => window.removeEventListener('scroll', onScroll))
 
+function onOnboardingMobileMenu(event) {
+  const detail = event?.detail || {}
+  if (typeof detail.open === 'boolean') {
+    mobileOpen.value = detail.open
+  } else if (typeof detail.toggle === 'boolean' && detail.toggle) {
+    mobileOpen.value = !mobileOpen.value
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('onboarding:mobile-menu', onOnboardingMobileMenu)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('onboarding:mobile-menu', onOnboardingMobileMenu)
+})
+
 watch(() => route.fullPath, () => {
   mobileOpen.value = false
 })

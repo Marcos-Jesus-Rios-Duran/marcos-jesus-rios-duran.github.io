@@ -37,7 +37,7 @@ export const useOnboarding = defineStore('onboarding', () => {
       target: '.skills-section',
       title: t('onboarding.steps.3.title'),
       description: t('onboarding.steps.3.description'),
-      position: 'top-center',
+      position: 'top-skills',
       highlight: true
     },
     {

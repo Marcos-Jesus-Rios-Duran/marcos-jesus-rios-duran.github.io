@@ -104,6 +104,35 @@ const ringStyle = computed(() => ({
   borderRadius: spotlight.value.radius
 }))
 
+function isMobileViewport() {
+  return window.innerWidth <= 980
+}
+
+function shouldOpenDrawerForStep() {
+  const stepId = currentStep.value?.id
+  return isMobileViewport() && (stepId === 'language' || stepId === 'theme')
+}
+
+function syncMobileDrawerForStep() {
+  const open = shouldOpenDrawerForStep()
+  window.dispatchEvent(new CustomEvent('onboarding:mobile-menu', { detail: { open } }))
+}
+
+function findVisibleTarget(selector) {
+  const elements = Array.from(document.querySelectorAll(selector))
+  return elements.find((el) => {
+    const rect = el.getBoundingClientRect()
+    const style = window.getComputedStyle(el)
+    return (
+      rect.width > 0 &&
+      rect.height > 0 &&
+      style.display !== 'none' &&
+      style.visibility !== 'hidden' &&
+      style.opacity !== '0'
+    )
+  }) || null
+}
+
 // Calcular posición del target para el spotlight
 function updateSpotlightPosition() {
   const targetSelector = currentStep.value?.target
@@ -123,7 +152,7 @@ function updateSpotlightPosition() {
     return
   }
 
-  const element = document.querySelector(targetSelector)
+  const element = findVisibleTarget(targetSelector)
   if (!element) {
     spotlight.value = {
       x: -9999,
@@ -179,16 +208,25 @@ function goToStep(idx) {
 }
 
 watch(() => store.currentStep, () => {
+  syncMobileDrawerForStep()
   updateSpotlightPosition()
+
+  // Espera breve para transición del drawer en mobile y recalcula.
+  setTimeout(() => {
+    updateSpotlightPosition()
+  }, 300)
 })
 
 onMounted(() => {
+  syncMobileDrawerForStep()
   updateSpotlightPosition()
   window.addEventListener('resize', scheduleUpdate)
   window.addEventListener('scroll', scheduleUpdate, { passive: true })
 })
 
 onUnmounted(() => {
+  // Al cerrar tour, devolvemos el drawer móvil a cerrado.
+  window.dispatchEvent(new CustomEvent('onboarding:mobile-menu', { detail: { open: false } }))
   window.removeEventListener('resize', scheduleUpdate)
   window.removeEventListener('scroll', scheduleUpdate)
   if (rafUpdate) cancelAnimationFrame(rafUpdate)
@@ -291,6 +329,15 @@ onUnmounted(() => {
   transform: translateX(-50%);
 }
 
+/* Ajuste dedicado para skills: dejar visible la cuadrícula central */
+.position-top-skills {
+  top: 86px;
+  right: 34px;
+  left: auto;
+  transform: none;
+  max-width: 390px;
+}
+
 .position-bottom-center {
   bottom: 120px;
   left: 50%;
@@ -303,10 +350,11 @@ onUnmounted(() => {
 }
 
 .position-top-mentor {
-  top: 100px;
-  left: 50%;
-  transform: translateX(-50%);
-  max-width: 500px;
+  top: 74px;
+  right: 34px;
+  left: auto;
+  transform: none;
+  max-width: 380px;
 }
 .position-left-center {
   left: 40px;
@@ -453,6 +501,15 @@ onUnmounted(() => {
     padding: 8px 12px;
     font-size: 12px;
     min-width: 80px;
+  }
+
+  .position-top-skills,
+  .position-top-mentor {
+    top: 76px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    max-width: 90vw;
   }
 }
 </style>
