@@ -1,8 +1,8 @@
 <template>
-  <button 
-    class="toggle" 
+  <button
+    class="toggle"
     data-toggle-theme
-    @click="store.toggle()" 
+    @click="store.toggle()"
     :title="isDark ? 'Modo claro' : 'Modo oscuro'"
   >
     <span class="material-icons-round">

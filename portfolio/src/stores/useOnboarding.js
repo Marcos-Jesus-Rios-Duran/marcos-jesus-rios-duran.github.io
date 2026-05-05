@@ -68,7 +68,7 @@ export const useOnboarding = defineStore('onboarding', () => {
 
   function initOnboarding() {
     const hasSeenOnboarding = localStorage.getItem('hasSeenOnboarding')
-    
+
     if (!hasSeenOnboarding) {
       isActive.value = true
       currentStep.value = 0

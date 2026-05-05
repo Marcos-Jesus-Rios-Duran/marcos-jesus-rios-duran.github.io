@@ -4,14 +4,14 @@
     <!-- Overlay oscuro de fondo -->
     <div class="onboarding-overlay" @click="store.skipOnboarding">
       <!-- Canvas para el spotlight effect -->
-      <canvas 
-        ref="spotlightCanvas" 
+      <canvas
+        ref="spotlightCanvas"
         class="spotlight-canvas"
         @click.stop
       ></canvas>
 
       <!-- Card con el contenido del paso actual -->
-      <div 
+      <div
         class="onboarding-card"
         :class="`position-${currentStep?.position}`"
         @click.stop
@@ -28,7 +28,7 @@
 
         <!-- Controles -->
         <div class="onboarding-controls">
-          <button 
+          <button
             v-if="store.currentStep > 0"
             class="btn-control btn-back"
             @click="store.previousStep"
@@ -36,14 +36,14 @@
             ← Atrás
           </button>
 
-          <button 
+          <button
             class="btn-control btn-skip"
             @click="store.skipOnboarding"
           >
             Saltar tour
           </button>
 
-          <button 
+          <button
             class="btn-control btn-next"
             @click="store.nextStep"
           >
@@ -53,7 +53,7 @@
 
         <!-- Indicador de paso -->
         <div class="step-indicator">
-          <span v-for="(step, idx) in store.steps" 
+          <span v-for="(step, idx) in store.steps"
                 :key="idx"
                 :class="['dot', { active: idx === store.currentStep, completed: idx < store.currentStep }]"
                 @click="goToStep(idx)"
@@ -87,7 +87,7 @@ function drawSpotlight() {
   canvas.height = window.innerHeight
 
   const ctx = canvas.getContext('2d')
-  
+
   // Fondo oscuro semitransparente
   ctx.fillStyle = 'rgba(0, 0, 0, 0.7)'
   ctx.fillRect(0, 0, canvas.width, canvas.height)
@@ -100,7 +100,7 @@ function drawSpotlight() {
     )
     gradient.addColorStop(0, 'rgba(0, 229, 255, 0.3)')
     gradient.addColorStop(1, 'rgba(0, 229, 255, 0)')
-    
+
     // Limpiar el spotlight (hacerlo transparente)
     ctx.clearRect(
       spotlightX.value - spotlightSize.value,
@@ -108,7 +108,7 @@ function drawSpotlight() {
       spotlightSize.value * 2,
       spotlightSize.value * 2
     )
-    
+
     // Dibujar borde del spotlight
     ctx.strokeStyle = 'rgba(0, 229, 255, 0.6)'
     ctx.lineWidth = 2
@@ -200,7 +200,7 @@ onUnmounted(() => {
   border-radius: 16px;
   padding: 32px;
   max-width: 400px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8),
               0 0 40px rgba(0, 229, 255, 0.2);
   animation: slideIn 0.4s ease-out;
   z-index: 10000;
