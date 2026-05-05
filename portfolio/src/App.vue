@@ -51,7 +51,7 @@ html[data-theme="dark"] {
 }
 
 body {
-  font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Poppins', 'Segoe UI', system-ui, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji', sans-serif;
   color: var(--texto);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
