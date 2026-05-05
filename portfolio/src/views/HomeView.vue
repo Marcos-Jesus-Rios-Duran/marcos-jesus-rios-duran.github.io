@@ -46,7 +46,7 @@ onUnmounted(() => {
 .back-to-top {
   position: fixed;
   right: 20px;
-  bottom: 20px;
+  bottom: 100px; /* encima del footer (~90px alto) */
   width: 52px;
   height: 52px;
   border: none;
@@ -85,7 +85,7 @@ onUnmounted(() => {
 @media (max-width: 768px) {
   .back-to-top {
     right: 14px;
-    bottom: 14px;
+    bottom: 90px;
     width: 48px;
     height: 48px;
   }

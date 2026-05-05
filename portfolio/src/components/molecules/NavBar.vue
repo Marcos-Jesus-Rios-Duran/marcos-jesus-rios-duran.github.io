@@ -87,6 +87,7 @@ watch(() => route.fullPath, () => {
 </script>
 
 <style scoped>
+
 .navbar {
   position: fixed; top: 0; left: 0; right: 0;
   z-index: 1000;
@@ -209,7 +210,7 @@ watch(() => route.fullPath, () => {
   width: min(84vw, 320px);
   height: 100vh;
   padding: 88px 20px 24px;
-  background: rgba(255,255,255,0.94);
+  background: rgba(136, 171, 237, 0.637);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-left: 1px solid rgba(255,255,255,0.45);

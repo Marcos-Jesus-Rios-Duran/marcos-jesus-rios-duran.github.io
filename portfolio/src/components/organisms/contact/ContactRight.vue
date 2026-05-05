@@ -549,7 +549,7 @@ padding-top: 70px;
 /* === FLOATING BUTTON === */
 .cv-floating-btn {
   position: fixed;
-  bottom: 30px;
+  bottom: 110px; /* encima del footer (~90px alto) */
   right: 30px;
   width: 70px;
   height: 70px;
@@ -625,7 +625,7 @@ padding-top: 70px;
   .cv-floating-btn {
     width: 60px;
     height: 60px;
-    bottom: 20px;
+    bottom: 90px;
     right: 20px;
   }
 
