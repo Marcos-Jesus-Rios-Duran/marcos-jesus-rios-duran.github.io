@@ -498,11 +498,13 @@ onUnmounted(() => {
 
 @media (max-width: 768px) {
   .animated-code {
-    min-height: auto;
-    padding: 20px 0;
+    /* Reserva altura estable para evitar layout shift al tipear */
+    min-height: 360px;
+    padding: 12px 0 0;
   }
 
   .code-content {
+    height: 300px;
     max-height: 300px;
     padding: 16px;
   }
@@ -510,6 +512,19 @@ onUnmounted(() => {
   .code-block {
     font-size: 11px;
     line-height: 1.5;
+  }
+}
+
+@media (max-width: 480px) {
+  .animated-code {
+    min-height: 332px;
+    padding-top: 8px;
+  }
+
+  .code-content {
+    height: 270px;
+    max-height: 270px;
+    padding: 14px;
   }
 }
 </style>

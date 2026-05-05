@@ -15,7 +15,7 @@
       <!-- Card con el contenido del paso actual -->
       <div
         class="onboarding-card"
-        :class="`position-${currentStep?.position}`"
+        :class="cardClasses"
         @click.stop
       >
         <!-- Progreso visual -->
@@ -103,6 +103,13 @@ const ringStyle = computed(() => ({
   height: `${spotlight.value.height}px`,
   borderRadius: spotlight.value.radius
 }))
+
+const cardClasses = computed(() => [
+  `position-${currentStep.value?.position}`,
+  {
+    'mobile-drawer-step': isMobileViewport() && ['language', 'theme'].includes(currentStep.value?.id)
+  }
+])
 
 function isMobileViewport() {
   return window.innerWidth <= 980
@@ -487,6 +494,18 @@ onUnmounted(() => {
     max-width: 90vw;
     margin: 0 auto;
     padding: 24px;
+  }
+
+  /* En pasos del drawer, dejamos visible el selector/acciones del menú lateral */
+  .onboarding-card.mobile-drawer-step {
+    bottom: 14px;
+    top: auto;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width: min(92vw, 360px);
+    max-width: min(92vw, 360px);
+    padding: 18px;
   }
 
   .onboarding-title {
