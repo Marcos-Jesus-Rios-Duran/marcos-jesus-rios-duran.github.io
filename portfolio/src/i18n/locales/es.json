@@ -2,7 +2,7 @@
   "hero": {
     "greeting": "Hola, soy",
     "name": "Marcos Ríos",
-    "role": "Ingeniero en Desarrollo y Gestión de Software",
+    "role": "Desarrollador de Software | Estudiante de Ingeniería",
     "tagline": "Desarrollador apasionado por la arquitectura de software limpia",
     "tagline2": "de México para el mundo.",
     "cta_primary": "Ver proyectos",
@@ -303,7 +303,7 @@
     "steps": [
       {
         "title": "¡Bienvenido!",
-        "description": "Soy Marcos Ríos, Ingeniero en Desarrollo y Gestión de Software especializado en arquitectura limpia."
+        "description": "Soy Marcos Ríos, Desarrollador de Software y estudiante de Ingeniería, especializado en arquitectura limpia."
       },
       {
         "title": "🌍 Aquí puedes cambiar el idioma",

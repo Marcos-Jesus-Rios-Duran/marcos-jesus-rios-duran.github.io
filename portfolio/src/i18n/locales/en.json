@@ -2,7 +2,7 @@
   "hero": {
     "greeting": "Hi, I'm",
     "name": "Marcos Ríos",
-    "role": "Software Development & Management Engineer",
+    "role": "Software Developer | Software Engineering Student",
     "tagline": "Developer passionate about clean software architecture",
     "tagline2": "from Mexico to the world 🌸",
     "cta_primary": "View projects",
@@ -279,7 +279,7 @@
     "steps": [
       {
         "title": "Welcome!",
-        "description": "I'm Marcos Ríos, a Software Development and Management Engineer specialized in clean architecture."
+        "description": "I'm Marcos Ríos, a Software Developer and Software Engineering student specialized in clean architecture."
       },
       {
         "title": "🌍 You can change the language here",

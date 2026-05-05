@@ -4,7 +4,7 @@ Allow: /
 Disallow: /node_modules/
 
 # Rutas específicas importantes para SEO
-Sitemap: http://localhost:5173/sitemap.xml
+Sitemap: https://www.coxidev.me/sitemap.xml
 
 # Google Search Console
 User-agent: Googlebot

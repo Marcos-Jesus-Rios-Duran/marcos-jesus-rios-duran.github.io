@@ -2,7 +2,7 @@
   "hero": {
     "greeting": "Bonjour, je suis",
     "name": "Marcos Ríos",
-    "role": "Ingénieur en Développement et Gestion de Logiciels",
+    "role": "Développeur Logiciel | Étudiant en Ingénierie Logicielle",
     "tagline": "Développeur passionné par l'architecture logicielle propre",
     "tagline2": "du Mexique au monde 🌸",
     "cta_primary": "Voir les projets",
@@ -277,7 +277,7 @@
     "steps": [
       {
         "title": "Bienvenue!",
-        "description": "Je suis Marcos Ríos, ingénieur en développement et gestion de logiciels spécialisé dans l'architecture propre."
+        "description": "Je suis Marcos Ríos, développeur logiciel et étudiant en ingénierie logicielle, spécialisé dans l'architecture propre."
       },
       {
         "title": "🌍 Vous pouvez changer la langue ici",

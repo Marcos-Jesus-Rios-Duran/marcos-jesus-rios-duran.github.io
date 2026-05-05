@@ -2,7 +2,7 @@
   "hero": {
     "greeting": "Hallo, ich bin",
     "name": "Marcos Ríos",
-    "role": "Ingenieur für Softwareentwicklung und -management",
+    "role": "Softwareentwickler | Student der Softwaretechnik",
     "tagline": "Entwickler mit Leidenschaft für saubere Softwarearchitektur",
     "tagline2": "aus Mexiko für die Welt 🌸",
     "cta_primary": "Projekte ansehen",
@@ -279,7 +279,7 @@
     "steps": [
       {
         "title": "Willkommen!",
-        "description": "Ich bin Marcos Ríos, ein Software-Entwicklungs- und Managementing-Ingenieur, spezialisiert auf saubere Architektur."
+        "description": "Ich bin Marcos Ríos, Softwareentwickler und Student der Softwaretechnik, spezialisiert auf saubere Architektur."
       },
       {
         "title": "🌍 Sie können die Sprache hier ändern",
