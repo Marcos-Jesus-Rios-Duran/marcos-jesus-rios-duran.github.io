@@ -273,6 +273,38 @@
       "error": "Qualcosa è andato storto. Riprova o scrivimi direttamente."
     }
   },
+  "onboarding": {
+    "steps": [
+      {
+        "title": "Benvenuto!",
+        "description": "Sono Marcos Ríos, ingegnere di sviluppo e gestione software specializzato in architettura pulita."
+      },
+      {
+        "title": "🌍 Qui puoi cambiare la lingua",
+        "description": "Scegli tra spagnolo, inglese, francese, tedesco o italiano secondo le tue preferenze."
+      },
+      {
+        "title": "🌙 Personalizza la tua esperienza",
+        "description": "Passa tra la modalità chiara e scura secondo le tue preferenze visive."
+      },
+      {
+        "title": "🏗️ Architettura & Competenze",
+        "description": "Qui condivido le mie conoscenze di Architettura Pulita, SOLID, Design Patterns e metodologie professionali."
+      },
+      {
+        "title": "👨‍🎓 I miei Mentori",
+        "description": "Sono grato ai professionisti dell'INAOE che hanno plasmato la mia traiettoria e le mie conoscenze tecniche."
+      },
+      {
+        "title": "📚 Esplora di più",
+        "description": "Visita 'Progetti' per vedere il mio lavoro reale, e 'Su di me' per conoscer meglio, inclusa la mia timeline di apprendimento."
+      },
+      {
+        "title": "Goditi il portfolio! 🚀",
+        "description": "Spero che tu trovi qualcosa di interessante. Sono sempre aperto a nuove opportunità e connessioni."
+      }
+    ]
+  },
   "footer": {
     "made_with": "Fatto con Vue 🌸 da Huauchinango, Puebla",
     "rights": "Tutti i diritti riservati"

@@ -273,6 +273,38 @@
       "error": "Quelque chose s'est mal passé. Veuillez réessayer ou m'écrire directement."
     }
   },
+  "onboarding": {
+    "steps": [
+      {
+        "title": "Bienvenue!",
+        "description": "Je suis Marcos Ríos, ingénieur en développement et gestion de logiciels spécialisé dans l'architecture propre."
+      },
+      {
+        "title": "🌍 Vous pouvez changer la langue ici",
+        "description": "Choisissez entre l'espagnol, l'anglais, le français, l'allemand ou l'italien selon vos préférences."
+      },
+      {
+        "title": "🌙 Personnalisez votre expérience",
+        "description": "Basculez entre le mode clair et le mode sombre selon vos préférences visuelles."
+      },
+      {
+        "title": "🏗️ Architecture & Compétences",
+        "description": "Je partage ici mes connaissances en Architecture Propre, SOLID, Design Patterns et méthodologies professionnelles."
+      },
+      {
+        "title": "👨‍🎓 Mes Mentors",
+        "description": "Je suis reconnaissant aux professionnels de l'INAOE qui ont façonné ma trajectoire et mes connaissances techniques."
+      },
+      {
+        "title": "📚 Explorez plus",
+        "description": "Visitez 'Projets' pour voir mon vrai travail, et 'À propos' pour mieux me connaître, y compris ma chronologie d'apprentissage."
+      },
+      {
+        "title": "Profitez du portfolio! 🚀",
+        "description": "J'espère que vous trouverez quelque chose d'intéressant. Je suis toujours ouvert aux nouvelles opportunités et connexions."
+      }
+    ]
+  },
   "footer": {
     "made_with": "Fait avec Vue 🌸 depuis Huauchinango, Puebla",
     "rights": "Tous droits réservés"

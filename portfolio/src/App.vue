@@ -17,19 +17,31 @@
       <span>© 2026 Marcos Jesús Ríos Durán</span>
       <span class="footer-sub">{{ t('footer.made_with') }}</span>
     </footer>
+
+    <!-- Onboarding Tour -->
+    <OnboardingTour />
   </div>
 </template>
 
 <script setup>
 import { useI18n } from 'vue-i18n'
 import { storeToRefs } from 'pinia'
+import { onMounted } from 'vue'
 import { useTheme } from '@/stores/useTheme'
+import { useOnboarding } from '@/stores/useOnboarding'
 import NavBar from '@/components/molecules/NavBar.vue'
 import AntigravityCanvas from '@/components/organisms/AntigravityCanvas.vue'
+import OnboardingTour from '@/components/organisms/OnboardingTour.vue'
 
 const { t } = useI18n()
-const store = useTheme()
-const { mode } = storeToRefs(store)
+const themeStore = useTheme()
+const onboardingStore = useOnboarding()
+const { mode } = storeToRefs(themeStore)
+
+// Iniciar onboarding cuando el app monta
+onMounted(() => {
+  onboardingStore.initOnboarding()
+})
 </script>
 
 <style>

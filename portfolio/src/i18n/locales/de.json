@@ -275,6 +275,38 @@
       "error": "Etwas ist schief gelaufen. Versuchen Sie es erneut oder schreiben Sie mir direkt."
     }
   },
+  "onboarding": {
+    "steps": [
+      {
+        "title": "Willkommen!",
+        "description": "Ich bin Marcos Ríos, ein Software-Entwicklungs- und Managementing-Ingenieur, spezialisiert auf saubere Architektur."
+      },
+      {
+        "title": "🌍 Sie können die Sprache hier ändern",
+        "description": "Wählen Sie je nach Vorlieben zwischen Spanisch, Englisch, Französisch, Deutsch oder Italienisch."
+      },
+      {
+        "title": "🌙 Personalisieren Sie Ihre Erfahrung",
+        "description": "Wechseln Sie zwischen hellem und dunklem Modus je nach Ihren visuellen Vorlieben."
+      },
+      {
+        "title": "🏗️ Architektur & Fähigkeiten",
+        "description": "Hier teile ich mein Wissen über saubere Architektur, SOLID, Design Patterns und professionelle Methodologien."
+      },
+      {
+        "title": "👨‍🎓 Meine Mentoren",
+        "description": "Ich bin dankbar gegenüber INAOE-Profis, die meine Karriere und mein technisches Wissen geprägt haben."
+      },
+      {
+        "title": "📚 Erkunden Sie mehr",
+        "description": "Besuchen Sie 'Projekte', um meine echte Arbeit zu sehen, und 'Über mich', um mich besser kennenzulernen, einschließlich meiner Lernzeitleiste."
+      },
+      {
+        "title": "Genießen Sie das Portfolio! 🚀",
+        "description": "Ich hoffe, Sie finden etwas Interessantes. Ich bin immer offen für neue Möglichkeiten und Kontakte."
+      }
+    ]
+  },
   "footer": {
     "made_with": "Gemacht mit Vue 🌸 aus Huauchinango, Puebla",
     "rights": "Alle Rechte vorbehalten"

@@ -275,6 +275,38 @@
       "error": "Something went wrong. Try again or write me directly."
     }
   },
+  "onboarding": {
+    "steps": [
+      {
+        "title": "Welcome!",
+        "description": "I'm Marcos Ríos, a Software Development and Management Engineer specialized in clean architecture."
+      },
+      {
+        "title": "🌍 You can change the language here",
+        "description": "Choose between Spanish, English, French, German, or Italian according to your preference."
+      },
+      {
+        "title": "🌙 Personalize your experience",
+        "description": "Switch between light and dark mode according to your visual preference."
+      },
+      {
+        "title": "🏗️ Architecture & Skills",
+        "description": "Here I share my knowledge of Clean Architecture, SOLID, Design Patterns, and professional methodologies."
+      },
+      {
+        "title": "👨‍🎓 My Mentors",
+        "description": "I'm grateful to INAOE professionals who shaped my trajectory and technical knowledge."
+      },
+      {
+        "title": "📚 Explore more",
+        "description": "Visit 'Projects' to see my real work, and 'About me' to get to know me better, including my learning timeline."
+      },
+      {
+        "title": "Enjoy the portfolio! 🚀",
+        "description": "I hope you find something interesting. I'm always open to new opportunities and connections."
+      }
+    ]
+  },
   "footer": {
     "made_with": "Made with Vue 🌸 from Huauchinango, Puebla",
     "rights": "All rights reserved"

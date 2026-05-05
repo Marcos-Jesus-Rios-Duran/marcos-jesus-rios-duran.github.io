@@ -1,5 +1,10 @@
 <template>
-  <button class="toggle" @click="store.toggle()" :title="isDark ? 'Modo claro' : 'Modo oscuro'">
+  <button 
+    class="toggle" 
+    data-toggle-theme
+    @click="store.toggle()" 
+    :title="isDark ? 'Modo claro' : 'Modo oscuro'"
+  >
     <span class="material-icons-round">
       {{ isDark ? 'dark_mode' : 'light_mode' }}
     </span>
