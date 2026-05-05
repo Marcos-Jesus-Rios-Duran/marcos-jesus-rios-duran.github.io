@@ -1,0 +1,15 @@
+# Permite a Google, Bing y otros motores rastrear todo
+User-agent: *
+Allow: /
+Disallow: /node_modules/
+
+# Rutas específicas importantes para SEO
+Sitemap: http://localhost:5173/sitemap.xml
+
+# Google Search Console
+User-agent: Googlebot
+Allow: /
+
+# Bing
+User-agent: Bingbot
+Allow: /
