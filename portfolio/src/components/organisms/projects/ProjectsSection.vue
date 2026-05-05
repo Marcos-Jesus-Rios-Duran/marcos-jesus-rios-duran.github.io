@@ -54,32 +54,18 @@ const activeFilter = ref('all')
 const selectedProject = ref(null)
 const isModalOpen = ref(false)
 
-// Pausar canvas en modo light mientras el componente está montado
-const isMounted = ref(false)
-
+// Pausar/reanudar canvas según tema mientras el componente está montado
 onMounted(() => {
-  isMounted.value = true
-  // Pausa inicial si estamos en light
-  if (mode.value === 'light' && canvasPaused) {
-    canvasPaused.value = true
-  }
+  if (mode.value === 'light' && canvasPaused) canvasPaused.value = true
 })
 
-// Watcher para detectar cambios en el tema
 watch(mode, (newMode) => {
   if (!canvasPaused) return
-  if (newMode === 'light' && isMounted.value) {
-    canvasPaused.value = true
-  } else if (newMode === 'dark') {
-    canvasPaused.value = false
-  }
+  canvasPaused.value = newMode === 'light'
 })
 
 onUnmounted(() => {
-  isMounted.value = false
-  if (canvasPaused) {
-    canvasPaused.value = false
-  }
+  if (canvasPaused) canvasPaused.value = false
 })
 
 const allProjects = computed(() => {
@@ -216,31 +202,6 @@ const openModal = (project) => {
   font-weight: 700;
   box-shadow: 0 8px 24px rgba(255, 120, 170, 0.3);
   transform: translateY(-2px);
-}
-
-/* === STATUS INFO === */
-.status-info {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 0;
-}
-
-.status-badge {
-  display: inline-block;
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  background: rgba(255, 193, 7, 0.15);
-  color: #ffc107;
-  border: 1px solid rgba(255, 193, 7, 0.3);
-  text-transform: capitalize;
-}
-
-.status-text {
-  font-size: 0.95rem;
-  color: var(--textoSub);
 }
 
 /* === EMPTY STATE === */

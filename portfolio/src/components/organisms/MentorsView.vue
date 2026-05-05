@@ -77,72 +77,6 @@ const mentors = computed(() => {
   font-weight: 300;
 }
 
-/* === MENTORS GRID === */
-.mentors-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 32px;
-  padding: 40px 0;
-}
-
-.mentor-card {
-  background: rgba(255, 255, 255, 0.8);
-  border: 2px solid rgba(255, 179, 204, 0.25);
-  border-radius: 16px;
-  padding: 40px 24px;
-  backdrop-filter: blur(8px);
-  transition: all 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 16px;
-}
-
-.mentor-card:hover {
-  border-color: rgba(255, 179, 204, 0.5);
-  transform: translateY(-8px);
-  box-shadow: 0 12px 32px rgba(255, 179, 204, 0.2);
-}
-
-[data-theme="dark"] .mentor-card {
-  background: rgba(20, 20, 30, 0.6);
-  border-color: rgba(0, 229, 255, 0.2);
-}
-
-[data-theme="dark"] .mentor-card:hover {
-  border-color: rgba(0, 229, 255, 0.4);
-  box-shadow: 0 12px 32px rgba(0, 229, 255, 0.15);
-}
-
-.mentor-icon {
-  font-size: 48px;
-  line-height: 1;
-}
-
-.mentor-name {
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--texto);
-  line-height: 1.6;
-}
-
-.mentor-badge {
-  background: linear-gradient(135deg, rgba(255, 179, 204, 0.2), rgba(255, 143, 171, 0.15));
-  border: 1px solid rgba(255, 179, 204, 0.4);
-  color: #FF8FAB;
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-weight: 600;
-  font-size: 0.75rem;
-  letter-spacing: 0.05em;
-}
-
-[data-theme="dark"] .mentor-badge {
-  background: linear-gradient(135deg, rgba(0, 229, 255, 0.15), rgba(0, 200, 255, 0.1));
-  border-color: rgba(0, 229, 255, 0.3);
-  color: #00e5ff;
-}
 
 /* === DESCRIPTION === */
 .description-card {
@@ -230,12 +164,6 @@ const mentors = computed(() => {
     padding: 60px 16px;
     gap: 48px;
   }
-
-  .mentors-grid {
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 24px;
-    padding: 30px 0;
-  }
 }
 
 @media (max-width: 768px) {
@@ -246,14 +174,6 @@ const mentors = computed(() => {
 
   .mentors-title {
     font-size: 2rem;
-  }
-
-  .mentor-card {
-    padding: 30px 20px;
-  }
-
-  .mentors-grid {
-    grid-template-columns: 1fr;
   }
 
   .description-card {

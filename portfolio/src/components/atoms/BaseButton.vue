@@ -8,7 +8,6 @@
 <script setup>
 defineProps({
   variant: { type: String, default: 'primary' }
-  // 'primary' = rosita · 'secondary' = borde · 'ghost' = transparente
 })
 </script>
 
@@ -41,6 +40,11 @@ defineProps({
   background: transparent;
   color: var(--texto);
   border: 1.5px solid var(--borde);
+}
+.btn--secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+  border-color: var(--rosaBase);
 }
 
 /* === RESPONSIVE === */

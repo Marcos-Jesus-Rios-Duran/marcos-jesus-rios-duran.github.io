@@ -28,10 +28,4 @@ h1 {
   margin-bottom: 12px;
   color: white;
 }
-
-.subtitle {
-  font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.70);
-  margin: 0;
-}
 </style>

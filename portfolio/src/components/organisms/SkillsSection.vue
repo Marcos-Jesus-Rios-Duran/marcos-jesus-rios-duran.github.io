@@ -49,20 +49,11 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import TechCard from '@/components/atoms/TechCard.vue'
 
-const { t, tm } = useI18n()
+const { t } = useI18n()
 
-const specializations = computed(() => {
-  try {
-    const result = tm('skills.specializations.items')
-    return Array.isArray(result) ? result : []
-  } catch {
-    return []
-  }
-})
 
 const skillCards = [
   // Card 1: Cloud & Git — certificaciones y control de versiones
@@ -387,35 +378,6 @@ const skillCards = [
   color: rgba(255,255,255,0.75);
 }
 
-/* === SPECIALIZATIONS === */
-.spec-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-}
-
-.spec-tag {
-  background: linear-gradient(135deg, rgba(255,179,204,0.25), rgba(255,143,171,0.18));
-  border: 1.5px solid rgba(255,143,171,0.4);
-  color: #a03055;
-  padding: 12px 22px;
-  border-radius: 50px;
-  font-weight: 700;
-  font-size: 0.95rem;
-  letter-spacing: 0.02em;
-  transition: all 0.2s ease;
-}
-
-.spec-tag:hover {
-  background: linear-gradient(135deg, rgba(255,143,171,0.35), rgba(255,100,150,0.25));
-  transform: translateY(-2px);
-}
-
-[data-theme="dark"] .spec-tag {
-  background: linear-gradient(135deg, rgba(0,229,255,0.12), rgba(0,200,255,0.08));
-  border-color: rgba(0,229,255,0.28);
-  color: #00e5ff;
-}
 
 /* === RESPONSIVE === */
 @media (max-width: 1100px) {

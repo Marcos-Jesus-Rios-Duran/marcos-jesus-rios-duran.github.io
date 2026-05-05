@@ -11,19 +11,12 @@
 </template>
 
 <script setup>
-import { useI18n } from 'vue-i18n'
 import ProjectCard from './ProjectCard.vue'
-
-const { tm } = useI18n()
 
 defineProps({
   projects: {
     type: [Object, Array],
     default: () => ({})
-  },
-  filter: {
-    type: String,
-    default: 'all'
   }
 })
 
