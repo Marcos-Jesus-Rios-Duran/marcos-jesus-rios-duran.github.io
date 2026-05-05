@@ -19,11 +19,44 @@
       <LangSwitch />
       <ThemeToggle />
     </div>
+
+    <button
+      class="mobile-menu-btn"
+      type="button"
+      :aria-expanded="mobileOpen"
+      aria-label="Toggle navigation menu"
+      @click="mobileOpen = !mobileOpen"
+    >
+      <span class="material-icons-round">{{ mobileOpen ? 'close' : 'menu' }}</span>
+    </button>
   </nav>
+
+  <transition name="mobile-backdrop-fade">
+    <div v-if="mobileOpen" class="mobile-backdrop" @click="mobileOpen = false" />
+  </transition>
+
+  <aside class="mobile-drawer" :class="{ open: mobileOpen, dark: isDark }" aria-label="Mobile navigation">
+    <ul class="mobile-nav-menu">
+      <li v-for="r in routes" :key="`mobile-${r.name}`">
+        <router-link
+          :to="{ name: r.name }"
+          :class="{ active: isActive(r.name) }"
+          @click="mobileOpen = false"
+        >
+          {{ getRouteLabel(r.name) }}
+        </router-link>
+      </li>
+    </ul>
+
+    <div class="mobile-drawer-actions">
+      <LangSwitch />
+      <ThemeToggle />
+    </div>
+  </aside>
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useRoute, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
@@ -38,6 +71,7 @@ const { t } = useI18n()
 const { mode } = storeToRefs(store)
 const isDark = computed(() => mode.value === 'dark')
 const scrolled = ref(false)
+const mobileOpen = ref(false)
 
 const routes = computed(() => router.getRoutes().filter(r => r.path !== '/:pathMatch(.*)*'))
 const isActive = (routeName) => route.name === routeName
@@ -46,6 +80,10 @@ const getRouteLabel = (routeName) => t(`nav.${routeName}`)
 const onScroll = () => { scrolled.value = window.scrollY > 50 }
 onMounted(() => window.addEventListener('scroll', onScroll))
 onUnmounted(() => window.removeEventListener('scroll', onScroll))
+
+watch(() => route.fullPath, () => {
+  mobileOpen.value = false
+})
 </script>
 
 <style scoped>
@@ -138,5 +176,124 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
   display: flex;
   align-items: center;
   gap: 12px;
+}
+
+.mobile-menu-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 1.5px solid rgba(255,255,255,0.35);
+  border-radius: 10px;
+  background: rgba(255,255,255,0.10);
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.mobile-menu-btn .material-icons-round {
+  font-size: 24px;
+}
+
+.mobile-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 10, 24, 0.45);
+  z-index: 998;
+}
+
+.mobile-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(84vw, 320px);
+  height: 100vh;
+  padding: 88px 20px 24px;
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-left: 1px solid rgba(255,255,255,0.45);
+  transform: translateX(100%);
+  transition: transform 0.24s ease;
+  z-index: 999;
+  display: none;
+}
+
+.mobile-drawer.open {
+  transform: translateX(0);
+}
+
+.mobile-drawer.dark {
+  background: rgba(10, 10, 15, 0.96);
+  border-left-color: rgba(0,229,255,0.2);
+}
+
+.mobile-nav-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mobile-nav-menu a {
+  display: block;
+  padding: 12px 14px;
+  border-radius: 12px;
+  color: #1a1a1a;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.mobile-drawer.dark .mobile-nav-menu a {
+  color: rgba(255,255,255,0.9);
+}
+
+.mobile-nav-menu a.active {
+  background: rgba(255,143,171,0.18);
+  color: #b1456c;
+}
+
+.mobile-drawer.dark .mobile-nav-menu a.active {
+  background: rgba(0,229,255,0.14);
+  color: #00e5ff;
+}
+
+.mobile-drawer-actions {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mobile-backdrop-fade-enter-active,
+.mobile-backdrop-fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.mobile-backdrop-fade-enter-from,
+.mobile-backdrop-fade-leave-to {
+  opacity: 0;
+}
+
+@media (max-width: 980px) {
+  .navbar {
+    padding: 0 16px;
+  }
+
+  .nav-menu,
+  .nav-actions {
+    display: none;
+  }
+
+  .mobile-menu-btn,
+  .mobile-drawer {
+    display: flex;
+  }
+
+  .mobile-drawer {
+    flex-direction: column;
+  }
 }
 </style>
