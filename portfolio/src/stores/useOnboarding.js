@@ -10,7 +10,7 @@ export const useOnboarding = defineStore('onboarding', () => {
   const steps = computed(() => [
     {
       id: 'welcome',
-      target: null, // Full screen
+      target: null,
       title: t('onboarding.steps.0.title'),
       description: t('onboarding.steps.0.description'),
       position: 'center',
@@ -21,7 +21,7 @@ export const useOnboarding = defineStore('onboarding', () => {
       target: '.lang-switch',
       title: t('onboarding.steps.1.title'),
       description: t('onboarding.steps.1.description'),
-      position: 'bottom',
+      position: 'bottom-center',
       highlight: true
     },
     {
@@ -29,7 +29,7 @@ export const useOnboarding = defineStore('onboarding', () => {
       target: '[data-toggle-theme]',
       title: t('onboarding.steps.2.title'),
       description: t('onboarding.steps.2.description'),
-      position: 'bottom',
+      position: 'bottom-left',
       highlight: true
     },
     {
@@ -37,7 +37,7 @@ export const useOnboarding = defineStore('onboarding', () => {
       target: '.skills-section',
       title: t('onboarding.steps.3.title'),
       description: t('onboarding.steps.3.description'),
-      position: 'top',
+      position: 'top-center',
       highlight: true
     },
     {
@@ -45,15 +45,15 @@ export const useOnboarding = defineStore('onboarding', () => {
       target: '.mentors-view',
       title: t('onboarding.steps.4.title'),
       description: t('onboarding.steps.4.description'),
-      position: 'top',
+        position: 'top-mentor',
       highlight: true
     },
     {
       id: 'explore',
-      target: null,
+      target: '[href="/projects"]',
       title: t('onboarding.steps.5.title'),
       description: t('onboarding.steps.5.description'),
-      position: 'center',
+      position: 'bottom-center',
       highlight: false
     },
     {
@@ -100,6 +100,14 @@ export const useOnboarding = defineStore('onboarding', () => {
     isActive.value = false
   }
 
+  function finishOnboarding() {
+    closeOnboarding()
+    // Scroll al inicio después de cerrar
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }, 300)
+  }
+
   function resetOnboarding() {
     localStorage.removeItem('hasSeenOnboarding')
     isActive.value = false
@@ -126,6 +134,7 @@ export const useOnboarding = defineStore('onboarding', () => {
     isActive,
     currentStep,
     steps,
+    finishOnboarding,
     currentStepData,
     progress,
     isLastStep,

@@ -45,7 +45,7 @@
 
           <button
             class="btn-control btn-next"
-            @click="store.nextStep"
+            @click="store.isLastStep ? store.finishOnboarding() : store.nextStep()"
           >
             {{ store.isLastStep ? '¡Comenzar! 🚀' : 'Siguiente →' }}
           </button>
@@ -194,27 +194,36 @@ onUnmounted(() => {
 
 .onboarding-card {
   position: fixed;
-  background: rgba(10, 10, 15, 0.95);
-  backdrop-filter: blur(12px);
-  border: 1.5px solid rgba(0, 229, 255, 0.4);
+  background: rgba(10, 10, 15, 0.98);
+  backdrop-filter: blur(16px);
+  border: 1.5px solid rgba(0, 229, 255, 0.5);
   border-radius: 16px;
   padding: 32px;
-  max-width: 400px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8),
-              0 0 40px rgba(0, 229, 255, 0.2);
-  animation: slideIn 0.4s ease-out;
-  z-index: 10000;
-  pointer-events: all;
+  max-width: 420px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9),
+              0 0 60px rgba(0, 229, 255, 0.3);
+  animation: slideIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 @keyframes slideIn {
   from {
     opacity: 0;
-    transform: scale(0.95);
+    transform: scale(0.9) translateY(20px);
   }
   to {
     opacity: 1;
-    transform: scale(1);
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9),
+                0 0 60px rgba(0, 229, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9),
+                0 0 80px rgba(0, 229, 255, 0.5);
   }
 }
 
@@ -225,16 +234,33 @@ onUnmounted(() => {
   transform: translate(-50%, -50%);
 }
 
-.position-top {
-  top: 80px;
+.position-top-center {
+  top: 120px;
   left: 50%;
   transform: translateX(-50%);
 }
 
-.position-bottom {
-  bottom: 80px;
+.position-bottom-center {
+  bottom: 120px;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.position-bottom-left {
+  bottom: 120px;
+  right: 40px;
+}
+
+.position-top-mentor {
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 500px;
+}
+.position-left-center {
+  left: 40px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .onboarding-progress {
