@@ -31,17 +31,19 @@
     <circle cx="1060" cy="560" r="3.5" fill="#00e5ff"/>
   </g>
 
-  <rect x="88" y="86" width="132" height="132" rx="30" fill="#0b1220" stroke="#4b96e0" stroke-opacity="0.5" stroke-width="2"/>
-  <text x="154" y="172" text-anchor="middle" font-size="64" font-weight="900" font-family="Poppins, Segoe UI, Arial, sans-serif" fill="url(#brand)">CD</text>
+  <rect x="88" y="48" width="132" height="132" rx="30" fill="#0b1220" stroke="#4b96e0" stroke-opacity="0.5" stroke-width="2"/>
+  <text x="154" y="134" text-anchor="middle" font-size="64" font-weight="900" font-family="Poppins, Segoe UI, Arial, sans-serif" fill="url(#brand)">CD</text>
 
-  <text x="88" y="292" font-size="80" font-weight="800" font-family="Poppins, Segoe UI, Arial, sans-serif" fill="#f6f8ff">COXI</text>
-  <text x="313" y="292" font-size="80" font-weight="800" font-family="Poppins, Segoe UI, Arial, sans-serif" fill="url(#brand)">DEV</text>
+  <text x="88" y="248" font-size="80" font-weight="800" font-family="Poppins, Segoe UI, Arial, sans-serif" fill="#f6f8ff">COXI</text>
+  <text x="313" y="248" font-size="80" font-weight="800" font-family="Poppins, Segoe UI, Arial, sans-serif" fill="url(#brand)">DEV</text>
 
-  <text x="88" y="374" font-size="66" font-weight="800" font-family="Poppins, Segoe UI, Arial, sans-serif" fill="#ffffff">Marcos Rios</text>
-  <text x="88" y="430" font-size="34" font-weight="600" font-family="Poppins, Segoe UI, Arial, sans-serif" fill="#b8c2d9">Software Developer | Software Engineering Student</text>
+  <text x="88" y="324" font-size="66" font-weight="800" font-family="Poppins, Segoe UI, Arial, sans-serif" fill="#ffffff">Marcos Rios</text>
+  <!-- Dos líneas: evita que el texto largo quede bajo la tarjeta Portfolio en previews -->
+  <text x="88" y="372" font-size="30" font-weight="600" font-family="Poppins, Segoe UI, Arial, sans-serif" fill="#b8c2d9">Software Developer</text>
+  <text x="88" y="408" font-size="30" font-weight="600" font-family="Poppins, Segoe UI, Arial, sans-serif" fill="#b8c2d9">Software Engineering Student</text>
 
-  <rect x="760" y="318" width="360" height="180" rx="22" fill="#0c111c" fill-opacity="0.92" stroke="#00e5ff" stroke-opacity="0.45" />
-  <text x="790" y="372" font-size="26" font-weight="700" font-family="Poppins, Segoe UI, Arial, sans-serif" fill="#00e5ff">Portfolio</text>
-  <text x="790" y="414" font-size="24" font-weight="600" font-family="Poppins, Segoe UI, Arial, sans-serif" fill="#d3daea">Full Stack</text>
-  <text x="790" y="452" font-size="24" font-weight="600" font-family="Poppins, Segoe UI, Arial, sans-serif" fill="#d3daea">Vue | Java | Python</text>
+  <rect x="760" y="418" width="360" height="180" rx="22" fill="#0c111c" fill-opacity="0.92" stroke="#00e5ff" stroke-opacity="0.45" />
+  <text x="790" y="468" font-size="26" font-weight="700" font-family="Poppins, Segoe UI, Arial, sans-serif" fill="#00e5ff">Portfolio</text>
+  <text x="790" y="508" font-size="24" font-weight="600" font-family="Poppins, Segoe UI, Arial, sans-serif" fill="#d3daea">Flutter</text>
+  <text x="790" y="548" font-size="24" font-weight="600" font-family="Poppins, Segoe UI, Arial, sans-serif" fill="#d3daea">Java · MySQL</text>
 </svg>
