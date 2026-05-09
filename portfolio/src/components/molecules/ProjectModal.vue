@@ -5,7 +5,7 @@
       <div class="modal-content">
         <!-- Close button -->
         <button class="modal-close" @click="closeModal" aria-label="Cerrar modal">
-          ✕
+          <IconWrapper name="close" color="text" size="md" />
         </button>
 
         <!-- Modal body -->
@@ -53,13 +53,13 @@
 
           <!-- Confidentiality notice -->
           <div v-if="project.confidentiality" class="confidentiality-notice">
-            <span class="notice-icon">🔒</span>
+            <IconWrapper name="lock" color="warning" size="sm" class="notice-icon" />
             <p>{{ project.confidentiality }}</p>
           </div>
 
           <!-- Mentorship info -->
           <div v-if="project.mentorship" class="mentorship-info">
-            <span class="mentorship-icon">👥</span>
+            <IconWrapper name="group" color="accent" size="sm" class="mentorship-icon" />
             <p>{{ project.mentorship }}</p>
           </div>
 
@@ -100,6 +100,7 @@
 
 <script setup>
 import { computed } from 'vue'
+import IconWrapper from '@/components/atoms/IconWrapper.vue'
 
 const props = defineProps({
   project: {

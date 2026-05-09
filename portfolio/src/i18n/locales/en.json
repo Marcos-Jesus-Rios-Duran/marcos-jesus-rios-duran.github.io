@@ -231,7 +231,8 @@
     "available": "Available for new projects",
     "cv": {
       "title": "My CV",
-      "download": "Download CV"
+      "download": "Download CV",
+      "loading": "Loading CV preview..."
     },
     "form": {
       "title": "Send me a message",
@@ -258,7 +259,7 @@
         "description": "Choose between Spanish, English, French, German, or Italian according to your preference."
       },
       {
-        "title": "🌙 Personalize your experience",
+        "title": "Personalize your experience",
         "description": "Switch between light and dark mode according to your visual preference."
       },
       {
@@ -266,11 +267,11 @@
         "description": "Here I share my knowledge of Clean Architecture, SOLID, Design Patterns, and professional methodologies."
       },
       {
-        "title": "👨‍🎓 My Mentors",
+        "title": "My Mentors",
         "description": "I'm grateful to INAOE professionals who shaped my trajectory and technical knowledge."
       },
       {
-        "title": "📚 Explore more",
+        "title": "Explore more",
         "description": "Visit 'Projects' to see my real work, and 'About me' to get to know me better, including my learning timeline."
       },
       {

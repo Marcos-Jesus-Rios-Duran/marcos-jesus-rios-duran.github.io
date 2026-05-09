@@ -16,7 +16,7 @@
 
       <div class="mentors-list-styled">
         <div v-for="(mentor, idx) in mentors" :key="idx" class="mentor-item">
-          <span class="mentor-icon">👨‍🎓</span>
+          <IconWrapper name="school" color="accent" size="md" class="mentor-icon" />
           <p class="mentor-text">{{ mentor }}</p>
         </div>
       </div>
@@ -31,6 +31,7 @@
 <script setup>
 import { useI18n } from 'vue-i18n'
 import { computed } from 'vue'
+import IconWrapper from '@/components/atoms/IconWrapper.vue'
 
 const { t, tm } = useI18n()
 
@@ -134,7 +135,6 @@ const mentors = computed(() => {
 }
 
 .mentor-icon {
-  font-size: 24px;
   min-width: 24px;
   flex-shrink: 0;
 }

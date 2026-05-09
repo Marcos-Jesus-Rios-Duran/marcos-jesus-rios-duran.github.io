@@ -231,7 +231,8 @@
     "available": "Verfügbar für neue Projekte",
     "cv": {
       "title": "Mein Lebenslauf",
-      "download": "Lebenslauf herunterladen"
+      "download": "Lebenslauf herunterladen",
+      "loading": "CV-Vorschau wird geladen..."
     },
     "form": {
       "title": "Sende mir eine Nachricht",
@@ -258,7 +259,7 @@
         "description": "Wählen Sie je nach Vorlieben zwischen Spanisch, Englisch, Französisch, Deutsch oder Italienisch."
       },
       {
-        "title": "🌙 Personalisieren Sie Ihre Erfahrung",
+        "title": "Personalisieren Sie Ihre Erfahrung",
         "description": "Wechseln Sie zwischen hellem und dunklem Modus je nach Ihren visuellen Vorlieben."
       },
       {
@@ -266,11 +267,11 @@
         "description": "Hier teile ich mein Wissen über saubere Architektur, SOLID, Design Patterns und professionelle Methodologien."
       },
       {
-        "title": "👨‍🎓 Meine Mentoren",
+        "title": "Meine Mentoren",
         "description": "Ich bin dankbar gegenüber INAOE-Profis, die meine Karriere und mein technisches Wissen geprägt haben."
       },
       {
-        "title": "📚 Erkunden Sie mehr",
+        "title": "Erkunden Sie mehr",
         "description": "Besuchen Sie 'Projekte', um meine echte Arbeit zu sehen, und 'Über mich', um mich besser kennenzulernen, einschließlich meiner Lernzeitleiste."
       },
       {

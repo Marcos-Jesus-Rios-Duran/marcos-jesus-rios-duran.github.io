@@ -1,9 +1,7 @@
 <template>
 
   <div ref="arena" class="canvas-wrap"
-  :style="{ cursor: paused ? 'auto' : 'none' }"
-  @mousemove="onMove"
-  @mouseleave="onLeave">
+  :style="{ cursor: paused ? 'auto' : 'none' }">
     <canvas ref="canvas" class="canvas" />
     <div class="cursor-dot" :style="dotStyle" />
     <div class="slot-content">
@@ -54,9 +52,16 @@ const PARTICLE_CONFIG = {
 
 let ctx, W, H, raf, ro
 let mouse = { x: -999, y: -999 }
+let arenaRect = { left: 0, top: 0 }
+let rawMouse = { x: -999, y: -999 }
+let pendingMouse = false
 let parts = []
+let prevArea = 0
+let prevMode = null
+let bgGradientCache = null
+let bgGradientKey = ''
 
-const REPEL = 110, FORCE = 22, RETURN = 0.055, DAMPING = 0.80
+const REPEL = 110, REPEL_SQ = REPEL * REPEL, FORCE = 22, RETURN = 0.055, DAMPING = 0.80
 
 function resize() {
   const r = arena.value.getBoundingClientRect()
@@ -64,39 +69,76 @@ function resize() {
   if (r.width === 0 || r.height === 0) return
   W = canvas.value.width  = r.width
   H = canvas.value.height = r.height
+  arenaRect.left = r.left
+  arenaRect.top = r.top
 }
 function makeParts() {
-  parts = []
   const cfg = PARTICLE_CONFIG[store.mode]
+
+  // Evitar recrear partículas si el cambio de área es pequeño y el modo no cambió
+  const currentArea = W * H
+  if (parts.length > 0 && prevMode === store.mode && prevArea > 0) {
+    const areaDiff = Math.abs(currentArea - prevArea) / prevArea
+    if (areaDiff < 0.12) return // menos del 12% de cambio → mantener partículas
+  }
+
+  parts = []
 
   // Factor basado en el área real del canvas vs un viewport base
   const baseArea = 1440 * 900
-  const currentArea = W * H
-  const scaleFactor = Math.min(currentArea / baseArea, 3) // máximo 3x para no exagerar
+  let scaleFactor = Math.min(currentArea / baseArea, 3) // máximo 3x para no exagerar
+
+  // Adaptative adjustments for low-power devices / reduced-motion
+  try {
+    let deviceFactor = 1
+    const deviceMem = navigator.deviceMemory || 8
+    const hw = navigator.hardwareConcurrency || 4
+    if (deviceMem <= 2) deviceFactor *= 0.45
+    else if (deviceMem <= 4) deviceFactor *= 0.75
+    if (hw <= 2) deviceFactor *= 0.6
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) deviceFactor *= 0.35
+    // Clamp so we always have at least a small, visible effect
+    deviceFactor = Math.max(0.25, Math.min(deviceFactor, 1))
+    scaleFactor = Math.max(0.25, scaleFactor * deviceFactor)
+  } catch (err) {
+    // ignore - fallback to default scaleFactor
+  }
 
   for (const layer of cfg.layers) {
     const count = Math.round(layer.count * scaleFactor) // ← escala el count
     for (let i = 0; i < count; i++) {
+      // Bias: más partículas en la parte superior (más visibles en el hero)
       const x = Math.random() * W
-      const y = Math.random() * H
+      const y = Math.pow(Math.random(), 1.6) * H
       parts.push({
         x, y, ox: x, oy: y, vx: 0, vy: 0,
         r: layer.rMin + Math.random() * (layer.rMax - layer.rMin),
         color: layer.colors[Math.floor(Math.random() * layer.colors.length)],
         drift: Math.random() * Math.PI * 2,
         driftSpeed: (Math.random() - 0.5) * 0.012,
-        driftAmp:   0.1 + Math.random() * 0.2
+        driftAmp:   0.1 + Math.random() * 0.2,
+        alpha: 0.82 + Math.random() * 0.18
       })
     }
   }
+
+  prevArea = currentArea
+  prevMode = store.mode
 }
 
 function drawBg() {
   const cfg = PARTICLE_CONFIG[store.mode]  // ✅
-  const grd = ctx.createLinearGradient(0, 0, 0, H)
-  grd.addColorStop(0, cfg.bgTop)
-  grd.addColorStop(1, cfg.bgBottom)
-  ctx.fillStyle = grd
+  const key = `${store.mode}:${W}:${H}`
+
+  if (bgGradientKey !== key) {
+    const grd = ctx.createLinearGradient(0, 0, 0, H)
+    grd.addColorStop(0, cfg.bgTop)
+    grd.addColorStop(1, cfg.bgBottom)
+    bgGradientCache = grd
+    bgGradientKey = key
+  }
+
+  ctx.fillStyle = bgGradientCache
   ctx.fillRect(0, 0, W, H)
 }
 
@@ -104,6 +146,20 @@ function draw() {
   const cfg = PARTICLE_CONFIG[store.mode]  // ✅
   ctx.clearRect(0, 0, W, H)
   drawBg()
+
+  // Apply pending mouse updates from pointer handler (throttled via rAF)
+  if (pendingMouse && !paused.value) {
+    mouse.x = rawMouse.x
+    mouse.y = rawMouse.y
+    pendingMouse = false
+    const cfgDot = PARTICLE_CONFIG[store.mode]
+    dotStyle.value = {
+      left:       mouse.x + 'px',
+      top:        mouse.y + 'px',
+      background: cfgDot.cursor,
+      boxShadow:  `0 0 10px ${cfgDot.cursor}`
+    }
+  }
 
   if (!paused.value && mouse.x > 0) {
     const grd = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, REPEL * 1.6)
@@ -120,9 +176,10 @@ function draw() {
 
     const dx = p.x - mouse.x
     const dy = p.y - mouse.y
-    const dist = Math.sqrt(dx * dx + dy * dy)
+    const distSq = dx * dx + dy * dy
 
-    if (dist < REPEL && dist > 0) {
+    if (distSq < REPEL_SQ && distSq > 0) {
+      const dist = Math.sqrt(distSq)
       const str = (REPEL - dist) / REPEL
       p.vx += (dx / dist) * str * str * FORCE
       p.vy += (dy / dist) * str * str * FORCE
@@ -138,7 +195,7 @@ function draw() {
     ctx.beginPath()
     ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
     ctx.fillStyle = p.color
-    ctx.globalAlpha = 0.82 + Math.random() * 0.18
+    ctx.globalAlpha = p.alpha
     ctx.fill()
     ctx.globalAlpha = 1
   }
@@ -181,11 +238,74 @@ onMounted(() => {
   draw()
   ro = new ResizeObserver(() => { resize(); makeParts() })
   ro.observe(arena.value)
+
+  // Pointer handling: use passive pointermove + rAF-throttle to avoid layout thrash
+  const handlePointerMove = (e) => {
+    if (paused.value) return
+    // Si arenaRect no está inicializado (o parece inválido), recalcular
+    if (!arenaRect || arenaRect.left === 0) {
+      const r = arena.value.getBoundingClientRect()
+      arenaRect.left = r.left
+      arenaRect.top = r.top
+      // update canvas size if needed
+      if (W !== r.width || H !== r.height) {
+        resize()
+        makeParts()
+      }
+    }
+
+    rawMouse.x = e.clientX - arenaRect.left
+    rawMouse.y = e.clientY - arenaRect.top
+    pendingMouse = true
+  }
+
+  const handlePointerLeave = () => {
+    rawMouse.x = -999
+    rawMouse.y = -999
+    pendingMouse = true
+  }
+
+  const handlePointerEnter = (e) => {
+    // Force rect refresh on enter to avoid mis-positioned dot
+    const r = arena.value.getBoundingClientRect()
+    arenaRect.left = r.left
+    arenaRect.top = r.top
+    rawMouse.x = e.clientX - arenaRect.left
+    rawMouse.y = e.clientY - arenaRect.top
+    pendingMouse = true
+  }
+
+  arena.value.addEventListener('pointermove', handlePointerMove, { passive: true })
+  arena.value.addEventListener('pointerleave', handlePointerLeave, { passive: true })
+  arena.value.addEventListener('pointerenter', handlePointerEnter, { passive: true })
+
+  // Pause canvas when page is hidden (Visibility API) — reduces CPU ~90% when tab hidden
+  const handleVisibilityChange = () => {
+    paused.value = document.hidden
+  }
+  document.addEventListener('visibilitychange', handleVisibilityChange)
+
+  // store handlers for cleanup
+  arena._ag_handlers = { handlePointerMove, handlePointerLeave, handlePointerEnter }
+  document._ag_visibilityHandler = handleVisibilityChange
 })
 
 onUnmounted(() => {
   cancelAnimationFrame(raf)
-  ro.disconnect()
+  if (ro) ro.disconnect()
+
+  // Clean up visibility listener
+  if (document._ag_visibilityHandler) {
+    document.removeEventListener('visibilitychange', document._ag_visibilityHandler)
+    delete document._ag_visibilityHandler
+  }
+
+  if (arena.value && arena.value._ag_handlers) {
+    arena.value.removeEventListener('pointermove', arena.value._ag_handlers.handlePointerMove)
+    arena.value.removeEventListener('pointerleave', arena.value._ag_handlers.handlePointerLeave)
+    arena.value.removeEventListener('pointerenter', arena.value._ag_handlers.handlePointerEnter)
+    delete arena.value._ag_handlers
+  }
 })
 </script>
 

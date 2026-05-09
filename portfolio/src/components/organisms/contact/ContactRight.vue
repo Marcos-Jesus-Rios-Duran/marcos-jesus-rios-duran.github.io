@@ -41,7 +41,7 @@
         </div>
 
         <button type="submit" class="btn-send" :disabled="sending">
-          <span v-if="!sending">{{ t('contact.form.send') }} 🚀</span>
+          <span v-if="!sending">{{ t('contact.form.send') }} <IconWrapper name="send" color="light" size="sm" style="vertical-align: middle; margin-left: 4px;" /></span>
           <span v-else>{{ t('contact.form.sending') }}...</span>
         </button>
 
@@ -60,7 +60,7 @@
           <!-- Header -->
           <div class="cv-modal-header">
             <h2>{{ t('contact.cv.title') }}</h2>
-            <button class="cv-modal-close" @click="closeCVModal">✕</button>
+            <button class="cv-modal-close" @click="closeCVModal"><IconWrapper name="close" color="text" size="md" /></button>
           </div>
 
           <!-- Tabs -->
@@ -82,9 +82,12 @@
             <iframe
               v-if="cvEverOpened"
               v-show="showCVModal"
-              :src="`/cv/cv-${cvLang}.pdf`"
+              :src="cvPreviewSrc"
               class="cv-modal-iframe"
             />
+            <div v-if="cvPdfLoading" class="cv-modal-loading">
+              {{ t('contact.cv.loading') }}
+            </div>
           </div>
 
           <!-- Download Button -->
@@ -93,7 +96,8 @@
             :download="`Marcos-Rios-CV-${cvLang.toUpperCase()}.pdf`"
             class="cv-modal-download"
           >
-            ⬇️ {{ t('contact.cv.download') }} ({{ cvLang.toUpperCase() }})
+            <IconWrapper name="download" color="text" size="md" />
+            {{ t('contact.cv.download') }} ({{ cvLang.toUpperCase() }})
           </a>
         </div>
       </div>
@@ -110,33 +114,65 @@
 
 <script setup>
 import emailjs from '@emailjs/browser'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, reactive, computed, inject } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { inject } from 'vue'
+import IconWrapper from '@/components/atoms/IconWrapper.vue'
 
 const canvasPaused = inject('canvasPaused', null)
 const cvEverOpened = ref(false)
-
-
-
-
 const { t } = useI18n()
 
+const showCVModal = ref(false)
+const cvLang = ref('en')
+const cvPdfUrls = reactive({ en: '', es: '' })
+const cvPdfLoading = ref(false)
 
+const CV_LANGS = ['en', 'es']
+const cvPrefetchState = {
+  promise: null,
+}
+
+async function loadCvPdf(lang) {
+  if (cvPdfUrls[lang]) return cvPdfUrls[lang]
+
+  const response = await fetch(`/cv/cv-${lang}.pdf`, { cache: 'force-cache' })
+  if (!response.ok) {
+    throw new Error(`Failed to load CV PDF: ${lang}`)
+  }
+
+  const blob = await response.blob()
+  const objectUrl = URL.createObjectURL(blob)
+  cvPdfUrls[lang] = objectUrl
+  return objectUrl
+}
+
+function prefetchCvPdfs() {
+  if (cvPrefetchState.promise) return cvPrefetchState.promise
+
+  cvPrefetchState.promise = Promise.all(CV_LANGS.map((lang) => loadCvPdf(lang)))
+    .catch((error) => {
+      console.warn('CV PDF prefetch failed:', error)
+    })
+
+  return cvPrefetchState.promise
+}
+
+const cvPreviewSrc = computed(() => cvPdfUrls[cvLang.value] || `/cv/cv-${cvLang.value}.pdf`)
+
+async function ensureActiveCvPdf() {
+  cvPdfLoading.value = true
+
+  try {
+    await loadCvPdf(cvLang.value)
+  } catch (error) {
+    console.warn('CV PDF load failed:', error)
+  } finally {
+    cvPdfLoading.value = false
+  }
+}
 
 onMounted(() => {
-  // Espera 3 segundos después de que cargó la página, luego precarga los PDFs
-  setTimeout(() => {
-    const linkEs = document.createElement('link')
-    linkEs.rel = 'prefetch'
-    linkEs.href = '/cv/cv-es.pdf'
-    document.head.appendChild(linkEs)
-
-    const linkEn = document.createElement('link')
-    linkEn.rel = 'prefetch'
-    linkEn.href = '/cv/cv-en.pdf'
-    document.head.appendChild(linkEn)
-  }, 3000)
+  prefetchCvPdfs()
 })
 
 const onModalClosed = () => {
@@ -146,20 +182,22 @@ const onModalClosed = () => {
   }, 50)
 }
 
-// CV Modal
-const showCVModal = ref(false)
-const cvLang = ref('en') // English by default
-
 const openCVModal = () => {
   cvEverOpened.value = true
   showCVModal.value = true
+  // Evitar CLS al ocultar scrollbar: añadir padding-right equivalente al ancho del scrollbar
+  const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth
+  if (scrollBarWidth > 0) document.body.style.paddingRight = `${scrollBarWidth}px`
   document.body.style.overflow = 'hidden'
   if (canvasPaused) canvasPaused.value = true // ← pausa el canvas al abrir el modal
+  void ensureActiveCvPdf()
 }
 
 const closeCVModal = () => {
   showCVModal.value = false
+  // Restaurar estilos aplicados al abrir
   document.body.style.overflow = 'auto'
+  document.body.style.paddingRight = ''
 }
 
 // Form state
@@ -499,6 +537,7 @@ padding-top: 70px;
 
 .cv-modal-preview {
   flex: 1;
+  position: relative;
   overflow: hidden;
   padding: 0 28px 28px;
   border-radius: 12px;
@@ -509,6 +548,25 @@ padding-top: 70px;
   height: 100%;
   border: none;
   border-radius: 12px;
+}
+
+.cv-modal-loading {
+  position: absolute;
+  inset: 0 28px 28px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.72);
+  color: #1a0812;
+  font-weight: 700;
+  backdrop-filter: blur(8px);
+  pointer-events: none;
+}
+
+[data-theme="dark"] .cv-modal-loading {
+  background: rgba(15,15,25,0.72);
+  color: rgba(255,255,255,0.9);
 }
 
 .cv-modal-download {

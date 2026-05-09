@@ -49,7 +49,7 @@
             class="btn-control btn-next"
             @click="store.isLastStep ? store.finishOnboarding() : store.nextStep()"
           >
-            {{ store.isLastStep ? '¡Comenzar! 🚀' : 'Siguiente →' }}
+            {{ store.isLastStep ? '¡Comenzar!' : 'Siguiente' }} <span class="material-icons-round" style="font-size: 1rem; vertical-align: middle;">{{ store.isLastStep ? 'rocket_launch' : 'arrow_forward' }}</span>
           </button>
         </div>
 
@@ -69,6 +69,7 @@
 <script setup>
 import { ref, watch, computed, onMounted, onUnmounted } from 'vue'
 import { useOnboarding } from '@/stores/useOnboarding'
+import IconWrapper from '@/components/atoms/IconWrapper.vue'
 
 const store = useOnboarding()
 

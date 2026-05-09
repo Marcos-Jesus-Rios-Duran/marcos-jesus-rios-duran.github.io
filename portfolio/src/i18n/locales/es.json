@@ -231,7 +231,8 @@
     "available": "Disponible para nuevos proyectos",
     "cv": {
       "title": "Mi Currículum",
-      "download": "Descargar CV"
+      "download": "Descargar CV",
+      "loading": "Cargando vista previa del CV..."
     },
     "form": {
       "title": "Envíame un mensaje",
@@ -258,7 +259,7 @@
         "description": "Elige entre español, inglés, francés, alemán o italiano según tu preferencia."
       },
       {
-        "title": "🌙 Personaliza tu experiencia",
+        "title": "Personaliza tu experiencia",
         "description": "Cambia entre modo claro y oscuro según tu preferencia visual."
       },
       {
@@ -266,11 +267,11 @@
         "description": "Aquí comparto mi conocimiento en Arquitectura Limpia, SOLID, Design Patterns y metodologías profesionales."
       },
       {
-        "title": "👨‍🎓 Mis Mentores",
+        "title": "Mis Mentores",
         "description": "Agradezco a profesionales del INAOE que moldearon mi trayectoria y conocimiento técnico."
       },
       {
-        "title": "📚 Explora más",
+        "title": "Explora más",
         "description": "Visita 'Proyectos' para ver mi trabajo real, y 'Sobre mí' para conocerme mejor, incluyendo mi timeline de aprendizaje."
       },
       {

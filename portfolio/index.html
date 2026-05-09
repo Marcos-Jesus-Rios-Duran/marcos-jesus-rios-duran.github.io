@@ -47,17 +47,24 @@
     "description": "Desarrollador especializado en arquitectura limpia y gestión de software"
   }
   </script>
-  <!-- Google Fonts - Noto Color Emoji para soporte universal de emojis -->
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+  <!-- Google Fonts + Noto Color Emoji SOLO para banderas de país -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Noto+Color+Emoji&display=swap" rel="stylesheet">
-  <!-- Material Icons -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <style>
-    /* Asegura que los emojis se muestren con Noto Color Emoji en todos lados */
-    .lang-flag, [data-flag] {
+    /* Banderas de país: renderizar con Noto Color Emoji */
+    .lang-flag {
       font-family: 'Noto Color Emoji', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-      font-size: inherit;
+      display: inline-block;
+      min-width: 24px;
+      height: 24px;
+      line-height: 24px;
+      text-align: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
     }
   </style>
 </head>

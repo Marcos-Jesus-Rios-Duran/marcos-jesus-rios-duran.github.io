@@ -10,7 +10,7 @@
     <!-- Philosophy & Remote -->
     <div class="philosophy-card">
       <p class="philosophy-text">{{ t('skills.philosophy') }}</p>
-      <span class="remote-badge">🌍 {{ t('skills.remote') }}</span>
+      <span class="remote-badge"><IconWrapper name="public" color="accent" size="sm" style="margin-right: 6px;" /> {{ t('skills.remote') }}</span>
     </div>
 
     <!-- Tech Cards Grid -->
@@ -51,6 +51,7 @@
 <script setup>
 import { useI18n } from 'vue-i18n'
 import TechCard from '@/components/atoms/TechCard.vue'
+import IconWrapper from '@/components/atoms/IconWrapper.vue'
 
 const { t } = useI18n()
 
@@ -59,7 +60,7 @@ const skillCards = [
   // Card 1: Cloud & Git — certificaciones y control de versiones
   {
     id: 'cloud',
-    icon: '☁️',
+    icon: 'cloud',
     title: 'Cloud & Git',
     delay: 0,
     duration: 4.5,
@@ -85,7 +86,7 @@ const skillCards = [
   // Card 2: Frontend
   {
     id: 'frontend',
-    icon: '💻',
+    icon: 'laptop',
     title: 'Frontend',
     delay: 0.05,
     duration: 5.2,
@@ -102,7 +103,7 @@ const skillCards = [
   // Card 3: Backend
   {
     id: 'backend',
-    icon: '⚙️',
+    icon: 'settings',
     title: 'Backend',
     delay: 0.10,
     duration: 4.8,
@@ -119,7 +120,7 @@ const skillCards = [
   // Card 4: Mobile & Desktop
   {
     id: 'mobile',
-    icon: '📱',
+    icon: 'phone_android',
     title: 'Mobile & Desktop',
     delay: 0.15,
     duration: 5.5,
@@ -132,10 +133,10 @@ const skillCards = [
     ]
   },
 
-  // Card 5: Databases —
+  // Card 5: Databases
   {
     id: 'databases',
-    icon: '🗄️',
+    icon: 'storage',
     title: 'Databases',
     delay: 0.20,
     duration: 4.6,
@@ -151,7 +152,7 @@ const skillCards = [
   // Card 6: Análisis & Ciberseguridad
   {
     id: 'security',
-    icon: '🛡️',
+    icon: 'security',
     title: 'Análisis & Ciberseguridad',
     delay: 0.25,
     duration: 5.0,
