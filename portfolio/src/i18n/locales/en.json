@@ -85,41 +85,13 @@
   },
   "skills": {
     "title": "Architecture & Skills",
-    "subtitle": "My toolkit and philosophy",
     "philosophy": "Clean Code • Pragmatic Programming • Continuous Learning",
     "remote": "Remote-First Developer",
-    "categories": {
-      "frontend": {
-        "title": "Frontend",
-        "icon": "💻",
-        "technologies": ["TypeScript", "JavaScript", "Angular", "React", "Vue.js", "Pug"]
-      },
-      "backend": {
-        "title": "Backend",
-        "icon": "⚙️",
-        "technologies": ["Java 17", "Java 21", "Python", "Node.js", "Spring Boot", "FastAPI", "Express.js"]
-      },
-      "mobile": {
-        "title": "Mobile & Desktop",
-        "icon": "📱",
-        "technologies": ["Flutter", "Dart", "Android", "Java", "Kotlin"]
-      }
-    },
     "architecture": {
       "title": "Architecture & Design",
       "principles": "SOLID • DRY • KISS • Hexagonal Architecture • Clean Code",
       "patterns": "Singleton • Factory • Facade • Strategy • DAO/DTO • MVC • MVVM",
-      "methodologies": "Feature-First • Scrum • Git Flow",
-      "vcs": "GitHub • GitLab (Private)"
-    },
-    "databases": {
-      "title": "Databases",
-      "sql": "MySQL • MariaDB • PostgreSQL",
-      "nosql": "MongoDB • Neo4j"
-    },
-    "specializations": {
-      "title": "Specializations",
-      "items": ["Cybersecurity", "Azure AI-900 ✓"]
+      "methodologies": "Feature-First • Scrum • Git Flow"
     }
   },
   "projects": {
@@ -245,8 +217,8 @@
     "inaoe": "National Institute of Astrophysics, Optics and Electronics",
     "intro": "I deeply thank my mentors at the National Institute of Astrophysics, Optics and Electronics (INAOE) for their guidance, inspiration and dedication in my professional training:",
     "list": [
-      "Dra. Janeth Cruz Enríquez - Senior Technologist INAOE, Head of Computational Systems",
-      "Juan Carlos Escamilla Abarca - Lic. Computer Science, Computational Systems",
+      "Dr. Janeth Cruz Enríquez - Senior Technologist INAOE, Head of Computational Systems",
+      "Juan Carlos Escamilla Abarca - B.S. Computer Science, Computational Systems",
       "Dr. Jesús Fonseca Bustos - Senior Technologist INAOE, Computational Systems"
     ],
     "closing": "Their experience and mentoring have been fundamental to my development as a software engineer and will continue to be an inspiration for my professional career."

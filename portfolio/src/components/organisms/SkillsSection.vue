@@ -132,11 +132,11 @@ const skillCards = [
     ]
   },
 
-  // Card 5: Bases de Datos — sube desde info-card
+  // Card 5: Databases —
   {
     id: 'databases',
     icon: '🗄️',
-    title: 'Bases de Datos',
+    title: 'Databases',
     delay: 0.20,
     duration: 4.6,
     tags: [

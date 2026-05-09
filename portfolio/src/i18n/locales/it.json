@@ -85,41 +85,13 @@
   },
   "skills": {
     "title": "Architettura & Competenze",
-    "subtitle": "Il mio kit di strumenti e la mia filosofia",
     "philosophy": "Codice Pulito • Programmazione Pragmatica • Apprendimento Continuo",
     "remote": "Sviluppatore da Remoto",
-    "categories": {
-      "frontend": {
-        "title": "Frontend",
-        "icon": "💻",
-        "technologies": ["TypeScript", "JavaScript", "Angular", "React", "Vue.js", "Pug"]
-      },
-      "backend": {
-        "title": "Backend",
-        "icon": "⚙️",
-        "technologies": ["Java 17", "Java 21", "Python", "Node.js", "Spring Boot", "FastAPI", "Express.js"]
-      },
-      "mobile": {
-        "title": "Mobile & Desktop",
-        "icon": "📱",
-        "technologies": ["Flutter", "Dart", "Android", "Java", "Kotlin"]
-      }
-    },
     "architecture": {
       "title": "Architettura & Design",
       "principles": "SOLID • DRY • KISS • Hexagonal Architecture • Clean Code",
       "patterns": "Singleton • Factory • Facade • Strategy • DAO/DTO • MVC • MVVM",
-      "methodologies": "Feature-First • Scrum • Git Flow",
-      "vcs": "GitHub • GitLab (Privato)"
-    },
-    "databases": {
-      "title": "Database",
-      "sql": "MySQL • MariaDB • PostgreSQL",
-      "nosql": "MongoDB • Neo4j"
-    },
-    "specializations": {
-      "title": "Specializzazioni",
-      "items": ["Sicurezza Informatica", "Azure AI-900 ✓"]
+      "methodologies": "Feature-First • Scrum • Git Flow"
     }
   },
   "projects": {
@@ -243,8 +215,8 @@
     "inaoe": "Istituto Nazionale di Astrofisica, Ottica ed Elettronica",
     "intro": "Ringrazio profondamente i miei mentori presso l'Istituto Nazionale di Astrofisica, Ottica ed Elettronica (INAOE) per la loro guida, ispirazione e dedizione nella mia formazione professionale:",
     "list": [
-      "Dra. Janeth Cruz Enríquez - Tecnologa Senior INAOE, Responsabile del Dipartimento Sistemi Computazionali",
-      "Juan Carlos Escamilla Abarca - Lic. Scienze dell'Informazione, Sistemi Computazionali",
+      "Dr. Janeth Cruz Enríquez - Tecnologa Senior INAOE, Responsabile del Dipartimento Sistemi Computazionali",
+      "Juan Carlos Escamilla Abarca - Dott. Scienze dell'Informazione, Sistemi Computazionali",
       "Dr. Jesús Fonseca Bustos - Tecnologo Senior INAOE, Sistemi Computazionali"
     ],
     "closing": "La loro esperienza e il loro mentoring sono stati fondamentali per il mio sviluppo come ingegnere del software e continueranno ad essere un'ispirazione per la mia carriera professionale."

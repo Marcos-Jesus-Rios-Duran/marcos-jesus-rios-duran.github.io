@@ -85,65 +85,13 @@
   },
   "skills": {
     "title": "Arquitectura & Habilidades",
-    "subtitle": "Mi conjunto de herramientas y filosofía",
     "philosophy": "Código Limpio • Programación Pragmática • Aprendizaje Continuo",
     "remote": "Desarrollador Remoto",
-    "categories": {
-      "frontend": {
-        "title": "Frontend",
-        "icon": "💻",
-        "technologies": [
-          "TypeScript",
-          "JavaScript",
-          "Angular",
-          "React",
-          "Vue.js",
-          "Pug"
-        ]
-      },
-      "backend": {
-        "title": "Backend",
-        "icon": "⚙️",
-        "technologies": [
-          "Java 17",
-          "Java 21",
-          "Python",
-          "Node.js",
-          "Spring Boot",
-          "FastAPI",
-          "Express.js"
-        ]
-      },
-      "mobile": {
-        "title": "Mobile & Desktop",
-        "icon": "📱",
-        "technologies": [
-          "Flutter",
-          "Dart",
-          "Android",
-          "Java",
-          "Kotlin"
-        ]
-      }
-    },
     "architecture": {
       "title": "Arquitectura & Diseño",
       "principles": "SOLID • DRY • KISS • Hexagonal Architecture • Clean Code",
       "patterns": "Singleton • Factory • Facade • Strategy • DAO/DTO • MVC • MVVM",
-      "methodologies": "Feature-First • Scrum • Git Flow",
-      "vcs": "GitHub • GitLab (Privado)"
-    },
-    "databases": {
-      "title": "Bases de Datos",
-      "sql": "MySQL • MariaDB • PostgreSQL",
-      "nosql": "MongoDB • Neo4j"
-    },
-    "specializations": {
-      "title": "Especializaciones",
-      "items": [
-        "Ciberseguridad",
-        "Azure AI-900 ✓"
-      ]
+      "methodologies": "Feature-First • Scrum • Git Flow"
     }
   },
   "projects": {
@@ -270,7 +218,7 @@
     "intro": "Agradezco profundamente a mis mentores en el Instituto Nacional de Astrofísica, Óptica y Electrónica (INAOE) por su guía, inspiración y dedicación en mi formación profesional:",
     "list": [
       "Dra. Janeth Cruz Enríquez - Tecnóloga titular INAOE, Responsable del área de Sistemas Computacionales",
-      "Juan Carlos Escamilla Abarca - Lic. Ciencias de la Computación, Sistemas Computacionales",
+      "Juan Carlos Escamilla Abarca - Lic. en Ciencias de la Computación, Sistemas Computacionales",
       "Dr. Jesús Fonseca Bustos - Tecnólogo titular INAOE, Sistemas Computacionales"
     ],
     "closing": "Su experiencia y mentoría han sido fundamentales en mi desarrollo como ingeniero de software y seguirán siendo una inspiración para mi carrera profesional."
