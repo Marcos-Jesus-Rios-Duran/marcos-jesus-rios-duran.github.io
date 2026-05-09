@@ -14,9 +14,21 @@
     <!-- Header con título y status -->
     <div class="project-card__header">
       <h3 class="project-card__title">{{ project.name }}</h3>
-      <span v-if="project.status" class="status-badge" :class="`status--${getStatusClass(project.status)}`">
-        {{ project.status }}
-      </span>
+      <div class="project-card__badges">
+        <span
+          v-if="statusLabel"
+          class="status-badge"
+          :class="`status--${getStatusClass(project.status)}`"
+        >
+          {{ statusLabel }}
+        </span>
+        <span
+          v-if="project.confidentiality"
+          class="status-badge status--confidential status-badge--soft"
+        >
+          Confidencial
+        </span>
+      </div>
     </div>
 
     <!-- Descripción compacta (120 chars) -->
@@ -63,31 +75,51 @@ const truncatedDescription = computed(() => {
   return desc.length > 120 ? desc.slice(0, 120) + '...' : desc
 })
 
+const statusLabel = computed(() => {
+  const status = (props.project.status || '').trim()
+
+  const labelMap = {
+    featured: 'Destacado',
+    Featured: 'Destacado',
+    'En desarrollo': 'En desarrollo',
+    'En Desarrollo': 'En desarrollo',
+    development: 'En desarrollo',
+    'Finalizado / Académico': 'Finalizado / Académico',
+    'Open Source / En Desarrollo': 'Open Source',
+    'En Desarrollo / Refactorización': 'En desarrollo',
+    confidential: 'Confidencial',
+    Confidential: 'Confidencial'
+  }
+
+  return labelMap[status] || status
+})
+
 const openProject = () => {
   emit('open', props.project)
 }
 
 const getStatusClass = (status) => {
+  const normalized = (status || '').toString().trim().toLowerCase()
   const statusMap = {
-    'En desarrollo': 'development',
-    'Finalizado / Académico': 'completed',
-    'Open Source / En Desarrollo': 'opensource',
-    'Confidencial': 'confidential',
-    'En Desarrollo / Refactorización': 'refactoring',
-    'Confidential': 'confidential'
+    'en desarrollo': 'development',
+    'development': 'development',
+    'finalizado / académico': 'completed',
+    'open source / en desarrollo': 'opensource',
+    'featured': 'featured',
+    'confidencial': 'confidential',
+    'confidential': 'confidential',
+    'en desarrollo / refactorización': 'refactoring'
   }
-  return statusMap[status] || 'default'
+  return statusMap[normalized] || 'default'
 }
 </script>
 
 <style scoped>
 .project-card {
-  background: linear-gradient(
-    135deg,
-    #fff0f6 0%,
-    #ffe8f2 100%
-  );
-  border: 2px solid #ffc6e0;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(255,255,255,0.88) 0%, rgba(255,240,246,0.82) 100%);
+  border: 1.5px solid rgba(255, 179, 204, 0.38);
   border-radius: 20px;
   padding: 20px;
   display: flex;
@@ -96,17 +128,24 @@ const getStatusClass = (status) => {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   min-height: 240px;
-  box-shadow: 0 6px 20px rgba(255, 120, 170, 0.15);
+  box-shadow:
+    0 12px 28px rgba(255, 120, 170, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.65);
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right, rgba(255, 143, 171, 0.16), transparent 30%),
+              radial-gradient(circle at bottom left, rgba(75, 150, 224, 0.10), transparent 28%);
+  pointer-events: none;
 }
 
 .project-card:hover {
-  border-color: #ff8fb3;
-  background: linear-gradient(
-    135deg,
-    #ffdeef 0%,
-    #ffd5eb 100%
-  );
-  box-shadow: 0 12px 32px rgba(255, 120, 170, 0.25);
+  border-color: rgba(255, 143, 171, 0.55);
+  background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(255,235,242,0.88) 100%);
+  box-shadow: 0 18px 40px rgba(255, 120, 170, 0.18);
   transform: translateY(-4px);
 }
 
@@ -116,6 +155,8 @@ const getStatusClass = (status) => {
   flex-wrap: wrap;
   gap: 6px;
   min-height: 28px;
+  position: relative;
+  z-index: 1;
 }
 
 .tech-badge {
@@ -152,11 +193,13 @@ const getStatusClass = (status) => {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 10px;
+  gap: 12px;
+  position: relative;
+  z-index: 1;
 }
 
 .project-card__title {
-  font-size: 1.2rem;
+  font-size: 1.18rem;
   font-weight: 800;
   color: #1a0812;
   margin: 0;
@@ -165,54 +208,76 @@ const getStatusClass = (status) => {
   letter-spacing: -0.3px;
 }
 
+.project-card__badges {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
 .status-badge {
   display: inline-block;
-  padding: 5px 10px;
-  border-radius: 18px;
-  font-size: 0.65rem;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.64rem;
   font-weight: 600;
   text-transform: capitalize;
   white-space: nowrap;
   flex-shrink: 0;
+  letter-spacing: 0.03em;
+  backdrop-filter: blur(8px);
+}
+
+.status-badge--soft {
+  opacity: 0.92;
 }
 
 .status--development {
-  background: rgba(255, 193, 7, 0.2);
-  color: #ffc107;
-  border: 1px solid rgba(255, 193, 7, 0.3);
+  background: rgba(255, 193, 7, 0.12);
+  color: #b7791f;
+  border: 1px solid rgba(255, 193, 7, 0.28);
 }
 
 .status--completed {
-  background: rgba(76, 175, 80, 0.2);
-  color: #4caf50;
-  border: 1px solid rgba(76, 175, 80, 0.3);
+  background: rgba(76, 175, 80, 0.14);
+  color: #2e7d32;
+  border: 1px solid rgba(76, 175, 80, 0.26);
 }
 
 .status--opensource {
-  background: rgba(0, 229, 255, 0.2);
-  color: #00e5ff;
-  border: 1px solid rgba(0, 229, 255, 0.3);
+  background: rgba(0, 229, 255, 0.12);
+  color: #0f6f7d;
+  border: 1px solid rgba(0, 229, 255, 0.26);
+}
+
+.status--featured {
+  background: rgba(255, 143, 171, 0.14);
+  color: #a91e55;
+  border: 1px solid rgba(255, 143, 171, 0.30);
 }
 
 .status--confidential {
-  background: rgba(156, 39, 176, 0.2);
-  color: #ce93d8;
-  border: 1px solid rgba(156, 39, 176, 0.3);
+  background: rgba(99, 102, 241, 0.14);
+  color: #4f46e5;
+  border: 1px solid rgba(99, 102, 241, 0.28);
 }
 
 .status--refactoring {
-  background: rgba(255, 152, 0, 0.2);
-  color: #ff9800;
-  border: 1px solid rgba(255, 152, 0, 0.3);
+  background: rgba(255, 152, 0, 0.14);
+  color: #b45309;
+  border: 1px solid rgba(255, 152, 0, 0.28);
 }
 
 /* === DESCRIPCIÓN === */
 .project-card__description {
   font-size: 0.9rem;
-  color: #5a5a5a;
+  color: #5b5b5b;
   line-height: 1.5;
   margin: 0;
   flex-grow: 1;
+  position: relative;
+  z-index: 1;
 }
 
 /* === CTA BUTTON === */
@@ -231,7 +296,9 @@ const getStatusClass = (status) => {
   cursor: pointer;
   transition: all 0.25s;
   white-space: nowrap;
-  box-shadow: 0 4px 12px rgba(255, 120, 170, 0.2);
+  box-shadow: 0 8px 18px rgba(255, 120, 170, 0.18);
+  position: relative;
+  z-index: 1;
 }
 
 .project-card__cta:hover {
@@ -277,14 +344,27 @@ const getStatusClass = (status) => {
   color: #ffffff;
 }
 
+[data-theme="light"] .status--featured {
+  background: rgba(255, 143, 171, 0.16);
+  color: #9a1f52;
+}
+
+[data-theme="light"] .status--confidential {
+  background: rgba(99, 102, 241, 0.14);
+  color: #4f46e5;
+}
+
 /* === DARK MODE === */
 [data-theme="dark"] .project-card {
   background: linear-gradient(
-    135deg,
+    180deg,
     rgba(0, 229, 255, 0.08) 0%,
-    rgba(0, 188, 212, 0.06) 100%
+    rgba(0, 188, 212, 0.05) 100%
   );
-  border-color: rgba(0, 229, 255, 0.15);
+  border-color: rgba(0, 229, 255, 0.16);
+  box-shadow:
+    0 12px 28px rgba(0, 229, 255, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 [data-theme="dark"] .tech-badge {
@@ -307,11 +387,11 @@ const getStatusClass = (status) => {
 }
 
 [data-theme="dark"] .project-card:hover {
-  border-color: rgba(0, 229, 255, 0.35);
+  border-color: rgba(0, 229, 255, 0.34);
   background: linear-gradient(
-    135deg,
-    rgba(0, 229, 255, 0.12) 0%,
-    rgba(0, 188, 212, 0.10) 100%
+    180deg,
+    rgba(0, 229, 255, 0.11) 0%,
+    rgba(0, 188, 212, 0.08) 100%
   );
   box-shadow: 0 12px 32px rgba(0, 229, 255, 0.12);
 }
@@ -344,6 +424,10 @@ const getStatusClass = (status) => {
 
   .project-card__title {
     font-size: 1rem;
+  }
+
+  .project-card__badges {
+    gap: 6px;
   }
 
   .project-card__description {
