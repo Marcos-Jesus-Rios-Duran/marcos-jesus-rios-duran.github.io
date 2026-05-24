@@ -17,15 +17,15 @@
       <div class="footer-inner">
         <div class="footer-brand">
           <h3 class="footer-name">COXIDEV</h3>
-          <p class="footer-role">Marcos Jesús Ríos Durán · Desarrollador de Software | Estudiante de Ingeniería</p>
+          <p class="footer-role">{{ t('footer.role') }}</p>
           <p class="footer-sub">{{ t('footer.made_with') }}</p>
         </div>
 
         <nav class="footer-links" aria-label="Footer navigation">
-          <router-link :to="{ name: 'home' }">Inicio</router-link>
-          <router-link :to="{ name: 'about' }">Sobre mí</router-link>
-          <router-link :to="{ name: 'projects' }">Proyectos</router-link>
-          <router-link :to="{ name: 'contact' }">Contacto</router-link>
+          <router-link :to="{ name: 'home' }">{{ t('nav.home') }}</router-link>
+          <router-link :to="{ name: 'about' }">{{ t('nav.about') }}</router-link>
+          <router-link :to="{ name: 'projects' }">{{ t('nav.projects') }}</router-link>
+          <router-link :to="{ name: 'contact' }">{{ t('nav.contact') }}</router-link>
         </nav>
 
         <div class="footer-socials">
@@ -36,7 +36,7 @@
       </div>
 
       <div class="footer-bottom">
-        <span>© {{ currentYear }} COXIDEV. Todos los derechos reservados.</span>
+        <span>© {{ currentYear }} COXIDEV. {{ t('footer.rights') }}</span>
       </div>
     </footer>
 

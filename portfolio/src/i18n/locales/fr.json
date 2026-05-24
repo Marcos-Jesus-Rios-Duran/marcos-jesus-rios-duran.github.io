@@ -287,7 +287,8 @@
     ]
   },
   "footer": {
-    "made_with": "Fait avec Vue 🌸 depuis Huauchinango, Puebla",
+    "role": "Marcos Jesús Ríos Durán · TSU et étudiant en ingénierie logicielle",
+    "made_with": "Fait avec Vue depuis Xicotepec, Puebla",
     "rights": "Tous droits réservés"
   }
 }

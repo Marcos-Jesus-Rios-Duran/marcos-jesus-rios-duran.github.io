@@ -289,7 +289,8 @@
     ]
   },
   "footer": {
-    "made_with": "Made with Vue 🌸 from Huauchinango, Puebla",
+    "role": "Marcos Jesús Ríos Durán · Associate Degree (TSU) and Software Development Engineering student",
+    "made_with": "Made with Vue from Xicotepec, Puebla",
     "rights": "All rights reserved"
   }
 }
