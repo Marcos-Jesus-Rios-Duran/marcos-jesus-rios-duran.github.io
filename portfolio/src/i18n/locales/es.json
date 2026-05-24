@@ -97,6 +97,14 @@
   "projects": {
     "title": "Proyectos",
     "status": "En desarrollo",
+    "status_labels": {
+      "development": "En desarrollo",
+      "completed": "Finalizado / Académico",
+      "featured": "Destacado",
+      "opensource": "Open Source",
+      "confidential": "Confidencial",
+      "refactoring": "Refactorización"
+    },
     "subtitle": "Lo que he construido",
     "Soodan": {
       "name": "Soodan",

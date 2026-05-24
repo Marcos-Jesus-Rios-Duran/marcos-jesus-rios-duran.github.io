@@ -16,7 +16,6 @@
 
       <div class="mentors-list-styled">
         <div v-for="(mentor, idx) in mentors" :key="idx" class="mentor-item">
-          <IconWrapper name="school" color="accent" size="md" class="mentor-icon" />
           <p class="mentor-text">{{ mentor }}</p>
         </div>
       </div>

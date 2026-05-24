@@ -16,9 +16,8 @@ import { ref, onMounted, onUnmounted, watch, provide } from 'vue'
 import { useTheme } from '@/stores/useTheme'
 
 const paused = ref(false)
-provide('canvasPaused', paused) // ← lo inyectas desde hijos
+provide('canvasPaused', paused)
 
-// ✅ NO desestructurar — acceder como store.mode
 const store = useTheme()
 
 const arena = ref(null)
