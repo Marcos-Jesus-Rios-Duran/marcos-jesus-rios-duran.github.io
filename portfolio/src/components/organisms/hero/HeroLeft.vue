@@ -7,28 +7,24 @@
     </p>
 
     <!-- Nombre grande -->
-    <h1 class="name animate-fade-right" style="--delay: 0.4s">
-      Marcos <span class="name--accent">Ríos</span>
+    <h1 class="name">
+      <span class="name__line">Marcos <span class="name--accent">Ríos</span></span>
+      <span class="name__role">{{ t('hero.role') }}</span>
     </h1>
 
-    <!-- Rol -->
-    <p class="role animate-fade-right" style="--delay: 0.6s">
-      {{ t('hero.role') }}
-    </p>
-
     <!-- Línea divisora animada -->
-    <div class="divider animate-grow" style="--delay: 0.8s" />
+    <div class="divider animate-grow" style="--delay: 0.4s" />
 
     <!-- Tagline -->
-    <p class="tagline animate-fade-up" style="--delay: 1.0s">
+    <p class="tagline animate-fade-up" style="--delay: 0.6s">
       {{ t('hero.tagline') }}
     </p>
-    <p class="tagline2 animate-fade-up" style="--delay: 1.1s">
+    <p class="tagline2 animate-fade-up" style="--delay: 0.7s">
       {{ t('hero.tagline2') }}
     </p>
 
     <!-- Botones -->
-    <div class="hero-actions animate-fade-up" style="--delay: 1.3s">
+    <div class="hero-actions animate-fade-up" style="--delay: 0.9s">
       <BaseButton variant="primary" @click="goTo('projects')">
         <span class="material-icons-round">rocket_launch</span>
         {{ t('hero.cta_primary') }}
@@ -77,13 +73,29 @@ function goTo(name) {
 
 /* === NOMBRE GRANDE === */
 .name {
-  font-size: clamp(3rem, 6vw, 5rem);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: clamp(3.2rem, 7vw, 5.6rem);
   font-weight: 900;
   color: white;
   margin: 0;
-  line-height: 1.05;
+  line-height: 0.98;
   letter-spacing: -2px;
   text-shadow: 0 2px 12px rgba(0, 40, 80, 0.20);
+}
+
+.name__line {
+  display: block;
+}
+
+.name__role {
+  display: block;
+  font-size: clamp(0.95rem, 1.7vw, 1.2rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.86);
 }
 
 .name--accent {
@@ -94,21 +106,6 @@ function goTo(name) {
 [data-theme="dark"] .name--accent {
   color: #00e5ff;
   text-shadow: 0 2px 16px rgba(0, 229, 255, 0.35);
-}
-
-/* === ROL === */
-.role {
-  font-size: 1rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.95);
-  margin: 0;
-  letter-spacing: 0.01em;
-  text-shadow: 0 1px 3px rgba(0, 30, 60, 0.30);
-}
-
-[data-theme="dark"] .role {
-  color: rgba(255, 255, 255, 0.70);
-  text-shadow: none;
 }
 
 /* === DIVISOR === */
@@ -241,7 +238,11 @@ function goTo(name) {
   }
 
   .name {
-    font-size: clamp(2.8rem, 7vw, 4.5rem);
+    font-size: clamp(3rem, 8vw, 4.8rem);
+  }
+
+  .name__role {
+    font-size: 0.92rem;
   }
 
   .greeting {
@@ -279,10 +280,6 @@ function goTo(name) {
     font-size: clamp(2.2rem, 10vw, 3.5rem);
   }
 
-  .role {
-    font-size: 0.95rem;
-  }
-
   .divider {
     margin: 0 auto;
     width: 50px;
@@ -314,11 +311,12 @@ function goTo(name) {
   }
 
   .name {
-    font-size: clamp(2rem, 8vw, 3rem);
+    font-size: clamp(2.6rem, 10vw, 3.5rem);
   }
 
-  .role {
-    font-size: 0.9rem;
+  .name__role {
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
   }
 
   .divider {

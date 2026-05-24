@@ -42,7 +42,7 @@
 <script setup>
 import IconWrapper from './IconWrapper.vue'
 
-const props = defineProps({
+defineProps({
   icon:     { type: String,  required: true },
   title:    { type: String,  required: true },
   tags:     { type: Array,   default: () => [] },

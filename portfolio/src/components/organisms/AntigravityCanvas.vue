@@ -99,7 +99,7 @@ function makeParts() {
     // Clamp so we always have at least a small, visible effect
     deviceFactor = Math.max(0.25, Math.min(deviceFactor, 1))
     scaleFactor = Math.max(0.25, scaleFactor * deviceFactor)
-  } catch (err) {
+  } catch {
     // ignore - fallback to default scaleFactor
   }
 
@@ -202,31 +202,6 @@ function draw() {
   raf = requestAnimationFrame(draw)
 }
 
-function onMove(e) {
-
-  // ← si el canvas está pausado, no actualizamos la posición del mouse ni el estilo del cursor
-    if (paused.value) {
-    dotStyle.value = { left: '-99px', top: '-99px' } // esconde el dot
-    return
-  }
-  const r = arena.value.getBoundingClientRect()
-  mouse.x = e.clientX - r.left
-  mouse.y = e.clientY - r.top
-  const cfg = PARTICLE_CONFIG[store.mode]  // ✅
-  dotStyle.value = {
-    left:       mouse.x + 'px',
-    top:        mouse.y + 'px',
-    background: cfg.cursor,
-    boxShadow:  `0 0 10px ${cfg.cursor}`
-  }
-}
-
-function onLeave() {
-  mouse.x = -999
-  mouse.y = -999
-  dotStyle.value = { left: '-99px', top: '-99px' }
-}
-
 // ✅ watch correcto para Pinia setup store
 watch(() => store.mode, () => makeParts())
 
@@ -285,7 +260,7 @@ onMounted(() => {
   document.addEventListener('visibilitychange', handleVisibilityChange)
 
   // store handlers for cleanup
-  arena._ag_handlers = { handlePointerMove, handlePointerLeave, handlePointerEnter }
+  arena.value._ag_handlers = { handlePointerMove, handlePointerLeave, handlePointerEnter }
   document._ag_visibilityHandler = handleVisibilityChange
 })
 

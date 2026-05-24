@@ -69,7 +69,6 @@
 <script setup>
 import { ref, watch, computed, onMounted, onUnmounted } from 'vue'
 import { useOnboarding } from '@/stores/useOnboarding'
-import IconWrapper from '@/components/atoms/IconWrapper.vue'
 
 const store = useOnboarding()
 

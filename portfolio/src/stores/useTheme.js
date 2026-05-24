@@ -15,7 +15,7 @@ export const useTheme = defineStore('theme', () => {
       if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
         return 'light'
       }
-    } catch (error) {
+    } catch {
       // If browser preference is unavailable, keep the dark default.
     }
 

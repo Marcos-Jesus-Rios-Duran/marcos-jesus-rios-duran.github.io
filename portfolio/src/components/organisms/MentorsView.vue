@@ -30,7 +30,6 @@
 <script setup>
 import { useI18n } from 'vue-i18n'
 import { computed } from 'vue'
-import IconWrapper from '@/components/atoms/IconWrapper.vue'
 
 const { t, tm } = useI18n()
 
@@ -39,8 +38,8 @@ const mentors = computed(() => {
   try {
     const result = tm('mentors.list')
     return Array.isArray(result) ? result : []
-  } catch (e) {
-    console.warn('Error loading mentors:', e)
+  } catch {
+    console.warn('Error loading mentors')
     return []
   }
 })
