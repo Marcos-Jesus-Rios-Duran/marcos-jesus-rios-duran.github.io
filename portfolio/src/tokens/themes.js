@@ -10,6 +10,7 @@ export const themes = {
     texto:            '#0f172a',
     textoSub:         '#64748b',
     borde:            'rgba(255,255,255,0.90)',
+    acento:           '#0f4c81',
     cursor:           '#FF8FAB',
     particulas:       ['#FFB3CC','#FF8FAB','#FFD6E5','#FF6B9D','#ffffff','#e0f4ff'],
   },

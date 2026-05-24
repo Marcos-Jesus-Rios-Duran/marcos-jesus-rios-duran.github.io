@@ -14,8 +14,30 @@
     </AntigravityCanvas>
 
     <footer class="footer">
-      <span>© 2026 Marcos Jesús Ríos Durán</span>
-      <span class="footer-sub">{{ t('footer.made_with') }}</span>
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <h3 class="footer-name">COXIDEV</h3>
+          <p class="footer-role">{{ t('footer.role') }}</p>
+          <p class="footer-sub">{{ t('footer.made_with') }}</p>
+        </div>
+
+        <nav class="footer-links" aria-label="Footer navigation">
+          <router-link :to="{ name: 'home' }">{{ t('nav.home') }}</router-link>
+          <router-link :to="{ name: 'about' }">{{ t('nav.about') }}</router-link>
+          <router-link :to="{ name: 'projects' }">{{ t('nav.projects') }}</router-link>
+          <router-link :to="{ name: 'contact' }">{{ t('nav.contact') }}</router-link>
+        </nav>
+
+        <div class="footer-socials">
+          <a href="https://github.com/marcos-jesus-rios-duran" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="mailto:marcos@example.com">Email</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© {{ currentYear }} COXIDEV. {{ t('footer.rights') }}</span>
+      </div>
     </footer>
 
     <!-- Onboarding Tour -->
@@ -37,6 +59,7 @@ const { t } = useI18n()
 const themeStore = useTheme()
 const onboardingStore = useOnboarding()
 const { mode } = storeToRefs(themeStore)
+const currentYear = new Date().getFullYear()
 
 // Iniciar onboarding cuando el app monta
 onMounted(() => {
@@ -103,9 +126,8 @@ body {
 .footer {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  padding: 32px 20px;
+  gap: 18px;
+  padding: 30px 20px 22px;
   background: rgba(75, 150, 224, 0.75);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -114,14 +136,66 @@ body {
   font-size: 14px;
   transition: all 0.3s;
   position: relative;
-  z-index: 10;
+  z-index: 1;
   /* El footer ahora se queda al final del flujo natural */
   width: 100%;
 }
 
+.footer-inner {
+  width: min(1200px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.footer-name {
+  font-size: 22px;
+  line-height: 1;
+  margin-bottom: 8px;
+  letter-spacing: 0.02em;
+}
+
+.footer-role {
+  font-size: 13px;
+  opacity: 0.9;
+  margin-bottom: 8px;
+}
+
 .footer-sub {
   font-size: 12px;
-  opacity: 0.7;
+  opacity: 0.75;
+}
+
+.footer-links,
+.footer-socials {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-links a,
+.footer-socials a {
+  color: inherit;
+  text-decoration: none;
+  opacity: 0.92;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.footer-links a:hover,
+.footer-socials a:hover {
+  opacity: 1;
+  transform: translateX(2px);
+}
+
+.footer-bottom {
+  width: min(1200px, 100%);
+  margin: 0 auto;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  font-size: 12px;
+  opacity: 0.85;
 }
 
 /* Transición de páginas — cross-fade sin gap (sin mode out-in para evitar frame vacío) */
@@ -149,5 +223,16 @@ body {
   background: rgba(10, 10, 15, 0.92);
   border-top-color: rgba(0,229,255,0.15);
   color: rgba(255,255,255,0.70);
+}
+
+[data-theme="dark"] .footer-bottom {
+  border-top-color: rgba(0, 229, 255, 0.14);
+}
+
+@media (max-width: 900px) {
+  .footer-inner {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
 }
 </style>

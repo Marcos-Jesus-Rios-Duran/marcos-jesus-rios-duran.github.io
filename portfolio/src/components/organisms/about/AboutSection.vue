@@ -1,15 +1,16 @@
 <script setup>
 import { useI18n } from 'vue-i18n';
 import LineTime from './LineTime.vue';
+import IconWrapper from '@/components/atoms/IconWrapper.vue';
 
 // Usamos el JSON que traducimos hace un momento
 const { tm } = useI18n();
 
-// Iconos para hobbies
+// Iconos para hobbies (Material Icon names)
 const hobbyIcons = {
-  music: '🎵',
-  sports: '⚽',
-  videogames: '🎮'
+  music: 'music_note',
+  sports: 'sports_soccer',
+  videogames: 'sports_esports'
 };
 </script>
 
@@ -25,19 +26,19 @@ const hobbyIcons = {
         <p class="description">{{ tm('about.description') }}</p>
 
         <div class="hobbies-grid">
-            <strong>{{ tm('about.hobbies.nature') }} 🗻🍄‍🟫</strong>
+            <strong>{{ tm('about.hobbies.nature') }}</strong>
           <div class="hobby-item">
-            <span class="hobby-icon">{{ hobbyIcons.music }}</span>
+            <IconWrapper :name="hobbyIcons.music" color="accent" size="md" class="hobby-icon" />
             <strong>{{ tm('about.hobbies.music.label') }}:</strong>
             <span>{{ tm('about.hobbies.music.value') }}</span>
           </div>
           <div class="hobby-item">
-            <span class="hobby-icon">{{ hobbyIcons.sports }}</span>
+            <IconWrapper :name="hobbyIcons.sports" color="accent" size="md" class="hobby-icon" />
             <strong>{{ tm('about.hobbies.sports.label') }}:</strong>
             <span>{{ tm('about.hobbies.sports.value') }}</span>
           </div>
           <div class="hobby-item">
-            <span class="hobby-icon">{{ hobbyIcons.videogames }}</span>
+            <IconWrapper :name="hobbyIcons.videogames" color="accent" size="md" class="hobby-icon" />
             <strong>{{ tm('about.hobbies.videogames.label') }}:</strong>
             <span>{{ tm('about.hobbies.videogames.value') }}</span>
           </div>

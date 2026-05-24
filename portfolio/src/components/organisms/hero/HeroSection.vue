@@ -1,15 +1,10 @@
 <!-- src/components/organisms/HeroSection.vue -->
 <template>
   <section class="hero-section">
-    <Transition
-      name="hero"
-      mode="out-in"
-    >
-      <div class="hero-container" key="hero">
-        <HeroLeft class="hero-left-col" />
-        <AnimatedCode class="hero-right-col" />
-      </div>
-    </Transition>
+    <div class="hero-container">
+      <HeroLeft class="hero-left-col" />
+      <AnimatedCode class="hero-right-col" />
+    </div>
   </section>
 </template>
 
@@ -35,23 +30,6 @@ import AnimatedCode from '@/components/organisms/hero/AnimatedCode.vue'
   grid-template-columns: 1fr 1fr;
   gap: 40px;
   align-items: start;
-}
-
-/* === TRANSICIONES === */
-.hero-enter-active {
-  transition: opacity 0.24s ease;
-}
-
-.hero-leave-active {
-  transition: opacity 0.24s ease;
-}
-
-.hero-enter-from {
-  opacity: 0;
-}
-
-.hero-leave-to {
-  opacity: 0;
 }
 
 /* Tablet (768px a 1024px) */

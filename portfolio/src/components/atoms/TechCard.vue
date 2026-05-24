@@ -7,7 +7,9 @@
       animationDuration: `${duration}s`
     }"
   >
-    <div class="tech-card__icon">{{ icon }}</div>
+    <div class="tech-card__icon">
+      <IconWrapper :name="icon" color="light" size="lg" />
+    </div>
     <div class="tech-card__content">
       <h4 class="tech-card__title">{{ title }}</h4>
       <div class="tech-card__tags">
@@ -38,6 +40,8 @@
 </template>
 
 <script setup>
+import IconWrapper from './IconWrapper.vue'
+
 defineProps({
   icon:     { type: String,  required: true },
   title:    { type: String,  required: true },

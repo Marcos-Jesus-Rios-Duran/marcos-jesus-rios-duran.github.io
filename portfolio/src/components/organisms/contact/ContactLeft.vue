@@ -18,7 +18,7 @@
         target="_blank"
         rel="noopener noreferrer"
       >
-        <div class="social-icon email-icon">✉️</div>
+        <IconWrapper name="mail" color="primary" size="md" />
         <div class="social-info">
           <span class="social-label">Email</span>
           <span class="social-value">mr4010650@gmail.com</span>
@@ -33,7 +33,7 @@
         target="_blank"
         rel="noopener noreferrer"
       >
-        <div class="social-icon linkedin-icon">💼</div>
+        <IconWrapper name="work" color="primary" size="md" />
         <div class="social-info">
           <span class="social-label">LinkedIn</span>
           <span class="social-value">Marcos Jesús Ríos Durán</span>
@@ -48,7 +48,7 @@
         target="_blank"
         rel="noopener noreferrer"
       >
-        <div class="social-icon github-icon">🐙</div>
+        <IconWrapper name="code" color="primary" size="md" />
         <div class="social-info">
           <span class="social-label">GitHub</span>
           <span class="social-value">Marcos-Jesus-Rios-Duran</span>
@@ -63,7 +63,7 @@
         target="_blank"
         rel="noopener noreferrer"
       >
-        <div class="social-icon whatsapp-icon">💬</div>
+        <IconWrapper name="message" color="primary" size="md" />
         <div class="social-info">
           <span class="social-label">WhatsApp</span>
           <span class="social-value">+52 764 103 8217</span>
@@ -78,7 +78,7 @@
         target="_blank"
         rel="noopener noreferrer"
       >
-        <div class="social-icon telegram-icon">✈️</div>
+        <IconWrapper name="send" color="primary" size="md" />
         <div class="social-info">
           <span class="social-label">Telegram</span>
           <span class="social-value">+52 764 103 8217</span>
@@ -99,6 +99,7 @@
 
 <script setup>
 import { useI18n } from 'vue-i18n'
+import IconWrapper from '@/components/atoms/IconWrapper.vue'
 const { t } = useI18n()
 </script>
 

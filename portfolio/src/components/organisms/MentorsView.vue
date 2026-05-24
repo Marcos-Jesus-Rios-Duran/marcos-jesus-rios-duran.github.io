@@ -16,7 +16,6 @@
 
       <div class="mentors-list-styled">
         <div v-for="(mentor, idx) in mentors" :key="idx" class="mentor-item">
-          <span class="mentor-icon">👨‍🎓</span>
           <p class="mentor-text">{{ mentor }}</p>
         </div>
       </div>
@@ -39,8 +38,8 @@ const mentors = computed(() => {
   try {
     const result = tm('mentors.list')
     return Array.isArray(result) ? result : []
-  } catch (e) {
-    console.warn('Error loading mentors:', e)
+  } catch {
+    console.warn('Error loading mentors')
     return []
   }
 })
@@ -134,7 +133,6 @@ const mentors = computed(() => {
 }
 
 .mentor-icon {
-  font-size: 24px;
   min-width: 24px;
   flex-shrink: 0;
 }

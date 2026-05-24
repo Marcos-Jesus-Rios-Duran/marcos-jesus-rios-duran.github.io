@@ -3,7 +3,26 @@ import { ref, computed } from 'vue'
 import { themes } from '@/tokens/themes'
 
 export const useTheme = defineStore('theme', () => {
-  const mode = ref(localStorage.getItem('theme') || 'light')
+  function getInitialMode() {
+    const saved = localStorage.getItem('theme')
+    if (saved === 'light' || saved === 'dark') return saved
+
+    try {
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        return 'dark'
+      }
+
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        return 'light'
+      }
+    } catch {
+      // If browser preference is unavailable, keep the dark default.
+    }
+
+    return 'dark'
+  }
+
+  const mode = ref(getInitialMode())
   const tokens = computed(() => themes[mode.value])
 
   function applyTokens(t) {

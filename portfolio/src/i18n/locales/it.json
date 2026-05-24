@@ -2,7 +2,7 @@
   "hero": {
     "greeting": "Ciao, sono",
     "name": "Marcos Ríos",
-    "role": "Ingegnere in Sviluppo e Gestione del Software",
+    "role": "Sviluppatore software",
     "tagline": "Sviluppatore appassionato di architettura software pulita",
     "tagline2": "dal Messico per il mondo 🌸",
     "cta_primary": "Vedi progetti",
@@ -85,46 +85,26 @@
   },
   "skills": {
     "title": "Architettura & Competenze",
-    "subtitle": "Il mio kit di strumenti e la mia filosofia",
     "philosophy": "Codice Pulito • Programmazione Pragmatica • Apprendimento Continuo",
     "remote": "Sviluppatore da Remoto",
-    "categories": {
-      "frontend": {
-        "title": "Frontend",
-        "icon": "💻",
-        "technologies": ["TypeScript", "JavaScript", "Angular", "React", "Vue.js", "Pug"]
-      },
-      "backend": {
-        "title": "Backend",
-        "icon": "⚙️",
-        "technologies": ["Java 17", "Java 21", "Python", "Node.js", "Spring Boot", "FastAPI", "Express.js"]
-      },
-      "mobile": {
-        "title": "Mobile & Desktop",
-        "icon": "📱",
-        "technologies": ["Flutter", "Dart", "Android", "Java", "Kotlin"]
-      }
-    },
     "architecture": {
       "title": "Architettura & Design",
       "principles": "SOLID • DRY • KISS • Hexagonal Architecture • Clean Code",
       "patterns": "Singleton • Factory • Facade • Strategy • DAO/DTO • MVC • MVVM",
-      "methodologies": "Feature-First • Scrum • Git Flow",
-      "vcs": "GitHub • GitLab (Privato)"
-    },
-    "databases": {
-      "title": "Database",
-      "sql": "MySQL • MariaDB • PostgreSQL",
-      "nosql": "MongoDB • Neo4j"
-    },
-    "specializations": {
-      "title": "Specializzazioni",
-      "items": ["Sicurezza Informatica", "Azure AI-900 ✓"]
+      "methodologies": "Feature-First • Scrum • Git Flow"
     }
   },
   "projects": {
     "title": "Progetti",
     "status": "In sviluppo",
+    "status_labels": {
+      "development": "In sviluppo",
+      "completed": "Completato / Accademico",
+      "featured": "In evidenza",
+      "opensource": "Open Source",
+      "confidential": "Riservato",
+      "refactoring": "Rifattorizzazione"
+    },
     "subtitle": "Quello che ho costruito",
     "Soodan": {
       "name": "Soodan",
@@ -243,8 +223,8 @@
     "inaoe": "Istituto Nazionale di Astrofisica, Ottica ed Elettronica",
     "intro": "Ringrazio profondamente i miei mentori presso l'Istituto Nazionale di Astrofisica, Ottica ed Elettronica (INAOE) per la loro guida, ispirazione e dedizione nella mia formazione professionale:",
     "list": [
-      "Dra. Janeth Cruz Enríquez - Tecnologa Senior INAOE, Responsabile del Dipartimento Sistemi Computazionali",
-      "Juan Carlos Escamilla Abarca - Lic. Scienze dell'Informazione, Sistemi Computazionali",
+      "Dr. Janeth Cruz Enríquez - Tecnologa Senior INAOE, Responsabile del Dipartimento Sistemi Computazionali",
+      "Juan Carlos Escamilla Abarca - Laurea in Informatica, Sistemi Computazionali",
       "Dr. Jesús Fonseca Bustos - Tecnologo Senior INAOE, Sistemi Computazionali"
     ],
     "closing": "La loro esperienza e il loro mentoring sono stati fondamentali per il mio sviluppo come ingegnere del software e continueranno ad essere un'ispirazione per la mia carriera professionale."
@@ -257,7 +237,8 @@
     "available": "Disponibile per nuovi progetti",
     "cv": {
       "title": "Il mio CV",
-      "download": "Scarica il CV"
+      "download": "Scarica il CV",
+      "loading": "Caricamento anteprima del CV..."
     },
     "form": {
       "title": "Inviami un messaggio",
@@ -277,14 +258,14 @@
     "steps": [
       {
         "title": "Benvenuto!",
-        "description": "Sono Marcos Ríos, ingegnere di sviluppo e gestione software specializzato in architettura pulita."
+        "description": "Sono Marcos Ríos, sviluppatore software e studente di ingegneria del software, specializzato in architettura pulita."
       },
       {
         "title": "🌍 Qui puoi cambiare la lingua",
         "description": "Scegli tra spagnolo, inglese, francese, tedesco o italiano secondo le tue preferenze."
       },
       {
-        "title": "🌙 Personalizza la tua esperienza",
+        "title": "Personalizza la tua esperienza",
         "description": "Passa tra la modalità chiara e scura secondo le tue preferenze visive."
       },
       {
@@ -292,11 +273,11 @@
         "description": "Qui condivido le mie conoscenze di Architettura Pulita, SOLID, Design Patterns e metodologie professionali."
       },
       {
-        "title": "👨‍🎓 I miei Mentori",
+        "title": "I miei Mentori",
         "description": "Sono grato ai professionisti dell'INAOE che hanno plasmato la mia traiettoria e le mie conoscenze tecniche."
       },
       {
-        "title": "📚 Esplora di più",
+        "title": "Esplora di più",
         "description": "Visita 'Progetti' per vedere il mio lavoro reale, e 'Su di me' per conoscer meglio, inclusa la mia timeline di apprendimento."
       },
       {
@@ -306,7 +287,8 @@
     ]
   },
   "footer": {
-    "made_with": "Fatto con Vue 🌸 da Huauchinango, Puebla",
+    "role": "Marcos Jesús Ríos Durán · TSU e studente di ingegneria del software",
+    "made_with": "Fatto con Vue da Xicotepec, Puebla",
     "rights": "Tutti i diritti riservati"
   }
 }

@@ -1,56 +1,67 @@
-# marcos-jesus-rios-duran.github.io
-Professional portfolio and personal showcase featuring software development projects, technical milestones, and career achievements of Marcos Jesús Ríos Durán.
+
+# 👋 Hallo!, Hi!, Olá!, Salut!, ¡Hola!, Bonjour!, Привет! 🖖
+
+<br>
+
+## 💫 About Me
+
+**Software Developer (T.S.U.) | Software Engineering Student @ UTXJ**
+
+I'm a passionate software developer with a strong focus on **clean, maintainable code** and solving real-world problems with responsibility and precision. What drives me is not just writing code—it's building solutions that matter.
+
+My journey has been one of continuous growth. As a self-taught developer and professional intern at the **National Institute of Astrophysics, Optics, and Electronics (INAOE)**, I've learned the importance of discipline, collaboration, and excellence. I hold a **T.S.U. (Associate's Degree)** in Multiplatform Software Development and am currently pursuing my Engineering degree.
+
+### 🧠 My Philosophy
+
+I believe in **Software Craftsmanship** rooted in **SOLID principles**, clean architecture, and the pragmatic approach of leaving code better than I found it. I work with:
+
+- **Frontend:** JavaScript, TypeScript, Vue, React, Angular
+- **Backend:** Node.js, Python, Java (Spring Boot, FastAPI)
+- **Mobile:** Flutter, Dart, React Native
+- **Databases:** MySQL, PostgreSQL, MongoDB
+- **Methodologies:** Git Flow, Feature-First, Clean Code, Lean approach
+
+I'm also **Azure AI Fundamentals certified** and continuously expanding my skills in cloud technologies.
+
+### 🌍 Beyond Code
+
+Languages fascinate me—I'm fluent in **Spanish**, intermediate in **English**, and actively learning **French** and **German**. I believe understanding different cultures and languages makes you a better problem-solver and communicator.
 
 ---
 
-## 🛠️ TECH STACK & SKILLS
+## 📱 My Portfolio
 
-### 💻 **Frontend**
-- Languages: ts, js
-- Frameworks: angular react vue, pug pero es un motor de plantillas
-- Tools: en heraminetas bueno no se seri arquitectura uso mucho lo que es atomic design.
+This is my **personal portfolio**—a modern, professional web application where you can explore my work, projects, and technical expertise.
 
-### ⚙️ **Backend**
-- Languages: java 17, java 21, python y js usando node
-- Frameworks:spring boot , fast api con unvicor y node con express .js
-- Tools: aqui en herramientas no se que seria igual pero aqui uso principlamnete una estrcuturacion por caractersitca features fisrt buscando encapsular cada modulo dentro de  si mismo modulo de pagos modulo de auth modulo de perfil modulo de dasboard modulo de esto y así tambien cabe mencionar que he suado rrecurcibidad, listas y ese rollo de las estructuras de datos.
+### 🌐 **[Visit My Portfolio Live →](https://www.coxidev.me/)**
 
-### 📱 **Mobile & Desktop**
-- Languages: dart, anrodid studio igual usnado java y kottlin
-- Frameworks:flutter
-- Tools: igual feature fisrt y aqui si uso otro mvvm modelo vista  y modelo de vista
+Built with **Vue 3 + Vite**, this project demonstrates clean architecture, attention to detail, and how I approach building things. Feel free to use it as **inspiration** for your own portfolio—the source code is open and licensed under MIT.
 
-### 🏗️ **Architecture & Design Patterns**
-- Principles: aqui si SOLID vamonos fuerte, DRY, KISS ( menos es mas #%#EW jajaja ) pero obvio el fuerte es SOLID  entre ellos uso mucho la inyeccion de dependencias por que uso mucho el strategy gracias a el D de solid ya que son abstracciones y ahi se usa laintrfaz
-- Patterns: GOF he usado mucho el sigleton facade, factory, singleton, el clon igual lo he usado he suado otros como el mvc pero encapsualod en cada modulo obviamente,este lo que es por ejemplo he usado DAO DTO, y así
-- Architectures: Arquitectura hezagonal. busco desacoplar todo que no importa la db o el framework busco el clean code y ser un pragmatic programmer
-
-### 🔄 **Metodología & DevOps**
-- Version Control: GitHub, GitLab (Privado)
-- Metodologías: Git Flow, Feature-First, Scrum
-- Workflows: Automatización y CI/CD
-
-### 🗄️ **Databases**
-- SQL:mysql maria db y pistgresql
-- NoSQL:Mongo DB
-- Other: Neo4j
-
-### 🗄️ IA & CIberseguridad
-Cibersudgirar y seguriad en el desarrolo
-asi mismo en ia Azure IA 900 proximante 903 espro pasar el examen esto otro es comentario para ti jajaaj pero el 900 si lo tengo
-### 👥 **Mentores**
--Dra. Janeth Cruz Enríquez, Tecnóloga titular en el Instituto Nacional de Astrofísica, Óptica y Electrónica, Responsable del área de Sistemas Computacionales
-Juan Carlos Escamilla Abarca Lic. en Ciencias de la Computación
-y mecion especial a el Dr jesus fonseca bustos es igual tecnologo titular no es el preonsable pero es el mismo cargo de ello son comparñeor s lso tres pero solo que el doctor igual es responsable del cargo y ya
+For technical insights into how it's built, check the [Technical Documentation](portfolio/README.md).
 
 ---
 
-## 📁 Project Structure
-- `portfolio/` - Vue 3 Vite application
+## 🚀 Quick Start (Local Development)
 
-## 🚀 Quick Start
 ```bash
 cd portfolio
 npm install
 npm run dev
 ```
+
+The portfolio runs locally at: `http://localhost:5173`
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License**—see the [LICENSE](LICENSE) file. Feel free to use it as inspiration or a foundation for your own portfolio. I'm honored if this helps you.
+
+---
+
+## 🌐 Let's Connect
+
+- **LinkedIn:** [Marcos Jesús Ríos Durán](https://www.linkedin.com/in/marcos-jesús-rios-durán-15b036402)
+- **GitHub:** [@Marcos-Jesus-Rios-Duran](https://github.com/Marcos-Jesus-Rios-Duran)
+
+*"The code is the medium; solving problems with solid architecture is the goal."* 🚀
