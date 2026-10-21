@@ -14,14 +14,27 @@
         {{ t('mentors.intro') }}
       </p>
 
+
       <div class="mentors-list-styled">
         <div v-for="(mentor, idx) in mentors" :key="idx" class="mentor-item">
           <p class="mentor-text">{{ mentor }}</p>
         </div>
       </div>
 
+
       <p class="closing-text">
         {{ t('mentors.closing') }}
+      </p>
+    </div>
+    
+    <div class="description-card">
+      <h2>{{ t('mentors.utxj') }}</h2>
+      <p class="intro-text">
+      {{ t('mentors.introduccion')}}
+      <br>
+      <div v-for="(mentor, idx) in mentorsUtxj" :key="idx" class="mentor-item">
+        <p class="mentor-text">{{ mentor }} </p>
+      </div>
       </p>
     </div>
   </section>
@@ -43,6 +56,17 @@ const mentors = computed(() => {
     return []
   }
 })
+
+const mentorsUtxj= computed(()=>{
+  try{
+    const result= tm("mentors.list-utxj")
+    return Array.isArray(result)? result:[]
+  }catch{
+    console.warn("Error Loading mentor utxj")
+    return[]
+  }
+})
+
 </script>
 
 <style scoped>
