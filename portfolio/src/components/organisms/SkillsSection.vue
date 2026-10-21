@@ -66,9 +66,19 @@ const skillCards = [
     duration: 4.5,
     tags: [
       {
-        label: 'Azure AI-900',
+        label: 'Azure AI Apps and Agents Developer Associate',
         certified: true,
-        url: 'https://learn.microsoft.com/es-mx/users/marcosjesusriosduran-4079/credentials/4ae86f377cd55fa8'
+        url: 'https://learn.microsoft.com/api/credentials/share/es-mx/mrcojdr25/8F83EE1DAE603F6A?sharingId=469A4AE0D907CE33'
+      },
+      {
+        label: 'Azure AI-900: Microsoft Azure AI Fundamentals',
+        certified: true,
+        url: 'https://learn.microsoft.com/api/credentials/share/es-mx/mrcojdr25/B3A63E878689261C?sharingId=469A4AE0D907CE33'
+      },
+       {
+        label: 'AZ-900: Microsoft Azure Fundamentals',
+        certified: true,
+        url: 'https://learn.microsoft.com/api/credentials/share/es-mx/mrcojdr25/4AE86F377CD55FA8?sharingId=469A4AE0D907CE33'
       },
       {
         label: 'GitHub',
@@ -96,6 +106,7 @@ const skillCards = [
       { label: 'Vue.js', certified: false },
       { label: 'React', certified: false },
       { label: 'Angular', certified: false },
+      {label: "Microservices and CI/CD Pipeline Builder ", certified: true, url:'https://www.credly.com/badges/df330e1b-412c-4e16-92a6-29ec3f9d547e/public_url'},
       { label: 'Pug', certified: false },
     ]
   },
@@ -159,6 +170,7 @@ const skillCards = [
     tags: [
       { label: 'Linux', certified: false },
       { label: 'Ciberseguridad', certified: false },
+      {label:'Machine Learning', certified: true , url:'https://www.credly.com/badges/9d60c860-15f1-4948-8729-6c737dd6436e/public_url'},
       { label: 'Power BI', certified: false },
     ]
   },

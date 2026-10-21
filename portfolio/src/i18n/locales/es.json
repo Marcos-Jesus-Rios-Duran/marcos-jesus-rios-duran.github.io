@@ -225,11 +225,17 @@
     "inaoe": "Instituto Nacional de Astrofísica, Óptica y Electrónica",
     "intro": "Agradezco profundamente a mis mentores en el Instituto Nacional de Astrofísica, Óptica y Electrónica (INAOE) por su guía, inspiración y dedicación en mi formación profesional:",
     "list": [
-      "Dra. Janeth Cruz Enríquez - Tecnóloga titular INAOE, Responsable del área de Sistemas Computacionales",
-      "Juan Carlos Escamilla Abarca - Lic. en Ciencias de la Computación, Sistemas Computacionales",
-      "Dr. Jesús Fonseca Bustos - Tecnólogo titular INAOE, Sistemas Computacionales"
+      "Dra. Cruz Enríquez Janeth - Tecnóloga titular INAOE, Responsable del área de Sistemas Computacionales",
+      "Escamilla Abarca Juan Carlos - Lic. en Ciencias de la Computación, Sistemas Computacionales",
+      "Dr. Fonseca Bustos Jesús - Tecnólogo titular INAOE, Sistemas Computacionales"
     ],
-    "closing": "Su experiencia y mentoría han sido fundamentales en mi desarrollo como ingeniero de software y seguirán siendo una inspiración para mi carrera profesional."
+    "closing": "Su experiencia y mentoría han sido fundamentales en mi desarrollo como ingeniero de software y seguirán siendo una inspiración para mi carrera profesional.",
+    "utxj":"Universidad Tecnológica de Xicotepec de Juárez",
+    "introduccion":"Agradezco inmensamente a mis docentes por sus enseñanzas e inspiración para mi formación profesional: ",
+    "list-utxj":[
+      "MCC. Góngora Perera Glendy Marisol- Maestra en Ciencias de la Computación.",
+      "LI. García Ortíz Rita Argelia - Licenciatura en Informática."
+    ]
   },
   "contact": {
     "title": "Contacto",
